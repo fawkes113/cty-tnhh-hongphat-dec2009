@@ -4,6 +4,7 @@ Cac chuc nang:
 2/ Enter/edit BUY_Price
 3/ Create/edit/(delete) agent & agent kind
 4/ Create/edit/(delete) Items
+4.1: delete item: -> delete sell + buy price
 5/ Enter/edit sell price
 6/ Import Items-> edit Item quantity
 7 Create Order ->create Order Details-> report Order (print)
