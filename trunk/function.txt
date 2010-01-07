@@ -12,4 +12,5 @@ Cac chuc nang:
 10/ Enter/edit Employee
 11/ Report:
 -income by Month
+-cong no!
 
