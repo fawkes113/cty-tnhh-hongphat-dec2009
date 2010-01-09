@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E5AB7983-E95D-421A-954F-D34916D0B6A8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CtyHongPhat</RootNamespace>
+    <AssemblyName>CtyHongPhat</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.EncodeHVT, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="MdiTabControl, Version=1.0.3604.17648, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMenu21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMenu21.Designer.cs">
+      <DependentUpon>FormMenu21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMessageBoxError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMessageBoxError.designer.cs">
+      <DependentUpon>FormMessageBoxError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMessageBoxInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMessageBoxInfo.designer.cs">
+      <DependentUpon>FormMessageBoxInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMessageBoxQuest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMessageBoxQuest.designer.cs">
+      <DependentUpon>FormMessageBoxQuest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUserPasswordChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUserPasswordChange.Designer.cs">
+      <DependentUpon>FormUserPasswordChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBox.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMenu21.resx">
+      <DependentUpon>FormMenu21.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMessageBoxError.resx">
+      <DependentUpon>FormMessageBoxError.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMessageBoxInfo.resx">
+      <DependentUpon>FormMessageBoxInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMessageBoxQuest.resx">
+      <DependentUpon>FormMessageBoxQuest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUserPasswordChange.resx">
+      <DependentUpon>FormUserPasswordChange.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\close.png" />
+    <Content Include="images\delete.png" />
+    <Content Include="images\edit_pie.png" />
+    <Content Include="images\info.png" />
+    <Content Include="images\load.png" />
+    <Content Include="images\modify.png" />
+    <Content Include="images\money.png" />
+    <Content Include="images\new.png" />
+    <Content Include="images\Printer.png" />
+    <Content Include="images\refresh.png" />
+    <Content Include="images\search.png" />
+    <Content Include="images\select.png" />
+    <None Include="Resources\Windows-Security.png" />
+    <None Include="Resources\Warning-Shield.png" />
+    <None Include="Resources\Warning.png" />
+    <None Include="Resources\TITLE.jpg" />
+    <None Include="Resources\TITLE2.jpg" />
+    <None Include="Resources\Symbol-Information.png" />
+    <None Include="Resources\Symbol-Help.png" />
+    <None Include="Resources\Symbol-Exclamation.png" />
+    <None Include="Resources\Symbol-Error.png" />
+    <None Include="Resources\Question-Shield.png" />
+    <None Include="Resources\logo.jpg" />
+    <None Include="Resources\logo2.jpg" />
+    <None Include="Resources\Locker.png" />
+    <None Include="Resources\Keys.png" />
+    <None Include="Resources\Key.png" />
+    <None Include="Resources\Info-Shield.png" />
+    <None Include="Resources\Info.png" />
+    <None Include="Resources\Help-and-Support.png" />
+    <None Include="Resources\Good-Shield.png" />
+    <None Include="Resources\Good_32x32.png" />
+    <None Include="Resources\Good.png" />
+    <None Include="Resources\Error-Shield.png" />
+    <None Include="Resources\Error.png" />
+    <None Include="Resources\Accessibility.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
