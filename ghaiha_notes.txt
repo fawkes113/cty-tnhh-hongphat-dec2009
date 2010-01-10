@@ -1,4 +1,4 @@
-2 cho ki ki
+﻿2 cho ki ki
 1/ Trong bang Oder Details
 cai IdPrice 0 hop li cho lam, vi khi biet ItemID + Agent -> price, de IdPrice thi thay ki ki
 2/ Tui insert thi van thay cai DEBT :
@@ -7,3 +7,9 @@ de tranh hieu lam, tui de nghi doi New Debt -> AdditionalDebt de khoi lon voi Cu
 OldDebt		NewDebt		Payment		CurrentDebt
 0		1000.000		0		1000.000		<- truoc day 0 no, moi mua 1000.000 chua tra
 1000.000		0		500.000		500.000		<tra 500.000
+
+=======
+Duong:
+lamvu duong: chỉ có trong sellprice
+lamvu duong: cái AgentId
+lamvu duong: đổi thành AgentKindId
