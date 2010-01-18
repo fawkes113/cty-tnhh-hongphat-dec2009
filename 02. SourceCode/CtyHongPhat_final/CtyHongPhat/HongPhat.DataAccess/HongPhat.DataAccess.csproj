@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7F252C63-F245-4D92-9A79-9EE4417C4205}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HongPhat.DataAccess</RootNamespace>
+    <AssemblyName>HongPhat.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AGENTS\AGENTS_Delete.cs" />
+    <Compile Include="AGENTS\AGENTS_Find.cs" />
+    <Compile Include="AGENTS\AGENTS_GetByAgentId.cs" />
+    <Compile Include="AGENTS\AGENTS_GetPaged.cs" />
+    <Compile Include="AGENTS\AGENTS_Get_List.cs" />
+    <Compile Include="AGENTS\AGENTS_Insert.cs" />
+    <Compile Include="AGENTS\AGENTS_Update.cs" />
+    <Compile Include="AGENT_KIND\AGENT_KIND_Delete.cs" />
+    <Compile Include="AGENT_KIND\AGENT_KIND_Find.cs" />
+    <Compile Include="AGENT_KIND\AGENT_KIND_GetByIdAgentKind.cs" />
+    <Compile Include="AGENT_KIND\AGENT_KIND_GetPaged.cs" />
+    <Compile Include="AGENT_KIND\AGENT_KIND_Get_List.cs" />
+    <Compile Include="AGENT_KIND\AGENT_KIND_Insert.cs" />
+    <Compile Include="AGENT_KIND\AGENT_KIND_Update.cs" />
+    <Compile Include="BUY_PRICE\BUY_PRICE_Delete.cs" />
+    <Compile Include="BUY_PRICE\BUY_PRICE_Find.cs" />
+    <Compile Include="BUY_PRICE\BUY_PRICE_GetById.cs" />
+    <Compile Include="BUY_PRICE\BUY_PRICE_GetPaged.cs" />
+    <Compile Include="BUY_PRICE\BUY_PRICE_Get_List.cs" />
+    <Compile Include="BUY_PRICE\BUY_PRICE_Insert.cs" />
+    <Compile Include="BUY_PRICE\BUY_PRICE_Update.cs" />
+    <Compile Include="DEBT\DEBT_Delete.cs" />
+    <Compile Include="DEBT\DEBT_Find.cs" />
+    <Compile Include="DEBT\DEBT_GetByDebtId.cs" />
+    <Compile Include="DEBT\DEBT_GetPaged.cs" />
+    <Compile Include="DEBT\DEBT_Get_List.cs" />
+    <Compile Include="DEBT\DEBT_Insert.cs" />
+    <Compile Include="DEBT\DEBT_Update.cs" />
+    <Compile Include="EMPLOYEES\EMPLOYEES_Delete.cs" />
+    <Compile Include="EMPLOYEES\EMPLOYEES_Find.cs" />
+    <Compile Include="EMPLOYEES\EMPLOYEES_GetByEmployeeId.cs" />
+    <Compile Include="EMPLOYEES\EMPLOYEES_GetPaged.cs" />
+    <Compile Include="EMPLOYEES\EMPLOYEES_Get_List.cs" />
+    <Compile Include="EMPLOYEES\EMPLOYEES_Insert.cs" />
+    <Compile Include="EMPLOYEES\EMPLOYEES_Update.cs" />
+    <Compile Include="ITEMS\ITEMS_Delete.cs" />
+    <Compile Include="ITEMS\ITEMS_Find.cs" />
+    <Compile Include="ITEMS\ITEMS_GetByItemId.cs" />
+    <Compile Include="ITEMS\ITEMS_GetPaged.cs" />
+    <Compile Include="ITEMS\ITEMS_Get_List.cs" />
+    <Compile Include="ITEMS\ITEMS_Insert.cs" />
+    <Compile Include="ITEMS\ITEMS_Update.cs" />
+    <Compile Include="ORDERS\ORDERS_Delete.cs" />
+    <Compile Include="ORDERS\ORDERS_Find.cs" />
+    <Compile Include="ORDERS\ORDERS_GetByOrderId.cs" />
+    <Compile Include="ORDERS\ORDERS_GetPaged.cs" />
+    <Compile Include="ORDERS\ORDERS_Get_List.cs" />
+    <Compile Include="ORDERS\ORDERS_Insert.cs" />
+    <Compile Include="ORDERS\ORDERS_Update.cs" />
+    <Compile Include="ORDER_DETAILS\ORDER_DETAILS_Delete.cs" />
+    <Compile Include="ORDER_DETAILS\ORDER_DETAILS_Find.cs" />
+    <Compile Include="ORDER_DETAILS\ORDER_DETAILS_GetByOrderDetailId.cs" />
+    <Compile Include="ORDER_DETAILS\ORDER_DETAILS_GetPaged.cs" />
+    <Compile Include="ORDER_DETAILS\ORDER_DETAILS_Get_List.cs" />
+    <Compile Include="ORDER_DETAILS\ORDER_DETAILS_Insert.cs" />
+    <Compile Include="ORDER_DETAILS\ORDER_DETAILS_Update.cs" />
+    <Compile Include="PARTNERS\PARTNERS_Delete.cs" />
+    <Compile Include="PARTNERS\PARTNERS_Find.cs" />
+    <Compile Include="PARTNERS\PARTNERS_GetByPartnerId.cs" />
+    <Compile Include="PARTNERS\PARTNERS_GetPaged.cs" />
+    <Compile Include="PARTNERS\PARTNERS_Get_List.cs" />
+    <Compile Include="PARTNERS\PARTNERS_Insert.cs" />
+    <Compile Include="PARTNERS\PARTNERS_Update.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RETURNED_ITEM_DETAILS\RETURNED_ITEM_DETAILS_Delete.cs" />
+    <Compile Include="RETURNED_ITEM_DETAILS\RETURNED_ITEM_DETAILS_Find.cs" />
+    <Compile Include="RETURNED_ITEM_DETAILS\RETURNED_ITEM_DETAILS_GetByOrderDetailId.cs" />
+    <Compile Include="RETURNED_ITEM_DETAILS\RETURNED_ITEM_DETAILS_GetPaged.cs" />
+    <Compile Include="RETURNED_ITEM_DETAILS\RETURNED_ITEM_DETAILS_Get_List.cs" />
+    <Compile Include="RETURNED_ITEM_DETAILS\RETURNED_ITEM_DETAILS_Insert.cs" />
+    <Compile Include="RETURNED_ITEM_DETAILS\RETURNED_ITEM_DETAILS_Update.cs" />
+    <Compile Include="SELL_PRICE\SELL_PRICE_Delete.cs" />
+    <Compile Include="SELL_PRICE\SELL_PRICE_Find.cs" />
+    <Compile Include="SELL_PRICE\SELL_PRICE_GetById.cs" />
+    <Compile Include="SELL_PRICE\SELL_PRICE_GetPaged.cs" />
+    <Compile Include="SELL_PRICE\SELL_PRICE_Get_List.cs" />
+    <Compile Include="SELL_PRICE\SELL_PRICE_Insert.cs" />
+    <Compile Include="SELL_PRICE\SELL_PRICE_Update.cs" />
+    <Compile Include="USERS\USERS_Delete.cs" />
+    <Compile Include="USERS\USERS_Find.cs" />
+    <Compile Include="USERS\USERS_GetByUserId.cs" />
+    <Compile Include="USERS\USERS_GetPaged.cs" />
+    <Compile Include="USERS\USERS_Get_List.cs" />
+    <Compile Include="USERS\USERS_Insert.cs" />
+    <Compile Include="USERS\USERS_Update.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

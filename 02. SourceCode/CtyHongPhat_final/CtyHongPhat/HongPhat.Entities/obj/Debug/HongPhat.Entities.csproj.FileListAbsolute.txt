@@ -1,0 +1,10 @@
+E:\work\Backup\CtyHongPhat\HongPhat.Entities\bin\Debug\HongPhat.Entities.dll
+E:\work\Backup\CtyHongPhat\HongPhat.Entities\bin\Debug\HongPhat.Entities.pdb
+E:\work\Backup\CtyHongPhat\HongPhat.Entities\obj\Debug\ResolveAssemblyReference.cache
+E:\work\Backup\CtyHongPhat\HongPhat.Entities\obj\Debug\HongPhat.Entities.dll
+E:\work\Backup\CtyHongPhat\HongPhat.Entities\obj\Debug\HongPhat.Entities.pdb
+C:\Documents and Settings\Kain\My Documents\Visual Studio 2008\Projects\CtyHongPhat\HongPhat.Entities\bin\Debug\HongPhat.Entities.dll
+C:\Documents and Settings\Kain\My Documents\Visual Studio 2008\Projects\CtyHongPhat\HongPhat.Entities\bin\Debug\HongPhat.Entities.pdb
+C:\Documents and Settings\Kain\My Documents\Visual Studio 2008\Projects\CtyHongPhat\HongPhat.Entities\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Kain\My Documents\Visual Studio 2008\Projects\CtyHongPhat\HongPhat.Entities\obj\Debug\HongPhat.Entities.dll
+C:\Documents and Settings\Kain\My Documents\Visual Studio 2008\Projects\CtyHongPhat\HongPhat.Entities\obj\Debug\HongPhat.Entities.pdb
