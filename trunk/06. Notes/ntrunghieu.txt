@@ -1,0 +1,3 @@
+[2010-01-18]
+- da add cac file dll can thiet len svn (svn trunk\02. SourceCode\Ref DLLs)
+- them nguyen tac commit trong svn convention
