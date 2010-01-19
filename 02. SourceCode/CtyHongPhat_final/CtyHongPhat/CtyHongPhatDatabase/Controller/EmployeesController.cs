@@ -150,5 +150,102 @@ namespace CtyHongPhatDatabase.Controller
             SqlCommand comm = new SqlCommand(sqlWhere, conn);
             comm.ExecuteNonQuery();
         }
+
+
+        public static int Insert(SqlConnection conn, EmployeesInfo objBO)
+        {
+            SqlCommand comm = new SqlCommand("EMPLOYEES_Insert", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+
+            param = new SqlParameter();
+            param.ParameterName = "@EmployeeName";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.EmployeeName;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Salary";
+            param.SqlDbType = SqlDbType.Decimal;
+            param.Value = objBO.Salary;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Deleted";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.Deleted;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Position";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.Position;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            return (int)comm.ExecuteScalar();
+        }
+
+        public static void Update(SqlConnection conn, EmployeesInfo objBO)
+        {
+            SqlCommand comm = new SqlCommand("EMPLOYEES_Update", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+
+            param = new SqlParameter();
+            param.ParameterName = "@EmployeeId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.EmployeeId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@EmployeeName";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.EmployeeName;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Salary";
+            param.SqlDbType = SqlDbType.Decimal;
+            param.Value = objBO.Salary;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Deleted";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.Deleted;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Position";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.Position;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            comm.ExecuteNonQuery();
+        }
+
+        public static void Delete(SqlConnection conn, int id)
+        {
+            SqlCommand comm = new SqlCommand("EMPLOYEES_Delete", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@EmployeeId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = id;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            comm.ExecuteNonQuery();
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace CtyHongPhatDatabase.Table
         private string position = String.Empty;
 
         #region Public Properties
-        public int EmployeesId
+        public int EmployeeId
         {
             get { return employeesId; }
             set { employeesId = value; }

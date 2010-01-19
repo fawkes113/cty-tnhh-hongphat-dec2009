@@ -205,5 +205,100 @@ namespace CtyHongPhatDatabase.Controller
         }
 
 
+        public static int Insert(SqlConnection conn, UsersInfo objBO)
+        {
+            SqlCommand comm = new SqlCommand("USERS_Insert", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+
+            param = new SqlParameter();
+            param.ParameterName = "@UserName";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.UserName;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@UserPassword";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.UserPassword;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Deleted";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.Deleted;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@EmployeeId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.EmployeeId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            return (int)comm.ExecuteScalar();
+        }
+
+        public static void Update(SqlConnection conn, UsersInfo objBO)
+        {
+            SqlCommand comm = new SqlCommand("USERS_Update", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+
+            param = new SqlParameter();
+            param.ParameterName = "@UserId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.UserId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@UserName";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.UserName;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@UserPassword";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.UserPassword;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Deleted";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.Deleted;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@EmployeeId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.EmployeeId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            comm.ExecuteNonQuery();
+        }
+
+        public static void Delete(SqlConnection conn, int id)
+        {
+            SqlCommand comm = new SqlCommand("USERS_Delete", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@UserId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = id;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            comm.ExecuteNonQuery();
+        }
     }
 }
