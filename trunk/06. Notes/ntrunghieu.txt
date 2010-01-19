@@ -5,16 +5,18 @@
 [2010-01-19]
 - thieu csdl: 
 	- AGENTS:
-		+ thieu sp delete
+		+ thieu sp delete (da them)
 	- RETURNED_ITEM_DETAILS:
-		+ thieu sp delete
+		+ thieu sp delete (da them)
 	- ORDERS:
-		+ thieu sp delete
+		+ thieu sp delete (da them)
 	- SELL_PRICE:
-		+ agentId or agentKindId???
+		+ agentId or agentKindId??? -> agentKindId
 
 cac table chua tao controller:
 	- AGENTS
 	- RETURNED_ITEM_DETAILS:
 	- ORDERS
 	- SELL_PRICE
+
+-> tao cac controller nay dum tao ^^
