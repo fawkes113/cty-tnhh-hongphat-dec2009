@@ -150,5 +150,129 @@ namespace CtyHongPhatDatabase.Controller
             SqlCommand comm = new SqlCommand(sqlWhere, conn);
             comm.ExecuteNonQuery();
         }
+
+        public static int Insert(SqlConnection conn, SellPriceInfo objBO)
+        {
+            SqlCommand comm = new SqlCommand("SELL_PRICE_Insert", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+
+            param = new SqlParameter();
+            param.ParameterName = "@ItemId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.ItemId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@AgentKindId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.AgentKindId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@SellPrice";
+            param.SqlDbType = SqlDbType.Decimal;
+            param.Value = objBO.SellPrice;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreatedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.CreatedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.ModifiedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = objBO.ModifiedDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            return (int)comm.ExecuteScalar();
+        }
+
+        public static void Update(SqlConnection conn, SellPriceInfo objBO)
+        {
+            SqlCommand comm = new SqlCommand("SELL_PRICE_Update", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+
+            param = new SqlParameter();
+            param.ParameterName = "@SellId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.SellId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ItemId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.ItemId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@AgentKindId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.AgentKindId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@SellPrice";
+            param.SqlDbType = SqlDbType.Decimal;
+            param.Value = objBO.SellPrice;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreatedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.CreatedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.ModifiedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = objBO.ModifiedDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            comm.ExecuteNonQuery();
+        }
+
+        public static void Delete(SqlConnection conn, int id)
+        {
+            SqlCommand comm = new SqlCommand("SELL_PRICE_Delete", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@SellId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = id;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            comm.ExecuteNonQuery();
+        }
     }
 }

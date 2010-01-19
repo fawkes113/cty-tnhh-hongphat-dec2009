@@ -20,3 +20,9 @@ cac table chua tao controller:
 	- SELL_PRICE
 
 -> tao cac controller nay dum tao ^^
+
+fix:
+createdate --> createddate:
+	- ORDER_DETAILS
+	- DEBT
+fix controller all tables
