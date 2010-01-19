@@ -9,7 +9,7 @@ namespace CtyHongPhatDatabase.Table
     {
         private int sellId;
         private int itemId;
-        private int agentId;
+        private int agentKindId;
         private decimal sellPrice;
         private DateTime createdDate;
         private string createdBy = String.Empty;
@@ -30,10 +30,10 @@ namespace CtyHongPhatDatabase.Table
             set { itemId = value; }
         }
 
-        public int AgentId
+        public int AgentKindId
         {
-            get { return agentId; }
-            set { agentId = value; }
+            get { return agentKindId; }
+            set { agentKindId = value; }
         }
 
         public decimal SellPrice
