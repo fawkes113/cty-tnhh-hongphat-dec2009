@@ -7,7 +7,7 @@ namespace CtyHongPhatDatabase.Table
 {
     public class DebtInfo
     {
-        private int debId;
+        private int debtId;
         private decimal oldDebtValue;
         private decimal newDebtValue;
         private decimal payment;
@@ -22,10 +22,10 @@ namespace CtyHongPhatDatabase.Table
         private string note = String.Empty;
 
         #region Public Properties
-        public int DebId
+        public int DebtId
         {
-            get { return debId; }
-            set { debId = value; }
+            get { return debtId; }
+            set { debtId = value; }
         }
 
         public decimal OldDebtValue

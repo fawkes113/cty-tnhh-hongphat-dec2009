@@ -150,5 +150,6 @@ namespace CtyHongPhatDatabase.Controller
             SqlCommand comm = new SqlCommand(sqlWhere, conn);
             comm.ExecuteNonQuery();
         }
+
     }
 }

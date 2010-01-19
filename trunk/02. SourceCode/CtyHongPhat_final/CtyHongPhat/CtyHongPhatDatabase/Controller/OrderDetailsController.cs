@@ -150,5 +150,186 @@ namespace CtyHongPhatDatabase.Controller
             SqlCommand comm = new SqlCommand(sqlWhere, conn);
             comm.ExecuteNonQuery();
         }
+
+
+        public static int Insert(SqlConnection conn, OrderDetailsInfo objBO)
+        {
+            SqlCommand comm = new SqlCommand("ORDER_DETAILS_Insert", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+
+            param = new SqlParameter();
+            param.ParameterName = "@OrderId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.OrderId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ItemId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.ItemId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Quantity";
+            param.SqlDbType = SqlDbType.Decimal;
+            param.Value = objBO.Quantity;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@IdPrice";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.IdPrice;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreateBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.CreateBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreateDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = objBO.CreateDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.ModifiedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = objBO.ModifiedDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Deleted";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.Deleted;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Note";
+            param.SqlDbType = SqlDbType.Text;
+            param.Value = objBO.Note;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            return (int)comm.ExecuteScalar();
+        }
+
+        public static void Update(SqlConnection conn, OrderDetailsInfo objBO)
+        {
+            SqlCommand comm = new SqlCommand("ORDER_DETAILS_Update", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+
+            param = new SqlParameter();
+            param.ParameterName = "@OrderDetailId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.OrderDetailId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@OrderId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.OrderId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ItemId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.ItemId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Quantity";
+            param.SqlDbType = SqlDbType.Decimal;
+            param.Value = objBO.Quantity;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@IdPrice";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.IdPrice;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreateBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.CreateBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreateDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = objBO.CreateDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.ModifiedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = objBO.ModifiedDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Deleted";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.Deleted;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Note";
+            param.SqlDbType = SqlDbType.Text;
+            param.Value = objBO.Note;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            comm.ExecuteNonQuery();
+        }
+
+        public static void Delete(SqlConnection conn, int id)
+        {
+            SqlCommand comm = new SqlCommand("ORDER_DETAILS_Delete", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@OrderDetailId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = id;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            comm.ExecuteNonQuery();
+        }
     }
 }

@@ -1,3 +1,20 @@
 [2010-01-18]
 - da add cac file dll can thiet len svn (svn trunk\02. SourceCode\Ref DLLs)
 - them nguyen tac commit trong svn convention
+
+[2010-01-19]
+- thieu csdl: 
+	- AGENTS:
+		+ thieu sp delete
+	- RETURNED_ITEM_DETAILS:
+		+ thieu sp delete
+	- ORDERS:
+		+ thieu sp delete
+	- SELL_PRICE:
+		+ agentId or agentKindId???
+
+cac table chua tao controller:
+	- AGENTS
+	- RETURNED_ITEM_DETAILS:
+	- ORDERS
+	- SELL_PRICE
