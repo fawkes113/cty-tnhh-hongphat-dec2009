@@ -53,7 +53,7 @@ namespace CtyHongPhatDatabase.Table
             set { modifiedDate = value; }
         }
 
-        public int IdAgentKind
+        public int AgentKindId
         {
             get { return idAgentKind; }
             set { idAgentKind = value; }

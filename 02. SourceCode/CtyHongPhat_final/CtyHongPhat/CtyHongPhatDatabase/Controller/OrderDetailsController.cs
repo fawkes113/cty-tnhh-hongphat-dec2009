@@ -187,16 +187,9 @@ namespace CtyHongPhatDatabase.Controller
             comm.Parameters.Add(param);
 
             param = new SqlParameter();
-            param.ParameterName = "@CreateBy";
+            param.ParameterName = "@CreatedBy";
             param.SqlDbType = SqlDbType.NVarChar;
-            param.Value = objBO.CreateBy;
-            param.Direction = ParameterDirection.Input;
-            comm.Parameters.Add(param);
-
-            param = new SqlParameter();
-            param.ParameterName = "@CreateDate";
-            param.SqlDbType = SqlDbType.DateTime;
-            param.Value = objBO.CreateDate;
+            param.Value = objBO.CreatedBy;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
@@ -211,13 +204,6 @@ namespace CtyHongPhatDatabase.Controller
             param.ParameterName = "@ModifiedDate";
             param.SqlDbType = SqlDbType.DateTime;
             param.Value = objBO.ModifiedDate;
-            param.Direction = ParameterDirection.Input;
-            comm.Parameters.Add(param);
-
-            param = new SqlParameter();
-            param.ParameterName = "@Deleted";
-            param.SqlDbType = SqlDbType.Int;
-            param.Value = objBO.Deleted;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
@@ -273,16 +259,9 @@ namespace CtyHongPhatDatabase.Controller
             comm.Parameters.Add(param);
 
             param = new SqlParameter();
-            param.ParameterName = "@CreateBy";
+            param.ParameterName = "@CreatedBy";
             param.SqlDbType = SqlDbType.NVarChar;
-            param.Value = objBO.CreateBy;
-            param.Direction = ParameterDirection.Input;
-            comm.Parameters.Add(param);
-
-            param = new SqlParameter();
-            param.ParameterName = "@CreateDate";
-            param.SqlDbType = SqlDbType.DateTime;
-            param.Value = objBO.CreateDate;
+            param.Value = objBO.CreatedBy;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
@@ -297,13 +276,6 @@ namespace CtyHongPhatDatabase.Controller
             param.ParameterName = "@ModifiedDate";
             param.SqlDbType = SqlDbType.DateTime;
             param.Value = objBO.ModifiedDate;
-            param.Direction = ParameterDirection.Input;
-            comm.Parameters.Add(param);
-
-            param = new SqlParameter();
-            param.ParameterName = "@Deleted";
-            param.SqlDbType = SqlDbType.Int;
-            param.Value = objBO.Deleted;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 

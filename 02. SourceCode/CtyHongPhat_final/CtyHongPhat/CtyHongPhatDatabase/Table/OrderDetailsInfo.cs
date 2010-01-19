@@ -50,7 +50,7 @@ namespace CtyHongPhatDatabase.Table
             set { idPrice = value; }
         }
 
-        public string CreateBy
+        public string CreatedBy
         {
             get { return createBy; }
             set { createBy = value; }
