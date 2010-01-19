@@ -151,5 +151,114 @@ namespace CtyHongPhatDatabase.Controller
             comm.ExecuteNonQuery();
         }
 
+        public static int Insert(SqlConnection conn, AgentsInfo objBO)
+        {
+            SqlCommand comm = new SqlCommand("AGENTS_Insert", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+
+            param = new SqlParameter();
+            param.ParameterName = "@AgentName";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.AgentName;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreatedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.CreatedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.ModifiedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = objBO.ModifiedDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@AgentKindId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.AgentKindId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            return (int)comm.ExecuteScalar();
+        }
+
+        public static void Update(SqlConnection conn, AgentsInfo objBO)
+        {
+            SqlCommand comm = new SqlCommand("AGENTS_Update", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+
+            param = new SqlParameter();
+            param.ParameterName = "@AgentId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.AgentId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@AgentName";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.AgentName;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreatedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.CreatedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.ModifiedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = objBO.ModifiedDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@AgentKindId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.AgentKindId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            comm.ExecuteNonQuery();
+        }
+
+        public static void Delete(SqlConnection conn, int id)
+        {
+            SqlCommand comm = new SqlCommand("AGENTS_Delete", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@AgentId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = id;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            comm.ExecuteNonQuery();
+        }
     }
 }

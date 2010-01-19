@@ -150,6 +150,8 @@ namespace CtyHongPhatDatabase.Controller
             SqlCommand comm = new SqlCommand(sqlWhere, conn);
             comm.ExecuteNonQuery();
         }
+
+
         public static int Insert(SqlConnection conn, DebtInfo objBO)
         {
             SqlCommand comm = new SqlCommand("DEBT_Insert", conn);
@@ -192,23 +194,9 @@ namespace CtyHongPhatDatabase.Controller
             comm.Parameters.Add(param);
 
             param = new SqlParameter();
-            param.ParameterName = "@Deleted";
-            param.SqlDbType = SqlDbType.Int;
-            param.Value = objBO.Deleted;
-            param.Direction = ParameterDirection.Input;
-            comm.Parameters.Add(param);
-
-            param = new SqlParameter();
             param.ParameterName = "@CreatedBy";
             param.SqlDbType = SqlDbType.NVarChar;
             param.Value = objBO.CreatedBy;
-            param.Direction = ParameterDirection.Input;
-            comm.Parameters.Add(param);
-
-            param = new SqlParameter();
-            param.ParameterName = "@CreateDate";
-            param.SqlDbType = SqlDbType.DateTime;
-            param.Value = objBO.CreateDate;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
@@ -292,23 +280,9 @@ namespace CtyHongPhatDatabase.Controller
             comm.Parameters.Add(param);
 
             param = new SqlParameter();
-            param.ParameterName = "@Deleted";
-            param.SqlDbType = SqlDbType.Int;
-            param.Value = objBO.Deleted;
-            param.Direction = ParameterDirection.Input;
-            comm.Parameters.Add(param);
-
-            param = new SqlParameter();
             param.ParameterName = "@CreatedBy";
             param.SqlDbType = SqlDbType.NVarChar;
             param.Value = objBO.CreatedBy;
-            param.Direction = ParameterDirection.Input;
-            comm.Parameters.Add(param);
-
-            param = new SqlParameter();
-            param.ParameterName = "@CreateDate";
-            param.SqlDbType = SqlDbType.DateTime;
-            param.Value = objBO.CreateDate;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
@@ -357,5 +331,7 @@ namespace CtyHongPhatDatabase.Controller
 
             comm.ExecuteNonQuery();
         }
+
+
     }
 }

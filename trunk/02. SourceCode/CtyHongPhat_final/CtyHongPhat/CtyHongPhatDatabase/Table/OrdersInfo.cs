@@ -18,6 +18,7 @@ namespace CtyHongPhatDatabase.Table
         private decimal pay;
         private int status;
         private string note = String.Empty;
+        private int deleted;
 
         #region Public Properties
         public int OrderId
@@ -84,6 +85,12 @@ namespace CtyHongPhatDatabase.Table
         {
             get { return note; }
             set { note = value; }
+        }
+
+        public int Deleted
+        {
+            get { return deleted; }
+            set { deleted = value; }
         }
         #endregion
     }
