@@ -38,6 +38,7 @@
             this.ToolStripMenuItemListItems = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemDebt = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýNhânViênToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemListOrders = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,7 +98,8 @@
             this.ToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemOutputOder,
             this.ToolStripMenuItemInputOrder,
-            this.ToolStripMenuItemListItems});
+            this.ToolStripMenuItemListItems,
+            this.ToolStripMenuItemListOrders});
             this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
             this.ToolStripMenuItem1.Size = new System.Drawing.Size(103, 20);
             this.ToolStripMenuItem1.Text = "Xuất nhập hàng";
@@ -135,6 +137,13 @@
             this.quảnLýNhânViênToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
             this.quảnLýNhânViênToolStripMenuItem.Text = "Quản lý nhân viên";
             // 
+            // ToolStripMenuItemListOrders
+            // 
+            this.ToolStripMenuItemListOrders.Name = "ToolStripMenuItemListOrders";
+            this.ToolStripMenuItemListOrders.Size = new System.Drawing.Size(183, 22);
+            this.ToolStripMenuItemListOrders.Text = "Quản lý hóa đơn";
+            this.ToolStripMenuItemListOrders.Click += new System.EventHandler(this.ToolStripMenuItemListOrders_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,5 +177,6 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDebt;
         private System.Windows.Forms.ToolStripMenuItem quảnLýNhânViênToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemListItems;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemListOrders;
     }
 }

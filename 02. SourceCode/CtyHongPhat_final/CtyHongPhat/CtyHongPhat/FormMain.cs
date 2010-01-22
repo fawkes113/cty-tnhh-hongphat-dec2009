@@ -74,5 +74,14 @@ namespace CtyHongPhat
                 this.tabControlMain.TabPages.Add(formListItem);
             }
         }
+
+        private void ToolStripMenuItemListOrders_Click(object sender, EventArgs e)
+        {
+            if (AddUniqueForm(typeof(FormListOrders)))
+            {
+                FormListOrders formListOrders = new FormListOrders();
+                this.tabControlMain.TabPages.Add(formListOrders);
+            }
+        }
     }
 }
