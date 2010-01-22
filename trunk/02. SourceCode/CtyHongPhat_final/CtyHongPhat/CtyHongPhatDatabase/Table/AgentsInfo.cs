@@ -13,7 +13,7 @@ namespace CtyHongPhatDatabase.Table
         private DateTime createdDate;
         private string modifiedBy = String.Empty;
         private DateTime modifiedDate;
-        private int idAgentKind;
+        private int agentKindId;
         private int deleted;
 
         #region Public Properties
@@ -55,8 +55,8 @@ namespace CtyHongPhatDatabase.Table
 
         public int AgentKindId
         {
-            get { return idAgentKind; }
-            set { idAgentKind = value; }
+            get { return agentKindId; }
+            set { agentKindId = value; }
         }
 
         public int Deleted
