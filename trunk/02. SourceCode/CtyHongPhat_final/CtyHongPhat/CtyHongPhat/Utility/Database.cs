@@ -28,7 +28,7 @@ namespace CtyHongPhat.Utility
         }
 
         #region AgentKind
-        public static int AgentKindInsert(AgentKindInfo agentKindInfo)
+        public int AgentKindInsert(AgentKindInfo agentKindInfo)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace CtyHongPhat.Utility
             }
         }
 
-        public static bool AgentKindUpdate(AgentKindInfo agentKingInfo)
+        public bool AgentKindUpdate(AgentKindInfo agentKingInfo)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace CtyHongPhat.Utility
             }   
         }
 
-        public static bool AgentKindDelete(int agentId)
+        public bool AgentKindDelete(int agentId)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace CtyHongPhat.Utility
         #endregion
 
         #region Agents
-        public static ArrayList AgentGetAll()
+        public ArrayList AgentGetAll()
         {
             try
             {
@@ -106,7 +106,7 @@ namespace CtyHongPhat.Utility
         #endregion
 
         #region Items
-        public static ArrayList ItemGetAll()
+        public ArrayList ItemGetAll()
         {
             try
             {
@@ -145,7 +145,7 @@ namespace CtyHongPhat.Utility
         #endregion
 
         #region ViewAgentInfo
-        public static  ViewAgentsInfo ViewAgentInfoGetById(int agentId)
+        public  ViewAgentsInfo ViewAgentInfoGetById(int agentId)
         {
             try
             {
@@ -162,7 +162,7 @@ namespace CtyHongPhat.Utility
         #endregion
 
         #region ViewSellPriceInfo
-        public static ViewItemSellPriceInfo ViewItemSellPriceGetById(int itemId, int agentKindId)
+        public ViewItemSellPriceInfo ViewItemSellPriceGetById(int itemId, int agentKindId)
         {
             try
             {

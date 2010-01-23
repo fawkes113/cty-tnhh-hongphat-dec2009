@@ -34,7 +34,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.labelKindOfAngent = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxListAgentName = new System.Windows.Forms.ComboBox();
+            this.comboBoxListAgents = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -49,24 +49,24 @@
             this.columnTotalMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numericUpDownQuantity = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxListItems = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBoxListItems = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelSellPrice = new System.Windows.Forms.Label();
             this.buttonPrint = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBoxInforItem = new System.Windows.Forms.GroupBox();
+            this.labelRemainItemMeasurement = new System.Windows.Forms.Label();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.textBoxTotalAmount = new System.Windows.Forms.TextBox();
             this.numericUpDownPayAmount = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonAdd = new System.Windows.Forms.Button();
             this.groupBoxInforAgent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).BeginInit();
@@ -84,7 +84,7 @@
             this.groupBoxInforAgent.Controls.Add(this.label6);
             this.groupBoxInforAgent.Controls.Add(this.labelKindOfAngent);
             this.groupBoxInforAgent.Controls.Add(this.label2);
-            this.groupBoxInforAgent.Controls.Add(this.comboBoxListAgentName);
+            this.groupBoxInforAgent.Controls.Add(this.comboBoxListAgents);
             this.groupBoxInforAgent.Controls.Add(this.label1);
             this.groupBoxInforAgent.Location = new System.Drawing.Point(14, 4);
             this.groupBoxInforAgent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -146,16 +146,17 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Loại đại lý :";
             // 
-            // comboBoxListAgentName
+            // comboBoxListAgents
             // 
-            this.comboBoxListAgentName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.comboBoxListAgents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxListAgentName.FormattingEnabled = true;
-            this.comboBoxListAgentName.Location = new System.Drawing.Point(100, 23);
-            this.comboBoxListAgentName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBoxListAgentName.Name = "comboBoxListAgentName";
-            this.comboBoxListAgentName.Size = new System.Drawing.Size(459, 22);
-            this.comboBoxListAgentName.TabIndex = 1;
+            this.comboBoxListAgents.FormattingEnabled = true;
+            this.comboBoxListAgents.Location = new System.Drawing.Point(82, 23);
+            this.comboBoxListAgents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBoxListAgents.Name = "comboBoxListAgents";
+            this.comboBoxListAgents.Size = new System.Drawing.Size(459, 22);
+            this.comboBoxListAgents.TabIndex = 1;
+            this.comboBoxListAgents.SelectedIndexChanged += new System.EventHandler(this.comboBoxListAgents_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -291,16 +292,17 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "Số lượng :";
             // 
-            // comboBox1
+            // comboBoxListItems
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.comboBoxListItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(82, 21);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(329, 22);
-            this.comboBox1.TabIndex = 2;
+            this.comboBoxListItems.FormattingEnabled = true;
+            this.comboBoxListItems.Location = new System.Drawing.Point(82, 21);
+            this.comboBoxListItems.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBoxListItems.Name = "comboBoxListItems";
+            this.comboBoxListItems.Size = new System.Drawing.Size(329, 22);
+            this.comboBoxListItems.TabIndex = 2;
+            this.comboBoxListItems.SelectedIndexChanged += new System.EventHandler(this.comboBoxListItems_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -327,15 +329,15 @@
             this.groupBoxListItems.TabStop = false;
             this.groupBoxListItems.Text = "Danh sách mặt hàng";
             // 
-            // label5
+            // labelSellPrice
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(486, 24);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(122, 14);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "<Đơn giá mặt hàng>";
+            this.labelSellPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelSellPrice.AutoSize = true;
+            this.labelSellPrice.Location = new System.Drawing.Point(486, 24);
+            this.labelSellPrice.Name = "labelSellPrice";
+            this.labelSellPrice.Size = new System.Drawing.Size(122, 14);
+            this.labelSellPrice.TabIndex = 14;
+            this.labelSellPrice.Text = "<Đơn giá mặt hàng>";
             // 
             // buttonPrint
             // 
@@ -364,15 +366,15 @@
             // 
             this.groupBoxInforItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxInforItem.Controls.Add(this.label15);
+            this.groupBoxInforItem.Controls.Add(this.labelRemainItemMeasurement);
             this.groupBoxInforItem.Controls.Add(this.buttonAdd);
             this.groupBoxInforItem.Controls.Add(this.label10);
             this.groupBoxInforItem.Controls.Add(this.label9);
             this.groupBoxInforItem.Controls.Add(this.labelMeasurement);
             this.groupBoxInforItem.Controls.Add(this.numericUpDownQuantity);
             this.groupBoxInforItem.Controls.Add(this.label7);
-            this.groupBoxInforItem.Controls.Add(this.label5);
-            this.groupBoxInforItem.Controls.Add(this.comboBox1);
+            this.groupBoxInforItem.Controls.Add(this.labelSellPrice);
+            this.groupBoxInforItem.Controls.Add(this.comboBoxListItems);
             this.groupBoxInforItem.Controls.Add(this.label4);
             this.groupBoxInforItem.Controls.Add(this.label3);
             this.groupBoxInforItem.Location = new System.Drawing.Point(14, 75);
@@ -383,6 +385,28 @@
             this.groupBoxInforItem.TabIndex = 9;
             this.groupBoxInforItem.TabStop = false;
             this.groupBoxInforItem.Text = "Thông tin mặt hàng";
+            // 
+            // labelRemainItemMeasurement
+            // 
+            this.labelRemainItemMeasurement.AutoSize = true;
+            this.labelRemainItemMeasurement.Location = new System.Drawing.Point(289, 63);
+            this.labelRemainItemMeasurement.Name = "labelRemainItemMeasurement";
+            this.labelRemainItemMeasurement.Size = new System.Drawing.Size(63, 14);
+            this.labelRemainItemMeasurement.TabIndex = 19;
+            this.labelRemainItemMeasurement.Text = "<Đơn vị >";
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Image = global::CtyHongPhat.Properties.Resources.Good_32x32;
+            this.buttonAdd.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonAdd.Location = new System.Drawing.Point(451, 60);
+            this.buttonAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(90, 71);
+            this.buttonAdd.TabIndex = 4;
+            this.buttonAdd.Text = "Thêm  vào hóa đơn";
+            this.buttonAdd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonAdd.UseVisualStyleBackColor = true;
             // 
             // textBoxTotalAmount
             // 
@@ -448,15 +472,6 @@
             this.label13.TabIndex = 15;
             this.label13.Text = "VNĐ";
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(289, 63);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(63, 14);
-            this.label15.TabIndex = 19;
-            this.label15.Text = "<Đơn vị >";
-            // 
             // buttonRefresh
             // 
             this.buttonRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -498,19 +513,6 @@
             this.buttonSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonSave.UseVisualStyleBackColor = true;
             // 
-            // buttonAdd
-            // 
-            this.buttonAdd.Image = global::CtyHongPhat.Properties.Resources.Good_32x32;
-            this.buttonAdd.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonAdd.Location = new System.Drawing.Point(451, 60);
-            this.buttonAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(90, 71);
-            this.buttonAdd.TabIndex = 4;
-            this.buttonAdd.Text = "Thêm  vào hóa đơn";
-            this.buttonAdd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            // 
             // FormOutputOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -533,6 +535,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormOutputOrder";
             this.Text = "Xuất hàng";
+            this.Load += new System.EventHandler(this.FormOutputOrder_Load);
             this.groupBoxInforAgent.ResumeLayout(false);
             this.groupBoxInforAgent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItem)).EndInit();
@@ -554,7 +557,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelKindOfAngent;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBoxListAgentName;
+        private System.Windows.Forms.ComboBox comboBoxListAgents;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Label label10;
@@ -563,11 +566,11 @@
         private System.Windows.Forms.DataGridView dataGridViewListItem;
         private System.Windows.Forms.NumericUpDown numericUpDownQuantity;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxListItems;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.GroupBox groupBoxListItems;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelSellPrice;
         private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBoxInforItem;
@@ -585,7 +588,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label labelRemainItemMeasurement;
         private System.Windows.Forms.Button buttonRefresh;
     }
 }

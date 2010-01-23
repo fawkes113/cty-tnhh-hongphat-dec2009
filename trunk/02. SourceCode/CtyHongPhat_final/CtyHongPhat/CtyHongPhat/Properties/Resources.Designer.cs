@@ -207,6 +207,13 @@ namespace CtyHongPhat.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Printer1 {
+            get {
+                object obj = ResourceManager.GetObject("Printer1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Question_Shield {
             get {
                 object obj = ResourceManager.GetObject("Question_Shield", resourceCulture);

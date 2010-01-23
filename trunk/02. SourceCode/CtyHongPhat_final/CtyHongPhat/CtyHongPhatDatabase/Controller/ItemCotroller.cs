@@ -14,6 +14,7 @@ namespace CtyHongPhatDatabase.Controller
         public static ArrayList GetAll(SqlConnection conn)
         {
             string sqlCmd = "SELECT * FROM ITEMS WHERE DELETED = 0";
+            conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(ItemInfo));
         }
@@ -36,7 +37,8 @@ namespace CtyHongPhatDatabase.Controller
                 sqlWhere = columnName + " = " + columnValue;
             string sqlCmd = "SELECT * FROM ITEMS WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(ItemInfo));
         }
         public static ArrayList GetByColumnHaveOrderBy(SqlConnection conn, string columnName, object columnValue, string orderColumn, string orderType)
@@ -52,7 +54,8 @@ namespace CtyHongPhatDatabase.Controller
                 sqlWhere = columnName + " = " + columnValue;
             string sqlCmd = "SELECT * FROM ITEMS WHERE " + sqlWhere + " AND DELETED = 0" + " ORDER BY " + orderColumn + " " + orderType;
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(ItemInfo));
         }
         public static ItemInfo GetByColumnTop1(SqlConnection conn, string columnName, object columnValue)
@@ -68,7 +71,8 @@ namespace CtyHongPhatDatabase.Controller
                 sqlWhere = columnName + " = " + columnValue;
             string sqlCmd = "SELECT top 1 * FROM ITEMS WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return (ItemInfo)CBO.FillObject(comm.ExecuteReader(), typeof(ItemInfo));
         }
         public static ItemInfo GetByColumnsTop1(SqlConnection conn, params object[] columns)
@@ -95,7 +99,8 @@ namespace CtyHongPhatDatabase.Controller
             }
             string sqlCmd = "SELECT top 1 * FROM ITEMS WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return (ItemInfo)CBO.FillObject(comm.ExecuteReader(), typeof(ItemInfo));
         }
         public static ArrayList GetByColumns(SqlConnection conn, params object[] columns)
@@ -122,7 +127,8 @@ namespace CtyHongPhatDatabase.Controller
             }
             string sqlCmd = "SELECT * FROM ITEMS WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(ItemInfo));
         }
         public static void DeleteByColumns(SqlConnection conn, params object[] columns)
@@ -147,13 +153,15 @@ namespace CtyHongPhatDatabase.Controller
             }
             string sqlCmd = "DELETE ITEMS WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             comm.ExecuteNonQuery();
         }
 
 
         public static int Insert(SqlConnection conn, ItemInfo objBO)
         {
+            conn.Open();
             SqlCommand comm = new SqlCommand("ITEMS_Insert", conn);
             comm.CommandType = CommandType.StoredProcedure;
             SqlParameter param;
@@ -212,6 +220,7 @@ namespace CtyHongPhatDatabase.Controller
 
         public static void Update(SqlConnection conn, ItemInfo objBO)
         {
+            conn.Open();
             SqlCommand comm = new SqlCommand("ITEMS_Update", conn);
             comm.CommandType = CommandType.StoredProcedure;
             SqlParameter param;
@@ -277,6 +286,7 @@ namespace CtyHongPhatDatabase.Controller
 
         public static void Delete(SqlConnection conn, int id)
         {
+            conn.Open();
             SqlCommand comm = new SqlCommand("ITEMS_Delete", conn);
             comm.CommandType = CommandType.StoredProcedure;
 
