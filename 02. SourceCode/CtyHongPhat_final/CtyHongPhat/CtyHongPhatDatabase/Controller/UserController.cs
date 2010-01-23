@@ -14,12 +14,14 @@ namespace CtyHongPhatDatabase.Controller
         public static ArrayList GetAll(SqlConnection conn)
         {
             string sqlCmd = "SELECT * FROM USER WHERE DELETED = 0";
+            conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(UsersInfo));
         }
         public static ArrayList GetAllHaveOrderBy(SqlConnection conn, string OrderColumn, string OrderType)
         {
             string sqlCmd = "SELECT * FROM USER WHERE DELETED = 0 ORDER BY " + OrderColumn + " " + OrderType;
+            conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(UsersInfo));
         }
@@ -36,7 +38,8 @@ namespace CtyHongPhatDatabase.Controller
                 sqlWhere = columnName + " = " + columnValue;
             string sqlCmd = "SELECT * FROM USER WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(UsersInfo));
         }
         public static ArrayList GetByColumnHaveOrderBy(SqlConnection conn, string columnName, object columnValue, string orderColumn, string orderType)
@@ -52,7 +55,8 @@ namespace CtyHongPhatDatabase.Controller
                 sqlWhere = columnName + " = " + columnValue;
             string sqlCmd = "SELECT * FROM USER WHERE " + sqlWhere + " AND DELETED = 0" + " ORDER BY " + orderColumn + " " + orderType;
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(UsersInfo));
         }
         public static UsersInfo GetByColumnTop1(SqlConnection conn, string columnName, object columnValue)
@@ -68,7 +72,8 @@ namespace CtyHongPhatDatabase.Controller
                 sqlWhere = columnName + " = " + columnValue;
             string sqlCmd = "SELECT top 1 * FROM USER WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return (UsersInfo)CBO.FillObject(comm.ExecuteReader(), typeof(UsersInfo));
         }
         public static UsersInfo GetByColumnsTop1(SqlConnection conn, params object[] columns)
@@ -95,7 +100,8 @@ namespace CtyHongPhatDatabase.Controller
             }
             string sqlCmd = "SELECT top 1 * FROM USERS WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return (UsersInfo)CBO.FillObject(comm.ExecuteReader(), typeof(UsersInfo));
         }
         public static ArrayList GetByColumns(SqlConnection conn, params object[] columns)
@@ -122,7 +128,8 @@ namespace CtyHongPhatDatabase.Controller
             }
             string sqlCmd = "SELECT * FROM USER WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(UsersInfo));
         }
         public static void DeleteByColumns(SqlConnection conn, params object[] columns)
@@ -147,7 +154,8 @@ namespace CtyHongPhatDatabase.Controller
             }
             string sqlCmd = "DELETE USER WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             comm.ExecuteNonQuery();
         }
 

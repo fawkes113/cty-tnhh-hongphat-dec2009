@@ -14,12 +14,14 @@ namespace CtyHongPhatDatabase.Controller
         public static ArrayList GetAll(SqlConnection conn)
         {
             string sqlCmd = "SELECT * FROM BUY_PRICE WHERE DELETED = 0";
+            conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(BuyPriceInfo));
         }
         public static ArrayList GetAllHaveOrderBy(SqlConnection conn, string OrderColumn, string OrderType)
         {
             string sqlCmd = "SELECT * FROM BUY_PRICE WHERE DELETED = 0 ORDER BY " + OrderColumn + " " + OrderType;
+            conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(BuyPriceInfo));
         }
@@ -36,7 +38,8 @@ namespace CtyHongPhatDatabase.Controller
                 sqlWhere = columnName + " = " + columnValue;
             string sqlCmd = "SELECT * FROM BUY_PRICE WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(BuyPriceInfo));
         }
         public static ArrayList GetByColumnHaveOrderBy(SqlConnection conn, string columnName, object columnValue, string orderColumn, string orderType)
@@ -52,7 +55,8 @@ namespace CtyHongPhatDatabase.Controller
                 sqlWhere = columnName + " = " + columnValue;
             string sqlCmd = "SELECT * FROM BUY_PRICE WHERE " + sqlWhere + " AND DELETED = 0" + " ORDER BY " + orderColumn + " " + orderType;
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(BuyPriceInfo));
         }
         public static BuyPriceInfo GetByColumnTop1(SqlConnection conn, string columnName, object columnValue)
@@ -68,7 +72,8 @@ namespace CtyHongPhatDatabase.Controller
                 sqlWhere = columnName + " = " + columnValue;
             string sqlCmd = "SELECT top 1 * FROM BUY_PRICE WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return (BuyPriceInfo)CBO.FillObject(comm.ExecuteReader(), typeof(BuyPriceInfo));
         }
         public static BuyPriceInfo GetByColumnsTop1(SqlConnection conn, params object[] columns)
@@ -95,7 +100,8 @@ namespace CtyHongPhatDatabase.Controller
             }
             string sqlCmd = "SELECT top 1 * FROM BUY_PRICE WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return (BuyPriceInfo)CBO.FillObject(comm.ExecuteReader(), typeof(BuyPriceInfo));
         }
         public static ArrayList GetByColumns(SqlConnection conn, params object[] columns)
@@ -122,7 +128,8 @@ namespace CtyHongPhatDatabase.Controller
             }
             string sqlCmd = "SELECT * FROM BUY_PRICE WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(BuyPriceInfo));
         }
         public static void DeleteByColumns(SqlConnection conn, params object[] columns)
@@ -147,13 +154,15 @@ namespace CtyHongPhatDatabase.Controller
             }
             string sqlCmd = "DELETE BUY_PRICE WHERE " + sqlWhere + " AND DELETED = 0";
 
-            SqlCommand comm = new SqlCommand(sqlWhere, conn);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd,conn);
             comm.ExecuteNonQuery();
         }
 
 
         public static int Insert(SqlConnection conn, BuyPriceInfo objBO)
         {
+            conn.Open();
             SqlCommand comm = new SqlCommand("BUY_PRICE_Insert", conn);
             comm.CommandType = CommandType.StoredProcedure;
             SqlParameter param;
@@ -212,6 +221,7 @@ namespace CtyHongPhatDatabase.Controller
 
         public static void Update(SqlConnection conn, BuyPriceInfo objBO)
         {
+            conn.Open();
             SqlCommand comm = new SqlCommand("BUY_PRICE_Update", conn);
             comm.CommandType = CommandType.StoredProcedure;
             SqlParameter param;
@@ -277,6 +287,7 @@ namespace CtyHongPhatDatabase.Controller
 
         public static void Delete(SqlConnection conn, int id)
         {
+            conn.Open();
             SqlCommand comm = new SqlCommand("BUY_PRICE_Delete", conn);
             comm.CommandType = CommandType.StoredProcedure;
 
