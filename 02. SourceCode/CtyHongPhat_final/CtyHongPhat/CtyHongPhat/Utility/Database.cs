@@ -168,7 +168,7 @@ namespace CtyHongPhat.Utility
             {
                 using (SqlConnection conn = Database.NewConnection())
                 {
-                    return ViewItemSellPriceController.GetByColumnsTop1(conn, new object[] {"ItemId", itemId, "AgentKingId", agentKindId});
+                    return ViewItemSellPriceController.GetByColumnsTop1(conn, new object[] {"ItemId", itemId, "AgentKindId", agentKindId});
                 }
             }
             catch (Exception ex)

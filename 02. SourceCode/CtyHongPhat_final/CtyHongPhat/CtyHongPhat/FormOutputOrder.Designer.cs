@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxInforAgent = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.labelTotalDebt = new System.Windows.Forms.Label();
@@ -36,12 +41,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxListAgents = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.labelQuantity = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.labelMeasurement = new System.Windows.Forms.Label();
-            this.dataGridViewListItem = new System.Windows.Forms.DataGridView();
+            this.dataGridViewListItems = new System.Windows.Forms.DataGridView();
             this.columnDelete = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.columnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnMeasurement = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +61,7 @@
             this.buttonPrint = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBoxInforItem = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.labelRemainItemMeasurement = new System.Windows.Forms.Label();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.textBoxTotalAmount = new System.Windows.Forms.TextBox();
@@ -65,10 +71,10 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.buttonRefresh = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonRemoveChoicedItems = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBoxInforAgent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).BeginInit();
             this.groupBoxListItems.SuspendLayout();
             this.groupBoxInforItem.SuspendLayout();
@@ -99,7 +105,7 @@
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(993, 26);
+            this.label14.Location = new System.Drawing.Point(982, 26);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(31, 14);
             this.label14.TabIndex = 15;
@@ -130,7 +136,7 @@
             // 
             this.labelKindOfAngent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelKindOfAngent.AutoSize = true;
-            this.labelKindOfAngent.Location = new System.Drawing.Point(719, 26);
+            this.labelKindOfAngent.Location = new System.Drawing.Point(699, 26);
             this.labelKindOfAngent.Name = "labelKindOfAngent";
             this.labelKindOfAngent.Size = new System.Drawing.Size(81, 14);
             this.labelKindOfAngent.TabIndex = 9;
@@ -167,14 +173,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên đại lý :";
             // 
-            // label10
+            // labelQuantity
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(79, 63);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(125, 14);
-            this.label10.TabIndex = 16;
-            this.label10.Text = "<Số lương tồn kho >";
+            this.labelQuantity.AutoSize = true;
+            this.labelQuantity.Location = new System.Drawing.Point(79, 63);
+            this.labelQuantity.Name = "labelQuantity";
+            this.labelQuantity.Size = new System.Drawing.Size(125, 14);
+            this.labelQuantity.TabIndex = 16;
+            this.labelQuantity.Text = "<Số lương tồn kho >";
             // 
             // label9
             // 
@@ -194,42 +200,44 @@
             this.labelMeasurement.TabIndex = 18;
             this.labelMeasurement.Text = "<Đơn vị >";
             // 
-            // dataGridViewListItem
+            // dataGridViewListItems
             // 
-            this.dataGridViewListItem.AllowUserToAddRows = false;
-            this.dataGridViewListItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.dataGridViewListItems.AllowUserToAddRows = false;
+            this.dataGridViewListItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewListItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewListItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewListItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewListItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnDelete,
-            this.columnId,
+            this.columnItemId,
             this.columnItemName,
             this.columnQuantity,
             this.columnMeasurement,
             this.columnPrice,
             this.columnTotalMoney});
-            this.dataGridViewListItem.Location = new System.Drawing.Point(8, 24);
-            this.dataGridViewListItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridViewListItem.Name = "dataGridViewListItem";
-            this.dataGridViewListItem.ReadOnly = true;
-            this.dataGridViewListItem.RowHeadersVisible = false;
-            this.dataGridViewListItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewListItem.Size = new System.Drawing.Size(1016, 336);
-            this.dataGridViewListItem.TabIndex = 19;
+            this.dataGridViewListItems.Location = new System.Drawing.Point(8, 24);
+            this.dataGridViewListItems.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dataGridViewListItems.Name = "dataGridViewListItems";
+            this.dataGridViewListItems.RowHeadersVisible = false;
+            this.dataGridViewListItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewListItems.Size = new System.Drawing.Size(1016, 336);
+            this.dataGridViewListItems.TabIndex = 19;
+            this.dataGridViewListItems.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridViewListItems_RowsRemoved);
             // 
             // columnDelete
             // 
             this.columnDelete.HeaderText = "Loại bỏ";
             this.columnDelete.Name = "columnDelete";
-            this.columnDelete.ReadOnly = true;
+            this.columnDelete.ThreeState = true;
             // 
-            // columnId
+            // columnItemId
             // 
-            this.columnId.HeaderText = "Mã mặt hàng";
-            this.columnId.Name = "columnId";
-            this.columnId.ReadOnly = true;
-            this.columnId.Width = 150;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnItemId.DefaultCellStyle = dataGridViewCellStyle1;
+            this.columnItemId.HeaderText = "Mã mặt hàng";
+            this.columnItemId.Name = "columnItemId";
+            this.columnItemId.ReadOnly = true;
+            this.columnItemId.Width = 110;
             // 
             // columnItemName
             // 
@@ -240,6 +248,8 @@
             // 
             // columnQuantity
             // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnQuantity.DefaultCellStyle = dataGridViewCellStyle2;
             this.columnQuantity.HeaderText = "Số lương";
             this.columnQuantity.Name = "columnQuantity";
             this.columnQuantity.ReadOnly = true;
@@ -247,12 +257,16 @@
             // 
             // columnMeasurement
             // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.columnMeasurement.DefaultCellStyle = dataGridViewCellStyle3;
             this.columnMeasurement.HeaderText = "Đơn vị ";
             this.columnMeasurement.Name = "columnMeasurement";
             this.columnMeasurement.ReadOnly = true;
             // 
             // columnPrice
             // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle4;
             this.columnPrice.HeaderText = "Đơn giá";
             this.columnPrice.Name = "columnPrice";
             this.columnPrice.ReadOnly = true;
@@ -260,6 +274,8 @@
             // columnTotalMoney
             // 
             this.columnTotalMoney.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnTotalMoney.DefaultCellStyle = dataGridViewCellStyle5;
             this.columnTotalMoney.HeaderText = "Thành tiền";
             this.columnTotalMoney.Name = "columnTotalMoney";
             this.columnTotalMoney.ReadOnly = true;
@@ -277,11 +293,6 @@
             this.numericUpDownQuantity.Size = new System.Drawing.Size(201, 22);
             this.numericUpDownQuantity.TabIndex = 3;
             this.numericUpDownQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDownQuantity.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             // 
             // label7
             // 
@@ -319,7 +330,7 @@
             this.groupBoxListItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxListItems.Controls.Add(this.dataGridViewListItem);
+            this.groupBoxListItems.Controls.Add(this.dataGridViewListItems);
             this.groupBoxListItems.Location = new System.Drawing.Point(14, 222);
             this.groupBoxListItems.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBoxListItems.Name = "groupBoxListItems";
@@ -338,6 +349,7 @@
             this.labelSellPrice.Size = new System.Drawing.Size(122, 14);
             this.labelSellPrice.TabIndex = 14;
             this.labelSellPrice.Text = "<Đơn giá mặt hàng>";
+            this.labelSellPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // buttonPrint
             // 
@@ -366,9 +378,10 @@
             // 
             this.groupBoxInforItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxInforItem.Controls.Add(this.label5);
             this.groupBoxInforItem.Controls.Add(this.labelRemainItemMeasurement);
             this.groupBoxInforItem.Controls.Add(this.buttonAdd);
-            this.groupBoxInforItem.Controls.Add(this.label10);
+            this.groupBoxInforItem.Controls.Add(this.labelQuantity);
             this.groupBoxInforItem.Controls.Add(this.label9);
             this.groupBoxInforItem.Controls.Add(this.labelMeasurement);
             this.groupBoxInforItem.Controls.Add(this.numericUpDownQuantity);
@@ -385,6 +398,16 @@
             this.groupBoxInforItem.TabIndex = 9;
             this.groupBoxInforItem.TabStop = false;
             this.groupBoxInforItem.Text = "Thông tin mặt hàng";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(614, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 14);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "VNĐ";
             // 
             // labelRemainItemMeasurement
             // 
@@ -407,6 +430,7 @@
             this.buttonAdd.Text = "Thêm  vào hóa đơn";
             this.buttonAdd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // textBoxTotalAmount
             // 
@@ -416,6 +440,7 @@
             this.textBoxTotalAmount.ReadOnly = true;
             this.textBoxTotalAmount.Size = new System.Drawing.Size(150, 22);
             this.textBoxTotalAmount.TabIndex = 10;
+            this.textBoxTotalAmount.Text = "0";
             this.textBoxTotalAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // numericUpDownPayAmount
@@ -484,20 +509,22 @@
             this.buttonRefresh.Text = "Làm mới";
             this.buttonRefresh.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
-            // button3
+            // buttonRemoveChoicedItems
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Image = global::CtyHongPhat.Properties.Resources.delete;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button3.Location = new System.Drawing.Point(939, 85);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(90, 56);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Loại các mặt hàng đã chọn";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonRemoveChoicedItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRemoveChoicedItems.Image = global::CtyHongPhat.Properties.Resources.delete;
+            this.buttonRemoveChoicedItems.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonRemoveChoicedItems.Location = new System.Drawing.Point(939, 85);
+            this.buttonRemoveChoicedItems.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonRemoveChoicedItems.Name = "buttonRemoveChoicedItems";
+            this.buttonRemoveChoicedItems.Size = new System.Drawing.Size(90, 56);
+            this.buttonRemoveChoicedItems.TabIndex = 5;
+            this.buttonRemoveChoicedItems.Text = "Loại các mặt hàng đã chọn";
+            this.buttonRemoveChoicedItems.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonRemoveChoicedItems.UseVisualStyleBackColor = true;
+            this.buttonRemoveChoicedItems.Click += new System.EventHandler(this.buttonRemoveChoicedItems_Click);
             // 
             // buttonSave
             // 
@@ -520,7 +547,7 @@
             this.ClientSize = new System.Drawing.Size(1067, 685);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.buttonRemoveChoicedItems);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
@@ -538,7 +565,7 @@
             this.Load += new System.EventHandler(this.FormOutputOrder_Load);
             this.groupBoxInforAgent.ResumeLayout(false);
             this.groupBoxInforAgent.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).EndInit();
             this.groupBoxListItems.ResumeLayout(false);
             this.groupBoxInforItem.ResumeLayout(false);
@@ -551,7 +578,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonRemoveChoicedItems;
         private System.Windows.Forms.GroupBox groupBoxInforAgent;
         private System.Windows.Forms.Label labelTotalDebt;
         private System.Windows.Forms.Label label6;
@@ -560,10 +587,10 @@
         private System.Windows.Forms.ComboBox comboBoxListAgents;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonAdd;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelQuantity;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label labelMeasurement;
-        private System.Windows.Forms.DataGridView dataGridViewListItem;
+        private System.Windows.Forms.DataGridView dataGridViewListItems;
         private System.Windows.Forms.NumericUpDown numericUpDownQuantity;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBoxListItems;
@@ -574,13 +601,6 @@
         private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBoxInforItem;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn columnDelete;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnQuantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnMeasurement;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnTotalMoney;
         private System.Windows.Forms.TextBox textBoxTotalAmount;
         private System.Windows.Forms.NumericUpDown numericUpDownPayAmount;
         private System.Windows.Forms.Label label8;
@@ -590,5 +610,13 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label labelRemainItemMeasurement;
         private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn columnDelete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnItemId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnMeasurement;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnTotalMoney;
     }
 }
