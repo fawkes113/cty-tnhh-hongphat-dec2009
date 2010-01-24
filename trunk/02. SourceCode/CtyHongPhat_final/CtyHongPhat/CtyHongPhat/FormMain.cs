@@ -52,7 +52,7 @@ namespace CtyHongPhat
         {
             if (AddUniqueForm(typeof(FormOutputOrder)))
             {
-                FormOutputOrder formOutputOrder = new FormOutputOrder();
+                FormOutputOrder formOutputOrder = new FormOutputOrder(this.userName);
                 this.tabControlMain.TabPages.Add(formOutputOrder);
             }
         }
@@ -61,7 +61,7 @@ namespace CtyHongPhat
         {
             if (AddUniqueForm(typeof(FormInputOrder)))
             {
-                FormInputOrder formInputOrder = new FormInputOrder();
+                FormInputOrder formInputOrder = new FormInputOrder(this.userName);
                 this.tabControlMain.TabPages.Add(formInputOrder);
             }
         }

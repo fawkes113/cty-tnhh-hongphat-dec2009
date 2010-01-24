@@ -11,9 +11,16 @@ namespace CtyHongPhat
 {
     public partial class FormInputOrder : Form
     {
+        private string employeeName = "";
         public FormInputOrder()
         {
             InitializeComponent();
+        }
+
+        public FormInputOrder(string employeeName)
+        {
+            InitializeComponent();
+            this.employeeName = employeeName;
         }
     }
 }
