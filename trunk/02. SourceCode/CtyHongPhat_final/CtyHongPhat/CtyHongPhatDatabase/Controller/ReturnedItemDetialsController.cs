@@ -201,7 +201,7 @@ namespace CtyHongPhatDatabase.Controller
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
-            return (int)comm.ExecuteScalar();
+            return int.Parse(comm.ExecuteScalar().ToString());
         }
 
         public static void Update(SqlConnection conn, ReturnedItemDetailsInfo objBO)

@@ -158,8 +158,6 @@ namespace CtyHongPhatDatabase.Controller
             SqlCommand comm = new SqlCommand(sqlCmd,conn);
             comm.ExecuteNonQuery();
         }
-
-
         public static int Insert(SqlConnection conn, OrdersInfo objBO)
         {
             conn.Open();
@@ -185,6 +183,13 @@ namespace CtyHongPhatDatabase.Controller
             param.ParameterName = "@CreatedBy";
             param.SqlDbType = SqlDbType.NVarChar;
             param.Value = objBO.CreatedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreatedDate";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.CreatedDate;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
@@ -237,9 +242,10 @@ namespace CtyHongPhatDatabase.Controller
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
-            return (int)comm.ExecuteScalar();
-        }
+            object id = comm.ExecuteScalar();
 
+            return int.Parse(id.ToString());
+        }
         public static void Update(SqlConnection conn, OrdersInfo objBO)
         {
             conn.Open();
@@ -272,6 +278,13 @@ namespace CtyHongPhatDatabase.Controller
             param.ParameterName = "@CreatedBy";
             param.SqlDbType = SqlDbType.NVarChar;
             param.Value = objBO.CreatedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreatedDate";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.CreatedDate;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
@@ -326,7 +339,6 @@ namespace CtyHongPhatDatabase.Controller
 
             comm.ExecuteNonQuery();
         }
-
         public static void Delete(SqlConnection conn, int id)
         {
             conn.Open();
