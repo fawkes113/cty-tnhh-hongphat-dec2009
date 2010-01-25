@@ -206,6 +206,8 @@ namespace CtyHongPhat
                     OrderDetailsInfo orderDetailsInfo = new OrderDetailsInfo();
                     orderDetailsInfo.CreatedBy = this.employeeName;
                     orderDetailsInfo.CreateDate = DateTime.Now;
+                    orderDetailsInfo.ModifiedBy = "";
+                    orderDetailsInfo.ModifiedDate = DateTime.Now;
                     orderDetailsInfo.ItemId = itemInfo.ItemId;
                     orderDetailsInfo.Quantity = numericUpDownQuantity.Value;
                     orderDetailsInfo.Deleted = 0;
@@ -224,29 +226,134 @@ namespace CtyHongPhat
 
         private void dataGridViewListItems_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
-            MessageBox.Infor(this, "remove row");
+            //MessageBox.Infor(this, "remove row");
         }
 
         private void buttonRemoveChoicedItems_Click(object sender, EventArgs e)
         {
             if (this.dataGridViewListItems.Rows.Count > 0)
             {
-                for (int i = 0; i < this.dataGridViewListItems.Rows.Count; i++)
+                int index = 0;
+                while (index < this.dataGridViewListItems.Rows.Count)
                 {
-                    DataGridViewRow row = this.dataGridViewListItems.Rows[i];
+                    DataGridViewRow row = this.dataGridViewListItems.Rows[index];
                     if (row.Cells[columnDelete.Index].Value.ToString() == "Checked")
                     {
-                        foreach (OrderDetailsInfo orderDetailsInfo in this.listOrderDetails)
+                        for (int i = 0; i < this.listOrderDetails.Count; i++)
                         {
+                            OrderDetailsInfo orderDetailsInfo = this.listOrderDetails[i] as OrderDetailsInfo;
                             if (orderDetailsInfo.ItemId == int.Parse(row.Cells[columnItemId.Index].Value.ToString()))
                             {
-                                this.listOrderDetails.Remove(orderDetailsInfo);
+
+                                this.listOrderDetails.RemoveAt(i);
+                                this.dataGridViewListItems.Rows.Remove(row);
+                                i = this.listOrderDetails.Count;
+                                index--;
                             }
                         }
                     }
+                    index++;
                 }
             }
             else MessageBox.Error(this, "Bạn chưa xuất mặt hàng nào");
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            if (this.comboBoxListItems.SelectedItem != null && this.comboBoxListItems.SelectedItem is ItemInfo)
+            {
+                AgentsInfo agentsInfo = this.comboBoxListAgents.SelectedItem as AgentsInfo;
+
+                if (agentsInfo.AgentId < 1)
+                {
+                    MessageBox.Error(this, "Chưa chọn khách hàng");
+                    return;
+                }
+
+                if (this.listOrderDetails.Count <= 0)
+                {
+                    MessageBox.Error(this, "Chứa chọn mặt hàng");
+                    return;
+                }
+
+                decimal totalAmount = decimal.Parse(this.textBoxTotalAmount.Text);
+                decimal payAmount = this.numericUpDownPayAmount.Value;
+
+                OrdersInfo ordersInfo = new OrdersInfo();
+                ordersInfo.CreatedBy = this.employeeName;
+                ordersInfo.CreatedDate = DateTime.Now;
+                ordersInfo.CustomerId = agentsInfo.AgentId;
+                ordersInfo.ModifiedBy = "";
+                ordersInfo.ModifiedDate = DateTime.Now;
+                ordersInfo.OrderKind = 1;
+                ordersInfo.Pay = payAmount;
+                ordersInfo.Total = totalAmount;
+
+                if (payAmount >= totalAmount)
+                    ordersInfo.Status = 2; // trả hết
+                else if (payAmount < totalAmount && payAmount != 0)
+                    ordersInfo.Status = 1; // trả một phần
+                else if (payAmount == 0)
+                    ordersInfo.Status = 0;// chưa thanh toán
+
+                try
+                {
+                    int ordersId = database.OrdersAdd(ordersInfo);
+                    if (ordersId > 0)
+                    {
+                        for (int i = 0; i < this.listOrderDetails.Count; i++)
+                        {
+                            OrderDetailsInfo orderDetailsInfo = this.listOrderDetails[i];
+                            orderDetailsInfo.OrderId = ordersId;
+                            database.OrderDetailsAdd(orderDetailsInfo);
+                        }
+
+                        DebtInfo oldDebtInfo = database.DebtGetByCustomerId(agentsInfo.AgentId);
+                        DebtInfo newDebtInfo = new DebtInfo();
+
+                        if (payAmount < totalAmount)
+                        {
+                            newDebtInfo.NewDebtValue = totalAmount - payAmount;
+                            newDebtInfo.OldDebtValue = oldDebtInfo.CurrentDebtValue;
+                            newDebtInfo.CurrentDebtValue = oldDebtInfo.CurrentDebtValue + (totalAmount - payAmount);
+                            newDebtInfo.Payment = 0;
+                            newDebtInfo.CreateDate = DateTime.Now;
+                            newDebtInfo.CreatedBy = this.employeeName;
+                            newDebtInfo.ModifiedDate = DateTime.Now;
+                            newDebtInfo.ModifiedBy = "";
+                            newDebtInfo.DebtKind = 1;
+                            newDebtInfo.Deleted = 0;
+                            newDebtInfo.CustomerId = agentsInfo.AgentId;
+                            newDebtInfo.Note = "Thêm nợ hóa đơn ngày " + oldDebtInfo.CreateDate.ToString("dd/MM/yyyy");
+
+                            if (database.DebtAdd(newDebtInfo) > 0)
+                            {
+                                oldDebtInfo.Deleted = 1;
+                                oldDebtInfo.ModifiedBy = this.employeeName;
+                                oldDebtInfo.ModifiedDate = DateTime.Now;
+
+                                database.DebtUpdate(oldDebtInfo);
+                            }
+                            else
+                            {
+                                MessageBox.Error(this, "Không thêm nợ được, có thể yêu cầu khách hàng thanh toán bằng tiền mặt");
+                            }
+                        }
+                        else if (payAmount > totalAmount)
+                        {
+                            // trả tiền cách hóa đơn khác
+                        }
+
+                        
+                        
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Error(this, ex.ToString());
+                }
+
+            }
         }
     }
 }

@@ -181,6 +181,13 @@ namespace CtyHongPhatDatabase.Controller
             comm.Parameters.Add(param);
 
             param = new SqlParameter();
+            param.ParameterName = "@CreatedDate";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.CreatedDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
             param.ParameterName = "@ModifiedBy";
             param.SqlDbType = SqlDbType.NVarChar;
             param.Value = objBO.ModifiedBy;
@@ -201,7 +208,7 @@ namespace CtyHongPhatDatabase.Controller
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
-            return (int)comm.ExecuteScalar();
+            return int.Parse(comm.ExecuteScalar().ToString());
         }
 
         public static void Update(SqlConnection conn, AgentsInfo objBO)
@@ -229,6 +236,20 @@ namespace CtyHongPhatDatabase.Controller
             param.ParameterName = "@CreatedBy";
             param.SqlDbType = SqlDbType.NVarChar;
             param.Value = objBO.CreatedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreatedDate";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.CreatedDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@CreatedDate";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.CreatedDate;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 

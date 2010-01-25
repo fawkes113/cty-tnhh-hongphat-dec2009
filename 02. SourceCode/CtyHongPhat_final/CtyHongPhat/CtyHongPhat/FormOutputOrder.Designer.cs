@@ -539,6 +539,7 @@
             this.buttonSave.Text = "Lưu hóa đơn";
             this.buttonSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // FormOutputOrder
             // 

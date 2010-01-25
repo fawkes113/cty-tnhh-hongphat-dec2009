@@ -103,6 +103,69 @@ namespace CtyHongPhat.Utility
         #endregion
 
         #region Debt
+        public int DebtAdd(DebtInfo debtInfo)
+        {
+            try
+            {
+                using(SqlConnection conn = Database.NewConnection())
+                {
+                    return DebtController.Insert(conn, debtInfo);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return -1;
+            }
+        }
+
+        public void DebtUpdate(DebtInfo debtInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                     DebtController.Update(conn, debtInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        public DebtInfo DebtGetById(int debtId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return DebtController.GetByColumnTop1(conn, "DebtId", debtId);
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
+        //lấy món nợ hiện tại
+        public DebtInfo DebtGetByCustomerId(int customerId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return DebtController.GetByColumnTop1(conn, "CustomerId", customerId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
         #endregion
 
         #region Items
@@ -124,9 +187,38 @@ namespace CtyHongPhat.Utility
         #endregion
 
         #region OrderDetails
+        public int OrderDetailsAdd(OrderDetailsInfo orderDetailsInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return OrderDetailsController.Insert(conn, orderDetailsInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return -1;
+            }
+        }
         #endregion
 
         #region Orders
+        public int OrdersAdd(OrdersInfo ordersInfo)
+        {
+            try {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return OrdersController.Insert(conn, ordersInfo);
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return -1;
+            }
+        }
         #endregion
 
         #region Partners
