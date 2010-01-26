@@ -30,6 +30,8 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxMeasurement = new System.Windows.Forms.TextBox();
+            this.labelQuantity = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,7 +44,7 @@
             this.comboBoxInfoKindOfAgent = new System.Windows.Forms.ComboBox();
             this.textBoxItemName = new System.Windows.Forms.TextBox();
             this.groupBoxListItems = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewItemList = new System.Windows.Forms.DataGridView();
             this.columnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnKindOfAgent = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,12 +59,10 @@
             this.comboBoxSearchKindOfAgent = new System.Windows.Forms.ComboBox();
             this.comboBoxAgentName = new System.Windows.Forms.ComboBox();
             this.comboBoxItemName = new System.Windows.Forms.ComboBox();
-            this.labelQuantity = new System.Windows.Forms.Label();
-            this.textBoxMeasurement = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrice)).BeginInit();
             this.groupBoxListItems.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItemList)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,6 +91,25 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin mặt hàng";
+            // 
+            // textBoxMeasurement
+            // 
+            this.textBoxMeasurement.Location = new System.Drawing.Point(201, 63);
+            this.textBoxMeasurement.Name = "textBoxMeasurement";
+            this.textBoxMeasurement.Size = new System.Drawing.Size(147, 23);
+            this.textBoxMeasurement.TabIndex = 1;
+            this.textBoxMeasurement.Text = "<Đơn vị tính>";
+            this.textBoxMeasurement.Leave += new System.EventHandler(this.textBoxMeasurement_Leave);
+            this.textBoxMeasurement.Enter += new System.EventHandler(this.textBoxMeasurement_Enter);
+            // 
+            // labelQuantity
+            // 
+            this.labelQuantity.AutoSize = true;
+            this.labelQuantity.Location = new System.Drawing.Point(84, 66);
+            this.labelQuantity.Name = "labelQuantity";
+            this.labelQuantity.Size = new System.Drawing.Size(77, 16);
+            this.labelQuantity.TabIndex = 13;
+            this.labelQuantity.Text = "<Số lượng>";
             // 
             // label5
             // 
@@ -145,7 +164,7 @@
             this.buttonDelete.Location = new System.Drawing.Point(970, 23);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(94, 56);
-            this.buttonDelete.TabIndex = 6;
+            this.buttonDelete.TabIndex = 12;
             this.buttonDelete.Text = "Xóa";
             this.buttonDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonDelete.UseVisualStyleBackColor = true;
@@ -158,10 +177,11 @@
             this.buttonInsert.Location = new System.Drawing.Point(743, 23);
             this.buttonInsert.Name = "buttonInsert";
             this.buttonInsert.Size = new System.Drawing.Size(97, 56);
-            this.buttonInsert.TabIndex = 5;
+            this.buttonInsert.TabIndex = 10;
             this.buttonInsert.Text = "Thêm mới";
             this.buttonInsert.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonInsert.UseVisualStyleBackColor = true;
+            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
             // 
             // buttonUpdate
             // 
@@ -171,7 +191,7 @@
             this.buttonUpdate.Location = new System.Drawing.Point(865, 23);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(90, 56);
-            this.buttonUpdate.TabIndex = 4;
+            this.buttonUpdate.TabIndex = 11;
             this.buttonUpdate.Text = "Cập nhật";
             this.buttonUpdate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonUpdate.UseVisualStyleBackColor = true;
@@ -213,7 +233,7 @@
             this.groupBoxListItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxListItems.Controls.Add(this.dataGridView1);
+            this.groupBoxListItems.Controls.Add(this.dataGridViewItemList);
             this.groupBoxListItems.Font = new System.Drawing.Font("Tahoma", 8.75F);
             this.groupBoxListItems.Location = new System.Drawing.Point(15, 129);
             this.groupBoxListItems.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -223,31 +243,30 @@
             this.groupBoxListItems.TabIndex = 1;
             this.groupBoxListItems.TabStop = false;
             this.groupBoxListItems.Text = "Danh sách các mặt hàng";
-            this.groupBoxListItems.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // dataGridView1
+            // dataGridViewItemList
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridViewItemList.AllowUserToAddRows = false;
+            this.dataGridViewItemList.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.dataGridViewItemList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewItemList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewItemList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnId,
             this.columnItemName,
             this.columnKindOfAgent,
             this.columnPrice,
             this.columnQuantity,
             this.columnMeasuerment});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 23);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1070, 442);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridViewItemList.Location = new System.Drawing.Point(6, 23);
+            this.dataGridViewItemList.Name = "dataGridViewItemList";
+            this.dataGridViewItemList.RowHeadersVisible = false;
+            this.dataGridViewItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewItemList.Size = new System.Drawing.Size(1070, 442);
+            this.dataGridViewItemList.TabIndex = 15;
             // 
             // columnId
             // 
@@ -342,57 +361,50 @@
             this.buttonSearch.Location = new System.Drawing.Point(992, 16);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(75, 47);
-            this.buttonSearch.TabIndex = 3;
+            this.buttonSearch.TabIndex = 25;
             this.buttonSearch.Text = "Tìm kiếm";
             this.buttonSearch.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // comboBoxSearchKindOfAgent
             // 
             this.comboBoxSearchKindOfAgent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxSearchKindOfAgent.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxSearchKindOfAgent.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxSearchKindOfAgent.FormattingEnabled = true;
             this.comboBoxSearchKindOfAgent.Location = new System.Drawing.Point(774, 28);
             this.comboBoxSearchKindOfAgent.Name = "comboBoxSearchKindOfAgent";
             this.comboBoxSearchKindOfAgent.Size = new System.Drawing.Size(184, 24);
-            this.comboBoxSearchKindOfAgent.TabIndex = 2;
-            this.comboBoxSearchKindOfAgent.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxSearchKindOfAgent.TabIndex = 22;
+            this.comboBoxSearchKindOfAgent.SelectedIndexChanged += new System.EventHandler(this.comboBoxSearchKindOfAgent_SelectedIndexChanged);
+            this.comboBoxSearchKindOfAgent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxSearchKindOfAgent_KeyDown);
             // 
             // comboBoxAgentName
             // 
             this.comboBoxAgentName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxAgentName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxAgentName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxAgentName.FormattingEnabled = true;
             this.comboBoxAgentName.Location = new System.Drawing.Point(483, 28);
             this.comboBoxAgentName.Name = "comboBoxAgentName";
             this.comboBoxAgentName.Size = new System.Drawing.Size(172, 24);
-            this.comboBoxAgentName.TabIndex = 1;
+            this.comboBoxAgentName.TabIndex = 21;
             this.comboBoxAgentName.SelectedIndexChanged += new System.EventHandler(this.comboBoxAgentName_SelectedIndexChanged);
+            this.comboBoxAgentName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxAgentName_KeyDown);
             // 
             // comboBoxItemName
             // 
             this.comboBoxItemName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxItemName.FormattingEnabled = true;
             this.comboBoxItemName.Location = new System.Drawing.Point(82, 28);
             this.comboBoxItemName.Name = "comboBoxItemName";
             this.comboBoxItemName.Size = new System.Drawing.Size(254, 24);
-            this.comboBoxItemName.TabIndex = 0;
-            // 
-            // labelQuantity
-            // 
-            this.labelQuantity.AutoSize = true;
-            this.labelQuantity.Location = new System.Drawing.Point(84, 66);
-            this.labelQuantity.Name = "labelQuantity";
-            this.labelQuantity.Size = new System.Drawing.Size(77, 16);
-            this.labelQuantity.TabIndex = 13;
-            this.labelQuantity.Text = "<Số lượng>";
-            // 
-            // textBoxMeasurement
-            // 
-            this.textBoxMeasurement.Location = new System.Drawing.Point(201, 63);
-            this.textBoxMeasurement.Name = "textBoxMeasurement";
-            this.textBoxMeasurement.Size = new System.Drawing.Size(147, 23);
-            this.textBoxMeasurement.TabIndex = 14;
-            this.textBoxMeasurement.Text = "<Đơn vị tính>";
+            this.comboBoxItemName.TabIndex = 20;
+            this.comboBoxItemName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxItemName_KeyDown);
             // 
             // FormListItem
             // 
@@ -405,12 +417,13 @@
             this.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "FormListItem";
-            this.Text = "FormListItem";
+            this.Text = "Danh sách mặt hàng";
+            this.Load += new System.EventHandler(this.FormListItem_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrice)).EndInit();
             this.groupBoxListItems.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItemList)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -432,7 +445,7 @@
         private System.Windows.Forms.ComboBox comboBoxAgentName;
         private System.Windows.Forms.ComboBox comboBoxItemName;
         private System.Windows.Forms.Button buttonSearch;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewItemList;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnId;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnItemName;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnKindOfAgent;
