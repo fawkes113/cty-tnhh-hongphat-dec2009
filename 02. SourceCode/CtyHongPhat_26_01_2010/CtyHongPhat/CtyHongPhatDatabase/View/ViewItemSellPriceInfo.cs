@@ -20,6 +20,8 @@ namespace CtyHongPhatDatabase.View
         private decimal sellPrice;
         private int agentKindId;
         private string agentKindName;
+        private int agentId;
+        private string agentName;
 
         #region Public Properties
         public int ItemId
@@ -98,6 +100,18 @@ namespace CtyHongPhatDatabase.View
         {
             get { return agentKindName; }
             set { agentKindName = value; }
+        }
+
+        public int AgentId
+        {
+            get { return agentId; }
+            set { agentId = value; }
+        }
+
+        public string AgentName
+        {
+            get { return agentName; }
+            set { agentName = value; }
         }
 
         #endregion

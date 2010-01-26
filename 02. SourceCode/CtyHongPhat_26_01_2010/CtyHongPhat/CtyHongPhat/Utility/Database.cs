@@ -18,7 +18,7 @@ namespace CtyHongPhat.Utility
             try
             {
                 //string connStr = "Data Source=" + Config.DataSource + ";Initial Catalog=" + Config.InitialCatalog + ";User ID=" + Config.UserName + ";Password=" + Config.Password;
-                string connStr = "Data Source=.\\sqlexpress;Initial Catalog=CtyHongPhat_19_01_2010;Integrated Security=True";
+                string connStr = "Data Source=trunghieu;Initial Catalog=hongphat;Integrated Security=True";
                 return new SqlConnection(connStr);
             }
             catch (System.Exception e)
@@ -29,6 +29,22 @@ namespace CtyHongPhat.Utility
         }
 
         #region AgentKind
+        public ArrayList AgentKindGetAll()
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return AgentKindController.GetAll(conn);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
         public int AgentKindInsert(AgentKindInfo agentKindInfo)
         {
             try
@@ -175,7 +191,7 @@ namespace CtyHongPhat.Utility
             try
             {
                 using (SqlConnection conn = Database.NewConnection())
-                {
+                {   
                     return ItemCotroller.GetAll(conn);
                 }
             }
@@ -262,6 +278,37 @@ namespace CtyHongPhat.Utility
                 using (SqlConnection conn = Database.NewConnection())
                 {
                     return ViewItemSellPriceController.GetByColumnsTop1(conn, new object[] {"ItemId", itemId, "AgentKindId", agentKindId});
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;                
+            }
+        }
+
+        public List<ViewItemSellPriceInfo> ViewItemSellPriceSearchBy(int itemId, int agentId, int agentKindId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    ArrayList queryResult;
+                    if (itemId == -1 && agentId == -1 && agentKindId == -1)
+                        queryResult = ViewItemSellPriceController.GetAll(conn);
+                    else
+                        queryResult = ViewItemSellPriceController.GetByColumns(conn, new object[] { 
+                            itemId == -1 ? null : "ItemId", itemId, 
+                            agentId == -1 ? null : "AgentId", agentId, 
+                            agentKindId == -1 ? null : "AgentKindId", agentKindId });
+
+                    List<ViewItemSellPriceInfo> result = new List<ViewItemSellPriceInfo>();
+                    foreach (object item in queryResult)
+	                {
+                        result.Add((ViewItemSellPriceInfo) item);
+	                }
+
+                    return result;
                 }
             }
             catch (Exception ex)
