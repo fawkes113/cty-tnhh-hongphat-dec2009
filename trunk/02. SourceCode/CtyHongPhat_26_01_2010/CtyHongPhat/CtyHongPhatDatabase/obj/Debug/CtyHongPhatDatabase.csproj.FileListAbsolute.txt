@@ -1,6 +1,0 @@
-E:\work\Backup\CtyHongPhat\CtyHongPhatDatabase\bin\Debug\CtyHongPhatDatabase.dll
-E:\work\Backup\CtyHongPhat\CtyHongPhatDatabase\bin\Debug\CtyHongPhatDatabase.pdb
-E:\work\Backup\CtyHongPhat\CtyHongPhatDatabase\bin\Debug\Interop.EncodeHVT.dll
-E:\work\Backup\CtyHongPhat\CtyHongPhatDatabase\obj\Debug\ResolveAssemblyReference.cache
-E:\work\Backup\CtyHongPhat\CtyHongPhatDatabase\obj\Debug\CtyHongPhatDatabase.dll
-E:\work\Backup\CtyHongPhat\CtyHongPhatDatabase\obj\Debug\CtyHongPhatDatabase.pdb
