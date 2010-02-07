@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelItemId = new System.Windows.Forms.Label();
             this.textBoxMeasurement = new System.Windows.Forms.TextBox();
             this.labelQuantity = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,10 +48,11 @@
             this.dataGridViewItemList = new System.Windows.Forms.DataGridView();
             this.columnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnAgentKindId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnKindOfAgent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnMeasuerment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnMeasurement = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -70,6 +72,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.labelItemId);
             this.groupBox1.Controls.Add(this.textBoxMeasurement);
             this.groupBox1.Controls.Add(this.labelQuantity);
             this.groupBox1.Controls.Add(this.label5);
@@ -91,6 +94,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin mặt hàng";
+            // 
+            // labelItemId
+            // 
+            this.labelItemId.AutoSize = true;
+            this.labelItemId.Location = new System.Drawing.Point(369, 26);
+            this.labelItemId.Name = "labelItemId";
+            this.labelItemId.Size = new System.Drawing.Size(62, 16);
+            this.labelItemId.TabIndex = 14;
+            this.labelItemId.Text = "<itemId>";
+            this.labelItemId.Visible = false;
             // 
             // textBoxMeasurement
             // 
@@ -195,9 +208,15 @@
             this.buttonUpdate.Text = "Cập nhật";
             this.buttonUpdate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // numericUpDownPrice
             // 
+            this.numericUpDownPrice.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.numericUpDownPrice.Location = new System.Drawing.Point(517, 61);
             this.numericUpDownPrice.Maximum = new decimal(new int[] {
             1000000000,
@@ -257,52 +276,68 @@
             this.dataGridViewItemList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnId,
             this.columnItemName,
+            this.columnAgentKindId,
             this.columnKindOfAgent,
             this.columnPrice,
             this.columnQuantity,
-            this.columnMeasuerment});
+            this.columnMeasurement});
             this.dataGridViewItemList.Location = new System.Drawing.Point(6, 23);
             this.dataGridViewItemList.Name = "dataGridViewItemList";
+            this.dataGridViewItemList.ReadOnly = true;
             this.dataGridViewItemList.RowHeadersVisible = false;
             this.dataGridViewItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewItemList.Size = new System.Drawing.Size(1070, 442);
             this.dataGridViewItemList.TabIndex = 15;
+            this.dataGridViewItemList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewItemList_CellMouseClick);
             // 
             // columnId
             // 
             this.columnId.HeaderText = "Mã mặt hàng";
             this.columnId.Name = "columnId";
+            this.columnId.ReadOnly = true;
             this.columnId.Width = 150;
             // 
             // columnItemName
             // 
             this.columnItemName.HeaderText = "Tên mặt hàng";
             this.columnItemName.Name = "columnItemName";
+            this.columnItemName.ReadOnly = true;
             this.columnItemName.Width = 250;
+            // 
+            // columnAgentKindId
+            // 
+            this.columnAgentKindId.HeaderText = "Mã loại đại lý";
+            this.columnAgentKindId.Name = "columnAgentKindId";
+            this.columnAgentKindId.ReadOnly = true;
+            this.columnAgentKindId.Visible = false;
             // 
             // columnKindOfAgent
             // 
             this.columnKindOfAgent.HeaderText = "Loại đại lý";
             this.columnKindOfAgent.Name = "columnKindOfAgent";
+            this.columnKindOfAgent.ReadOnly = true;
             this.columnKindOfAgent.Width = 200;
             // 
             // columnPrice
             // 
             this.columnPrice.HeaderText = "Giá";
             this.columnPrice.Name = "columnPrice";
+            this.columnPrice.ReadOnly = true;
             this.columnPrice.Width = 150;
             // 
             // columnQuantity
             // 
             this.columnQuantity.HeaderText = "Tồn kho";
             this.columnQuantity.Name = "columnQuantity";
+            this.columnQuantity.ReadOnly = true;
             this.columnQuantity.Width = 150;
             // 
-            // columnMeasuerment
+            // columnMeasurement
             // 
-            this.columnMeasuerment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnMeasuerment.HeaderText = "Đơn vị";
-            this.columnMeasuerment.Name = "columnMeasuerment";
+            this.columnMeasurement.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnMeasurement.HeaderText = "Đơn vị";
+            this.columnMeasurement.Name = "columnMeasurement";
+            this.columnMeasurement.ReadOnly = true;
             // 
             // groupBox3
             // 
@@ -446,12 +481,6 @@
         private System.Windows.Forms.ComboBox comboBoxItemName;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.DataGridView dataGridViewItemList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnKindOfAgent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnQuantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnMeasuerment;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -462,6 +491,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxMeasurement;
         private System.Windows.Forms.Label labelQuantity;
+        private System.Windows.Forms.Label labelItemId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnAgentKindId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnKindOfAgent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnMeasurement;
 
     }
 }
