@@ -269,6 +269,22 @@ namespace CtyHongPhat.Utility
                 return null;
             }
         }
+
+        public void ItemDelete(int itemId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    ItemCotroller.Delete(conn, itemId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return;
+            }
+        }
         #endregion
 
         #region OrderDetails
@@ -375,6 +391,22 @@ namespace CtyHongPhat.Utility
             {
                 System.Diagnostics.Trace.WriteLine(ex);
                 return null;
+            }
+        }
+
+        public void SellPriceDeleteBy(int itemId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    SellPriceController.DeleteByColumns(conn, "ItemId", itemId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return;
             }
         }
         #endregion
