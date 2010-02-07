@@ -370,5 +370,26 @@ namespace CtyHongPhat
 
             return 0;
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            /// trường hợp không chọn dòng nào
+            if (dataGridViewItemList.SelectedRows.Count <= 0)
+                return;
+
+            MessageBox.Infor(this, "Bạn thật sự muốn xóa những thông tin này?");
+            foreach (DataGridViewRow row in dataGridViewItemList.SelectedRows)
+            {
+                string itemId = row.Cells["columnId"].Value.ToString();
+                string itemName = row.Cells["columnItemName"].Value.ToString();
+                string agentKindName = row.Cells["columnKindOfAgent"].Value.ToString();
+
+                // xóa thông tin giá bán
+                database.ItemDelete(itemId);
+
+                // xóa thông tin item
+                database.SellPriceDeleteBy(itemId);
+            }
+        }
     }
 }
