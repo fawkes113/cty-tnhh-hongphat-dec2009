@@ -13,12 +13,15 @@ namespace CtyHongPhat.Utility
 {
     public class Database
     {
+        public static int COMMAND_SUCCESS = 1;
+        public static int COMMAND_FAILED = -1;
+
         public static SqlConnection NewConnection()
         {
             try
             {
                 //string connStr = "Data Source=" + Config.DataSource + ";Initial Catalog=" + Config.InitialCatalog + ";User ID=" + Config.UserName + ";Password=" + Config.Password;
-                string connStr = "Data Source=trunghieu;Initial Catalog=hongphat;Integrated Security=True";
+                string connStr = "Data Source=trunghieu;Initial Catalog=hongphat_2010Jan23;Integrated Security=True";
                 return new SqlConnection(connStr);
             }
             catch (System.Exception e)
@@ -36,6 +39,22 @@ namespace CtyHongPhat.Utility
                 using (SqlConnection conn = Database.NewConnection())
                 {
                     return AgentKindController.GetAll(conn);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public AgentKindInfo AgentKindGetBy(int agentKindId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return AgentKindController.GetByColumnTop1(conn, "AgentKindId", agentKindId);
                 }
             }
             catch (Exception ex)
@@ -201,6 +220,55 @@ namespace CtyHongPhat.Utility
                 return null;
             }
         }
+
+        public int ItemAdd(ItemInfo itemInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return ItemCotroller.Insert(conn, itemInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return COMMAND_FAILED;
+            }
+        }
+
+        public int ItemUpdate(ItemInfo itemInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    ItemCotroller.Update(conn, itemInfo);
+                    return COMMAND_SUCCESS;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return COMMAND_FAILED;
+            }
+        }
+
+        public ItemInfo ItemGetBy(int itemId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return ItemCotroller.GetByColumnTop1(conn, "ItemId", itemId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
         #endregion
 
         #region OrderDetails
@@ -245,6 +313,70 @@ namespace CtyHongPhat.Utility
         #endregion
 
         #region SellPrice
+        public int SellPriceAdd(SellPriceInfo sellPriceInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return SellPriceController.Insert(conn, sellPriceInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return COMMAND_FAILED;
+            }
+        }
+
+        public int SellPriceUpdate(SellPriceInfo sellPriceInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    SellPriceController.Update(conn, sellPriceInfo);
+                    return COMMAND_SUCCESS;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return COMMAND_FAILED;
+            }
+        }
+
+        public SellPriceInfo SellPriceGetBy(int sellId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return SellPriceController.GetByColumnTop1(conn, "SellId", sellId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public SellPriceInfo SellPriceGetBy(int itemId, int agentKindId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return SellPriceController.GetByColumnsTop1(conn, "ItemId", itemId, "AgentKindId", agentKindId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
         #endregion
 
         #region User

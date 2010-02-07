@@ -145,6 +145,7 @@ namespace CtyHongPhat
                 dataGridViewItemList.Rows.Add(
                     info.ItemId,
                     info.ItemName,
+                    info.AgentKindId,
                     info.AgentKindName,
                     NumberViewer.InsertComma(info.SellPrice.ToString()),
                     info.TotalQuantity,
@@ -233,7 +234,141 @@ namespace CtyHongPhat
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            
+            // lấy thông tin 1 Item
+            ItemInfo item = new ItemInfo();
+            item.ItemId = -1;
+            item.ItemName = textBoxItemName.Text;
+            item.CreatedBy = employeeName;
+            item.CreatedDate = DateTime.Today.Date;
+            item.ModifiedBy = employeeName;
+            item.ModifiedDate = DateTime.Today.Date;
+            item.Deleted = 0;
+            item.TotalQuantity = 0;
+            item.Measurement = textBoxMeasurement.Text;
+
+            // kiểm tra ràng buộc cần thiết
+            if (item.ItemName == "" || item.Measurement == MEASUREMENT)
+            {
+                MessageBox.Infor(this, "Vui lòng nhập đầy đủ thông tin mặt hàng.");
+                return;
+            }
+
+            // insert vào csdl
+            item.ItemId = this.database.ItemAdd(item);
+            if (item.ItemId == Database.COMMAND_FAILED)
+            {
+                MessageBox.Error(this, "Có lỗi khi tạo mặt hàng mới, vui lòng thử lại.");
+                return;
+            }
+
+            // lấy thông tin sellPrice
+            SellPriceInfo sellPrice = new SellPriceInfo();
+            sellPrice.SellId = -1;
+            sellPrice.ItemId = item.ItemId;
+            sellPrice.AgentKindId = -1;
+            sellPrice.SellPrice = numericUpDownPrice.Value;
+            sellPrice.CreatedDate = DateTime.Today.Date;
+            sellPrice.CreatedBy = employeeName;
+            sellPrice.ModifiedDate = DateTime.Today.Date;
+            sellPrice.ModifiedBy = employeeName;
+            sellPrice.Deleted = 0;
+
+            // kiểm tra ràng buộc cần thiết --> không cần
+
+            // insert vào csdl
+            foreach (AgentKindInfo agentKind in listAgentKinds)
+            {
+                sellPrice.AgentKindId = agentKind.AgentKindId;
+                if (database.SellPriceAdd(sellPrice) == Database.COMMAND_FAILED)
+                {
+                    MessageBox.Error(this, String.Format("Có lỗi khi tạo giá bán cho loại đại lý {0}.", agentKind.AgentKindName));
+                }
+            }
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            // lấy thông tin 1 Item
+            ItemInfo item = new ItemInfo();
+            int itemId = -1;
+            int.TryParse(labelItemId.Text, out itemId);
+            if (itemId == -1)
+            {
+                return;
+            }
+            item = database.ItemGetBy(itemId);
+            item.ItemName = textBoxItemName.Text;
+            item.ModifiedBy = employeeName;
+            item.ModifiedDate = DateTime.Today.Date;
+            item.Measurement = textBoxMeasurement.Text;
+
+            // kiểm tra ràng buộc cần thiết
+            if (item.ItemName == "" || item.Measurement == MEASUREMENT)
+            {
+                MessageBox.Infor(this, "Vui lòng nhập đầy đủ thông tin mặt hàng.");
+                return;
+            }
+
+            // update item trong csdl
+            if (this.database.ItemUpdate(item) == Database.COMMAND_FAILED)
+            {
+                MessageBox.Error(this, "Có lỗi khi cập nhật thông tin mặt hàng, vui lòng thử lại.");
+                return;
+            }
+
+            // lấy thông tin 1 sellPrice
+            SellPriceInfo sellPrice = database.SellPriceGetBy(
+                item.ItemId,
+                ((AgentKindInfo)comboBoxInfoKindOfAgent.SelectedValue).AgentKindId);
+            sellPrice.SellPrice = numericUpDownPrice.Value;
+            sellPrice.ModifiedBy = employeeName;
+            sellPrice.ModifiedDate = DateTime.Today.Date;
+
+            // kiểm tra ràng buộc cần thiết --> không cần
+
+            // update sellPrice trong csdl
+            if (database.SellPriceUpdate(sellPrice) == Database.COMMAND_FAILED)
+            {
+                MessageBox.Error(this, String.Format("Có lỗi khi cập nhật thông tin giá bán cho đại lý {0}.", 
+                    ((AgentKindInfo)comboBoxInfoKindOfAgent.SelectedValue).AgentKindName));
+                return;
+            }
+        }
+
+        private void dataGridViewItemList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            // click vào header
+            if (e.RowIndex < 0)
+                return;
+
+            // lấy thông tin của row
+            DataGridViewRow row = dataGridViewItemList.Rows[e.RowIndex];
+
+            string itemId = row.Cells["columnId"].Value.ToString();
+            string itemName = row.Cells["columnItemName"].Value.ToString();
+            string measurement = row.Cells["columnMeasurement"].Value.ToString();
+            string totalQuantity = row.Cells["columnQuantity"].Value.ToString();
+            string agentKindId = row.Cells["columnAgentKindId"].Value.ToString();
+            string price = row.Cells["columnPrice"].Value.ToString();
+
+            // show thông tin lên các control tương ứng
+            labelItemId.Text = itemId;
+            textBoxItemName.Text = itemName;
+            textBoxMeasurement.Text = measurement;
+            labelQuantity.Text = totalQuantity;
+            comboBoxInfoKindOfAgent.SelectedIndex = searchAgentKindInList(listAgentKinds, int.Parse(agentKindId));
+            numericUpDownPrice.Value = int.Parse(NumberViewer.ClearComma(price));
+        }
+
+        private int searchAgentKindInList(List<AgentKindInfo> list, int agentKindId)
+        {
+            for (int i = 0; i < list.Count; i++)
+			{
+                if (list[i].AgentKindId == agentKindId)
+                    return i;
+			}
+
+            return 0;
         }
     }
 }
