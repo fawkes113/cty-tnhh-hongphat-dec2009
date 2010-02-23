@@ -280,6 +280,13 @@ namespace CtyHongPhatDatabase.Controller
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
+            param = new SqlParameter();
+            param.ParameterName = "@Deleted";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = objBO.Deleted;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
             comm.ExecuteNonQuery();
         }
 

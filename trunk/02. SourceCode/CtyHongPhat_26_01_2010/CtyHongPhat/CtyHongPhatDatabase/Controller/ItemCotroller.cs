@@ -21,6 +21,8 @@ namespace CtyHongPhatDatabase.Controller
         public static ArrayList GetAllHaveOrderBy(SqlConnection conn, string OrderColumn, string OrderType)
         {
             string sqlCmd = "SELECT * FROM ITEMS WHERE DELETED = 0 ORDER BY " + OrderColumn + " " + OrderType;
+
+            conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(ItemInfo));
         }
@@ -165,6 +167,13 @@ namespace CtyHongPhatDatabase.Controller
             SqlCommand comm = new SqlCommand("ITEMS_Insert", conn);
             comm.CommandType = CommandType.StoredProcedure;
             SqlParameter param;
+
+            param = new SqlParameter();
+            param.ParameterName = "@ItemId";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.ItemId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
 
             param = new SqlParameter();
             param.ParameterName = "@ItemName";

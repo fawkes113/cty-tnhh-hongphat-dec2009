@@ -304,6 +304,13 @@ namespace CtyHongPhatDatabase.Controller
             comm.Parameters.Add(param);
 
             param = new SqlParameter();
+            param.ParameterName = "@Deleted";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = objBO.Deleted;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
             param.ParameterName = "@Note";
             param.SqlDbType = SqlDbType.Text;
             param.Value = objBO.Note;

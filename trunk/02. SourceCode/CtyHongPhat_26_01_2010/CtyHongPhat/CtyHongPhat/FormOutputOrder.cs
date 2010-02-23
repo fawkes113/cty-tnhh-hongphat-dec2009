@@ -19,7 +19,7 @@ namespace CtyHongPhat
         List<ItemInfo> listItems;
         List<OrderDetailsInfo> listOrderDetails;
         private Database database = new Database();
-        private string employeeName = "admin";
+        private string employeeName = "";
 
         public FormOutputOrder()
         {
@@ -179,20 +179,32 @@ namespace CtyHongPhat
                     MessageBox.Error(this, "Bạn chưa nhập số lương bán");
                     return;
                 }
-
-                if (numericUpDownQuantity.Value > itemInfo.TotalQuantity)
+          
+                AgentsInfo agentsInfo = this.comboBoxListAgents.SelectedItem as AgentsInfo;
+                if (agentsInfo == null || agentsInfo.AgentId == -1)
                 {
-                    MessageBox.Error(this, "Số lương bán phải nhỏ hơn số lương tồn kho");
+                    MessageBox.Error(this, "Bạn chưa chọn khách hàng");
+                    this.groupBoxInforAgent.Enabled = true;
                     return;
                 }
 
-                AgentsInfo agentsInfo = this.comboBoxListAgents.SelectedItem as AgentsInfo;
+                if (itemInfo == null)
+                {
+                    MessageBox.Error(this, "Bạn chọn sai mặt hàng");
+                    return;
+                }
 
                 if (itemInfo.ItemId == -1)
                 {
                     for (int i = 1; i < this.comboBoxListItems.Items.Count; i++)
                     {
                         itemInfo = this.comboBoxListItems.Items[i] as ItemInfo;
+
+                        if (numericUpDownQuantity.Value > itemInfo.TotalQuantity)
+                        {
+                            continue;
+                        }
+
                         bool checkContain = false;
                         foreach(OrderDetailsInfo orderDetailsInfo in this.listOrderDetails)
                             if (orderDetailsInfo.ItemId == itemInfo.ItemId)
@@ -207,12 +219,12 @@ namespace CtyHongPhat
 
                             if (viewItemSellPriceInfo != null)
                             {
-                                decimal totalMoney = decimal.Parse(this.textBoxTotalAmount.Text) + decimal.Parse(this.labelSellPrice.Text) * this.numericUpDownQuantity.Value;
+                                decimal totalMoney = decimal.Parse(this.textBoxTotalAmount.Text) + viewItemSellPriceInfo.SellPrice * this.numericUpDownQuantity.Value;
                                 this.dataGridViewListItems.Rows.Add(false, itemInfo.ItemId,
                                                                     itemInfo.ItemName,
                                                                     NumberViewer.InsertComma(this.numericUpDownQuantity.Value.ToString()),
                                                                     itemInfo.Measurement,
-                                                                    this.labelSellPrice.Text,
+                                                                    NumberViewer.InsertComma(viewItemSellPriceInfo.SellPrice.ToString()),
                                                                     NumberViewer.InsertComma(totalMoney.ToString())
                                                                     );
 
@@ -235,6 +247,12 @@ namespace CtyHongPhat
                 }
                 else
                 {
+                    if (numericUpDownQuantity.Value > itemInfo.TotalQuantity)
+                    {
+                        MessageBox.Error(this, "Số lương bán phải nhỏ hơn số lương tồn kho");
+                        return;
+                    }
+
                     bool checkContain = false;
                     foreach (OrderDetailsInfo orderDetailsInfo in this.listOrderDetails)
                         if (orderDetailsInfo.ItemId == itemInfo.ItemId)
@@ -249,12 +267,12 @@ namespace CtyHongPhat
 
                         if (viewItemSellPriceInfo != null)
                         {
-                            decimal totalMoney = decimal.Parse(this.textBoxTotalAmount.Text) + decimal.Parse(this.labelSellPrice.Text) * this.numericUpDownQuantity.Value;
+                            decimal totalMoney = decimal.Parse(this.textBoxTotalAmount.Text) + viewItemSellPriceInfo.SellPrice * this.numericUpDownQuantity.Value;
                             this.dataGridViewListItems.Rows.Add(false, itemInfo.ItemId,
                                                                 itemInfo.ItemName,
                                                                 NumberViewer.InsertComma(this.numericUpDownQuantity.Value.ToString()),
                                                                 itemInfo.Measurement,
-                                                                this.labelSellPrice.Text,
+                                                                NumberViewer.InsertComma(viewItemSellPriceInfo.SellPrice.ToString()),
                                                                 NumberViewer.InsertComma(totalMoney.ToString())
                                                                 );
 
@@ -264,7 +282,7 @@ namespace CtyHongPhat
                             OrderDetailsInfo orderDetailsInfo = new OrderDetailsInfo();
                             orderDetailsInfo.CreatedBy = this.employeeName;
                             orderDetailsInfo.CreateDate = DateTime.Now;
-                            orderDetailsInfo.ModifiedBy = "";
+                            orderDetailsInfo.ModifiedBy = ""; 
                             orderDetailsInfo.ModifiedDate = DateTime.Now;
                             orderDetailsInfo.ItemId = itemInfo.ItemId;
                             orderDetailsInfo.Quantity = numericUpDownQuantity.Value;
@@ -283,6 +301,7 @@ namespace CtyHongPhat
         {
             this.groupBoxInforAgent.Enabled = true;
             this.Init();
+            this.BindData();
         }
 
         private void dataGridViewListItems_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
@@ -364,39 +383,53 @@ namespace CtyHongPhat
                     {
                         for (int i = 0; i < this.listOrderDetails.Count; i++)
                         {
-                            OrderDetailsInfo orderDetailsInfo = this.listOrderDetails[i];
-                            orderDetailsInfo.OrderId = ordersId;
-                            database.OrderDetailsAdd(orderDetailsInfo);
+                         
+                                OrderDetailsInfo orderDetailsInfo = this.listOrderDetails[i];
+                                orderDetailsInfo.OrderId = ordersId;
+                                database.OrderDetailsAdd(orderDetailsInfo);
+
+                                ItemInfo itemInfo = database.ItemGetById(orderDetailsInfo.ItemId);
+                                itemInfo.TotalQuantity = itemInfo.TotalQuantity - orderDetailsInfo.Quantity;
+                                itemInfo.ModifiedBy = this.employeeName;
+                                itemInfo.ModifiedDate = DateTime.Now;
+                                database.ItemUpdate(itemInfo);
+                         
                         }
 
-                        DebtInfo oldDebtInfo = database.DebtGetByCustomerId(agentsInfo.AgentId);
-                        DebtInfo newDebtInfo = new DebtInfo();
-                      
-                        newDebtInfo.NewDebtValue = totalAmount - payAmount;
-                        newDebtInfo.OldDebtValue = oldDebtInfo.CurrentDebtValue;
-                        newDebtInfo.CurrentDebtValue = oldDebtInfo.CurrentDebtValue + (totalAmount - payAmount);
-                        newDebtInfo.Payment = 0;
-                        newDebtInfo.CreateDate = DateTime.Now;
-                        newDebtInfo.CreatedBy = this.employeeName;
-                        newDebtInfo.ModifiedDate = DateTime.Now;
-                        newDebtInfo.ModifiedBy = "";
-                        newDebtInfo.DebtKind = 1;
-                        newDebtInfo.Deleted = 0;
-                        newDebtInfo.CustomerId = agentsInfo.AgentId;
-                        newDebtInfo.Note = "Thêm nợ hóa đơn ngày " + oldDebtInfo.CreateDate.ToString("dd/MM/yyyy");
-
-                        if (database.DebtAdd(newDebtInfo) > 0)
+                        if (payAmount < totalAmount)
                         {
-                            oldDebtInfo.Deleted = 1;
-                            oldDebtInfo.ModifiedBy = this.employeeName;
-                            oldDebtInfo.ModifiedDate = DateTime.Now;
+                            DebtInfo oldDebtInfo = database.DebtGetByCustomerId(agentsInfo.AgentId);
+                            DebtInfo newDebtInfo = new DebtInfo();
 
-                            database.DebtUpdate(oldDebtInfo);
+                            newDebtInfo.NewDebtValue = totalAmount - payAmount;
+                            newDebtInfo.OldDebtValue = oldDebtInfo.CurrentDebtValue;
+                            newDebtInfo.CurrentDebtValue = oldDebtInfo.CurrentDebtValue + (totalAmount - payAmount);
+                            newDebtInfo.Payment = 0;
+                            newDebtInfo.CreateDate = DateTime.Now;
+                            newDebtInfo.CreatedBy = this.employeeName;
+                            newDebtInfo.ModifiedDate = DateTime.Now;
+                            newDebtInfo.ModifiedBy = "";
+                            newDebtInfo.DebtKind = 1;
+                            newDebtInfo.Deleted = 0;
+                            newDebtInfo.CustomerId = agentsInfo.AgentId;
+                            newDebtInfo.Note = "Thêm nợ hóa đơn ngày " + oldDebtInfo.CreateDate.ToString("dd/MM/yyyy");
+
+                            if (database.DebtAdd(newDebtInfo) > 0)
+                            {
+                                oldDebtInfo.Deleted = 1;
+                                oldDebtInfo.ModifiedBy = this.employeeName;
+                                oldDebtInfo.ModifiedDate = DateTime.Now;
+
+                                database.DebtUpdate(oldDebtInfo);
+                            }
+                            else
+                            {
+                                MessageBox.Error(this, "Không thêm nợ được, có thể yêu cầu khách hàng thanh toán bằng tiền mặt");
+                            }
                         }
-                        else
-                        {
-                            MessageBox.Error(this, "Không thêm nợ được, có thể yêu cầu khách hàng thanh toán bằng tiền mặt");
-                        }
+
+                        MessageBox.Infor(this, "Lưu hóa đơn thành công");
+                        this.buttonRefresh_Click(sender, e);
                     }
                 }
                 catch(Exception ex)

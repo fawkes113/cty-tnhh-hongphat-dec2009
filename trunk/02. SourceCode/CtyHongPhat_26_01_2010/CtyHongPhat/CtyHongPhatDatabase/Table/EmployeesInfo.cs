@@ -12,6 +12,8 @@ namespace CtyHongPhatDatabase.Table
         private decimal salary;
         private int deleted;
         private string position = String.Empty;
+        private DateTime birthday;
+        private string address;
 
         #region Public Properties
         public int EmployeeId
@@ -42,6 +44,18 @@ namespace CtyHongPhatDatabase.Table
         {
             get { return position; }
             set { position = value; }
+        }
+
+        public DateTime Birthday
+        {
+            get { return birthday; }
+            set { birthday = value; }
+        }
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
         }
         #endregion
     }

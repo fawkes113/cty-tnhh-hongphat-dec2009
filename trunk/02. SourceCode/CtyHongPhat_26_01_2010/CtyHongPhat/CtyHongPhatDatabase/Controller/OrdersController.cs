@@ -354,5 +354,58 @@ namespace CtyHongPhatDatabase.Controller
 
             comm.ExecuteNonQuery();
         }
+        public static ArrayList GetByCustomerIdFromdateTodate(SqlConnection conn, int customerId, int orderKind, int status, DateTime fromDate, DateTime toDate)
+        {
+            conn.Open();
+            SqlCommand comm = new SqlCommand("ORDERS_Select_ByCutomerId_FromDate_ToDate", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@CustomerId";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = customerId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@OrderKind";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = orderKind;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Status";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = status;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@FromDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = fromDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ToDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = toDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            return CBO.FillCollection(comm.ExecuteReader(), typeof(OrdersInfo));
+        }
+        public static ArrayList GetDebtOrdersByCustomerId(SqlConnection conn, int customerId)
+        {
+            conn.Open();
+            string strSql = "Select * from Orders where (status = 1 or status = 0) CustomerId = " + customerId;
+            SqlCommand comm = new SqlCommand(strSql, conn);
+            comm.CommandType = CommandType.Text;
+
+            return CBO.FillCollection(comm.ExecuteReader(), typeof(OrdersInfo));
+        }
+
     }
 }

@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace CtyHongPhat
 {
-    public partial class FormListOrders : Form
+    public partial class FormUpdateOrder : Form
     {
-        public FormListOrders()
+        public FormUpdateOrder()
         {
             InitializeComponent();
         }
