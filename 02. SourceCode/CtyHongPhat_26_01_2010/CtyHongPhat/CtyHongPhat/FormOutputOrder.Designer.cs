@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxInforAgent = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.labelTotalDebt = new System.Windows.Forms.Label();
@@ -156,7 +156,8 @@
             // 
             this.comboBoxListAgents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxListAgents.FormattingEnabled = true;
+            this.comboBoxListAgents.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBoxListAgents.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxListAgents.Location = new System.Drawing.Point(82, 23);
             this.comboBoxListAgents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxListAgents.Name = "comboBoxListAgents";
@@ -232,8 +233,8 @@
             // 
             // columnItemId
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnItemId.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnItemId.DefaultCellStyle = dataGridViewCellStyle26;
             this.columnItemId.HeaderText = "Mã mặt hàng";
             this.columnItemId.Name = "columnItemId";
             this.columnItemId.ReadOnly = true;
@@ -248,8 +249,8 @@
             // 
             // columnQuantity
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnQuantity.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnQuantity.DefaultCellStyle = dataGridViewCellStyle27;
             this.columnQuantity.HeaderText = "Số lương";
             this.columnQuantity.Name = "columnQuantity";
             this.columnQuantity.ReadOnly = true;
@@ -257,16 +258,16 @@
             // 
             // columnMeasurement
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.columnMeasurement.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.columnMeasurement.DefaultCellStyle = dataGridViewCellStyle28;
             this.columnMeasurement.HeaderText = "Đơn vị ";
             this.columnMeasurement.Name = "columnMeasurement";
             this.columnMeasurement.ReadOnly = true;
             // 
             // columnPrice
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle29;
             this.columnPrice.HeaderText = "Đơn giá";
             this.columnPrice.Name = "columnPrice";
             this.columnPrice.ReadOnly = true;
@@ -274,8 +275,8 @@
             // columnTotalMoney
             // 
             this.columnTotalMoney.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnTotalMoney.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnTotalMoney.DefaultCellStyle = dataGridViewCellStyle30;
             this.columnTotalMoney.HeaderText = "Thành tiền";
             this.columnTotalMoney.Name = "columnTotalMoney";
             this.columnTotalMoney.ReadOnly = true;
@@ -307,6 +308,8 @@
             // 
             this.comboBoxListItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxListItems.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBoxListItems.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxListItems.FormattingEnabled = true;
             this.comboBoxListItems.Location = new System.Drawing.Point(82, 21);
             this.comboBoxListItems.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

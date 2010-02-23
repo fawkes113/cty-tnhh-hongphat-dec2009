@@ -9,17 +9,16 @@ using System.Windows.Forms;
 
 namespace CtyHongPhat
 {
-    public partial class FormExampleReport : Form
+    public partial class FormPrintPaySheet : Form
     {
-        public FormExampleReport()
+        public FormPrintPaySheet()
         {
             InitializeComponent();
         }
 
-        private void FormExampleReport_Load(object sender, EventArgs e)
+        private void buttonPrint_Click(object sender, EventArgs e)
         {
 
-            this.reportViewer.RefreshReport();
         }
     }
 }

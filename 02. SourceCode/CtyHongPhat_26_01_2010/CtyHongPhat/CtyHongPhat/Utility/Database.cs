@@ -133,6 +133,21 @@ namespace CtyHongPhat.Utility
             }
         }
 
+        public AgentsInfo AgentById(int agentId)
+        {
+            try
+            {
+                using(SqlConnection conn = Database.NewConnection())
+                {
+                    return AgentsController.GetByColumnTop1(conn, "AgentId", agentId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex.ToString());
+                return null;
+            }
+        }
         #endregion
 
         #region BuyPrice
@@ -167,6 +182,7 @@ namespace CtyHongPhat.Utility
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.WriteLine(ex);
             }
         }
         public DebtInfo DebtGetById(int debtId)
@@ -204,6 +220,89 @@ namespace CtyHongPhat.Utility
 
         #endregion
 
+		#region Employee
+        public int EmployeeAdd(EmployeesInfo employeeInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return EmployeesController.Insert(conn, employeeInfo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return -1;
+            }
+        }
+
+        public void EmployeeUpdate(EmployeesInfo employeeInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    EmployeesController.Update(conn, employeeInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+            }
+        }
+
+        public EmployeesInfo EmployeeGetById(int employeeId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return EmployeesController.GetByColumnTop1(conn, "employeeId", employeeId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public ArrayList EmloyeeGetAll()
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return EmployeesController.GetAll(conn);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public bool EmployeeDelete(int employeeId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    EmployeesController.Delete(conn, employeeId);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return false;
+            }
+        }
+        #endregion
+		
         #region Items
         public ArrayList ItemGetAll()
         {
@@ -253,7 +352,23 @@ namespace CtyHongPhat.Utility
                 return COMMAND_FAILED;
             }
         }
-
+		
+		public ItemInfo ItemGetById(int itemId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return ItemCotroller.GetByColumnTop1(conn, "ItemId", itemId);
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+		
         public ItemInfo ItemGetBy(int itemId)
         {
             try
@@ -306,6 +421,22 @@ namespace CtyHongPhat.Utility
         #endregion
 
         #region Orders
+        public OrdersInfo OrdersGetById(int orderId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return OrdersController.GetByColumnTop1(conn, "OrderId", orderId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
         public int OrdersAdd(OrdersInfo ordersInfo)
         {
             try {
@@ -320,9 +451,101 @@ namespace CtyHongPhat.Utility
                 return -1;
             }
         }
+		
+		public ArrayList OrdersGetByCustomerIdFromDateToDate(int customerId, int orderKind, int status, DateTime fromDate, DateTime toDate)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return OrdersController.GetByCustomerIdFromdateTodate(conn, customerId, orderKind, status, fromDate, toDate);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public void OrdersUpdate(OrdersInfo ordersInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection())
+                {
+                    OrdersController.Update(conn, ordersInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex.ToString());
+            }
+        }
+
+        public ArrayList OrdersGetDebtOrderByCustomerId(int customerId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return OrdersController.GetDebtOrdersByCustomerId(conn, customerId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
         #endregion
 
         #region Partners
+		 public ArrayList PartnersGetAll()
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return PartnersController.GetAll(conn);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+        public PartnersInfo PartnersGetById(int partnerId)
+        {
+            try {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return PartnersController.GetByColumnTop1(conn, "PartnerId", partnerId);
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public void SellPriceDeleteBy(int itemId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    SellPriceController.DeleteByColumns(conn, "ItemId", itemId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return;
+            }
+        }
         #endregion
 
         #region ReturnedItemDetails
@@ -409,6 +632,12 @@ namespace CtyHongPhat.Utility
                 return;
             }
         }
+        #endregion
+
+        #region ReturnedItemDetails
+        #endregion
+
+        #region SellPrice
         #endregion
 
         #region User

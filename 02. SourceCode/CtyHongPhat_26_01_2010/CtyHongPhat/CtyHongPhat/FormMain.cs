@@ -77,9 +77,29 @@ namespace CtyHongPhat
 
         private void ToolStripMenuItemListOrders_Click(object sender, EventArgs e)
         {
-            if (AddUniqueForm(typeof(FormListOrders)))
+           
+        }
+
+        private void ToolStripMenuItemMagateEmployee_Click(object sender, EventArgs e)
+        {
+            if (AddUniqueForm(typeof(FormManageEmployee)))
             {
-                FormListOrders formListOrders = new FormListOrders();
+                FormManageEmployee formManagateEmployee = new FormManageEmployee(userName);
+                this.tabControlMain.TabPages.Add(formManagateEmployee);
+            }
+        }
+
+        private void ToolStripMenuItemPrintPaySheet_Click(object sender, EventArgs e)
+        {
+            FormPrintPaySheet formPrintPaySheet = new FormPrintPaySheet();
+            formPrintPaySheet.Show();
+        }
+
+        private void ToolStripMenuItemDebt_Click(object sender, EventArgs e)
+        {
+            if (AddUniqueForm(typeof(FormManagerDebt)))
+            {
+                FormManagerDebt formListOrders = new FormManagerDebt(userName);
                 this.tabControlMain.TabPages.Add(formListOrders);
             }
         }

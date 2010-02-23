@@ -74,12 +74,6 @@
     <Compile Include="FormAuthenticate.Designer.cs">
       <DependentUpon>FormAuthenticate.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormExampleReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormExampleReport.Designer.cs">
-      <DependentUpon>FormExampleReport.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormInputOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,11 +86,11 @@
     <Compile Include="FormListItem.Designer.cs">
       <DependentUpon>FormListItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormListOrders.cs">
+    <Compile Include="FormManagerDebt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormListOrders.Designer.cs">
-      <DependentUpon>FormListOrders.cs</DependentUpon>
+    <Compile Include="FormManagerDebt.Designer.cs">
+      <DependentUpon>FormManagerDebt.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
@@ -109,6 +103,12 @@
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManageEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManageEmployee.Designer.cs">
+      <DependentUpon>FormManageEmployee.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMessageBoxError.cs">
       <SubType>Form</SubType>
@@ -134,6 +134,12 @@
     <Compile Include="FormOutputOrder.Designer.cs">
       <DependentUpon>FormOutputOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUpdateOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpdateOrder.Designer.cs">
+      <DependentUpon>FormUpdateOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUserPasswordChange.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,14 +147,16 @@
       <DependentUpon>FormUserPasswordChange.cs</DependentUpon>
     </Compile>
     <Compile Include="MessageBox.cs" />
+    <Compile Include="FormPrintPaySheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrintPaySheet.Designer.cs">
+      <DependentUpon>FormPrintPaySheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAuthenticate.resx">
       <DependentUpon>FormAuthenticate.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormExampleReport.resx">
-      <DependentUpon>FormExampleReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInputOrder.resx">
@@ -159,8 +167,8 @@
       <DependentUpon>FormListItem.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormListOrders.resx">
-      <DependentUpon>FormListOrders.cs</DependentUpon>
+    <EmbeddedResource Include="FormManagerDebt.resx">
+      <DependentUpon>FormManagerDebt.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
@@ -169,6 +177,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManageEmployee.resx">
+      <DependentUpon>FormManageEmployee.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMessageBoxError.resx">
@@ -187,8 +199,16 @@
       <DependentUpon>FormOutputOrder.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormUpdateOrder.resx">
+      <DependentUpon>FormUpdateOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormUserPasswordChange.resx">
       <DependentUpon>FormUserPasswordChange.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrintPaySheet.resx">
+      <DependentUpon>FormPrintPaySheet.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
