@@ -385,10 +385,10 @@ namespace CtyHongPhat
                 string agentKindName = row.Cells["columnKindOfAgent"].Value.ToString();
 
                 // xóa thông tin giá bán
-                database.ItemDelete(itemId);
+                database.ItemDelete(int.Parse(itemId));
 
                 // xóa thông tin item
-                database.SellPriceDeleteBy(itemId);
+                database.SellPriceDeleteBy(int.Parse(itemId));
             }
         }
     }

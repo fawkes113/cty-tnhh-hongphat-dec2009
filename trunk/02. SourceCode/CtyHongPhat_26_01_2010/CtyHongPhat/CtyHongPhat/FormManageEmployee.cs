@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using CtyHongPhat.Utility;
 using CtyHongPhatDatabase.Table;
+using CtyHongPhat.Report;
 
 namespace CtyHongPhat
 {
@@ -81,7 +82,9 @@ namespace CtyHongPhat
                 if (employeeId < 0)
                 {
                     MessageBox.Error(this, "Có lỗi trong quá trình thêm nhân viên");
+                    return;
                 }
+                this.BindData();
             }
             catch (Exception ex)
             {
@@ -161,6 +164,104 @@ namespace CtyHongPhat
                     MessageBox.Error(this, ex.ToString());
                 }
             }
+        }
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            this.BindData();
+        }
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ArrayList listEmployees = database.EmloyeeGetAll();
+                if (listEmployees != null && listEmployees.Count > 0)
+                {
+                    List<EmployessView> listEmployeesViews = new List<EmployessView>();
+                    for (int i = 0; i < listEmployees.Count; i++)
+                    {
+                        EmployeesInfo employessInfo = (EmployeesInfo)listEmployees[i];
+                        EmployessView employessView = new EmployessView();
+                        employessView.EmployeeId = employessInfo.EmployeeId.ToString();
+                        employessView.EmployeeName = employessInfo.EmployeeName;
+                        employessView.Address = employessInfo.Address;
+                        employessView.Birthday = employessInfo.Birthday.ToString("dd/MM/yyyy");
+                        employessView.Deleted = employessInfo.Deleted;
+                        employessView.Position = employessInfo.Position;
+                        employessView.Salary = employessInfo.Salary;
+
+                        listEmployeesViews.Add(employessView);
+
+                    }
+
+                    FormReportViewer reportViewer = new FormReportViewer();
+
+                    CrystalReportListEmployees crystalReportListEmployees = new CrystalReportListEmployees();
+                    crystalReportListEmployees.SetDataSource(listEmployeesViews);
+                    crystalReportListEmployees.DataDefinition.FormulaFields["f_printdate"].Text = "'" + DateTime.Now.ToString("dd/MM/yyyy") + "'";
+
+                    reportViewer.Report.ReportSource = crystalReportListEmployees;
+                    reportViewer.ShowDialog(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Error(this, ex.ToString());
+            }
+        }
+
+        public class EmployessView
+        {
+            private string employeesId;
+            private string employeeName = String.Empty;
+            private decimal salary;
+            private int deleted;
+            private string position = String.Empty;
+            private string birthday;
+            private string address;
+
+            #region Public Properties
+            public string EmployeeId
+            {
+                get { return employeesId; }
+                set { employeesId = value; }
+            }
+
+            public string EmployeeName
+            {
+                get { return employeeName; }
+                set { employeeName = value; }
+            }
+
+            public decimal Salary
+            {
+                get { return salary; }
+                set { salary = value; }
+            }
+
+            public int Deleted
+            {
+                get { return deleted; }
+                set { deleted = value; }
+            }
+
+            public string Position
+            {
+                get { return position; }
+                set { position = value; }
+            }
+
+            public string Birthday
+            {
+                get { return birthday; }
+                set { birthday = value; }
+            }
+
+            public string Address
+            {
+                get { return address; }
+                set { address = value; }
+            }
+            #endregion
         }
     }
 }

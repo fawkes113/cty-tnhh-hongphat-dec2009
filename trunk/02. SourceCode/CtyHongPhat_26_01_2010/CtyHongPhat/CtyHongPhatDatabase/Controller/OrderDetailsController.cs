@@ -232,7 +232,6 @@ namespace CtyHongPhatDatabase.Controller
             object id = comm.ExecuteScalar();
             return int.Parse(id.ToString());
         }
-
         public static void Update(SqlConnection conn, OrderDetailsInfo objBO)
         {
             conn.Open();

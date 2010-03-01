@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonInsert = new System.Windows.Forms.Button();
@@ -53,6 +53,7 @@
             this.ColumnPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonPrint = new System.Windows.Forms.Button();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSalary)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -63,6 +64,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.buttonRefresh);
             this.groupBox1.Controls.Add(this.buttonDelete);
             this.groupBox1.Controls.Add(this.buttonInsert);
             this.groupBox1.Controls.Add(this.buttonUpdate);
@@ -88,7 +90,7 @@
             this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelete.Image = global::CtyHongPhat.Properties.Resources.delete;
             this.buttonDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonDelete.Location = new System.Drawing.Point(990, 44);
+            this.buttonDelete.Location = new System.Drawing.Point(779, 94);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(94, 56);
             this.buttonDelete.TabIndex = 12;
@@ -102,7 +104,7 @@
             this.buttonInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonInsert.Image = global::CtyHongPhat.Properties.Resources.select;
             this.buttonInsert.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonInsert.Location = new System.Drawing.Point(763, 44);
+            this.buttonInsert.Location = new System.Drawing.Point(779, 20);
             this.buttonInsert.Name = "buttonInsert";
             this.buttonInsert.Size = new System.Drawing.Size(97, 56);
             this.buttonInsert.TabIndex = 11;
@@ -116,7 +118,7 @@
             this.buttonUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonUpdate.Image = global::CtyHongPhat.Properties.Resources.modify;
             this.buttonUpdate.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonUpdate.Location = new System.Drawing.Point(885, 44);
+            this.buttonUpdate.Location = new System.Drawing.Point(935, 20);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(90, 56);
             this.buttonUpdate.TabIndex = 10;
@@ -278,8 +280,8 @@
             // 
             // ColumnSalary
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnSalary.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnSalary.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnSalary.HeaderText = "Lương";
             this.ColumnSalary.Name = "ColumnSalary";
             this.ColumnSalary.Width = 150;
@@ -309,6 +311,21 @@
             this.buttonPrint.Text = "In bảng lương";
             this.buttonPrint.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonPrint.UseVisualStyleBackColor = true;
+            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRefresh.Image = global::CtyHongPhat.Properties.Resources.refresh;
+            this.buttonRefresh.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonRefresh.Location = new System.Drawing.Point(935, 94);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(90, 56);
+            this.buttonRefresh.TabIndex = 17;
+            this.buttonRefresh.Text = "Làm mới";
+            this.buttonRefresh.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // FormManageEmployee
             // 
@@ -356,5 +373,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPosition;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAddress;
         private System.Windows.Forms.Button buttonPrint;
+        private System.Windows.Forms.Button buttonRefresh;
     }
 }
