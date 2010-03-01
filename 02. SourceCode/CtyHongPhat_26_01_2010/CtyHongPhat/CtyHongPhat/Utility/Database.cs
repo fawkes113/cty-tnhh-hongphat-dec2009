@@ -21,7 +21,7 @@ namespace CtyHongPhat.Utility
             try
             {
                 //string connStr = "Data Source=" + Config.DataSource + ";Initial Catalog=" + Config.InitialCatalog + ";User ID=" + Config.UserName + ";Password=" + Config.Password;
-                string connStr = "Data Source=trunghieu;Initial Catalog=hongphat_2010Jan23;Integrated Security=True";
+                string connStr = "Data Source=.\\sqlexpress;Initial Catalog=CtyHongPhat_19_01_2010;Integrated Security=True";
                 return new SqlConnection(connStr);
             }
             catch (System.Exception e)
@@ -418,6 +418,22 @@ namespace CtyHongPhat.Utility
                 return -1;
             }
         }
+
+        public ArrayList OrderDetailsGetAllByOrderId(int orderId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return OrderDetailsController.GetByColumns(conn, "OrderId", orderId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
         #endregion
 
         #region Orders
@@ -531,21 +547,6 @@ namespace CtyHongPhat.Utility
             }
         }
 
-        public void SellPriceDeleteBy(int itemId)
-        {
-            try
-            {
-                using (SqlConnection conn = Database.NewConnection())
-                {
-                    SellPriceController.DeleteByColumns(conn, "ItemId", itemId);
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Trace.WriteLine(ex);
-                return;
-            }
-        }
         #endregion
 
         #region ReturnedItemDetails
@@ -616,7 +617,7 @@ namespace CtyHongPhat.Utility
                 return null;
             }
         }
-
+        
         public void SellPriceDeleteBy(int itemId)
         {
             try

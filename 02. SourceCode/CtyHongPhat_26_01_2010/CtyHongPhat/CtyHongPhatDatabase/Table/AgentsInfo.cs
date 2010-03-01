@@ -15,6 +15,8 @@ namespace CtyHongPhatDatabase.Table
         private DateTime modifiedDate;
         private int agentKindId;
         private int deleted;
+        private string telephone;
+        private string address;
 
         #region Public Properties
         public int AgentId
@@ -63,6 +65,18 @@ namespace CtyHongPhatDatabase.Table
         {
             get { return deleted; }
             set { deleted = value; }
+        }
+
+        public string Telephone
+        {
+            get { return telephone; }
+            set { telephone = value; }
+        }
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
         }
         #endregion
 

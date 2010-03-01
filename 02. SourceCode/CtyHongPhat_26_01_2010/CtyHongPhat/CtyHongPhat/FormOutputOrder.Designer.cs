@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxInforAgent = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.labelTotalDebt = new System.Windows.Forms.Label();
@@ -233,8 +233,8 @@
             // 
             // columnItemId
             // 
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnItemId.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnItemId.DefaultCellStyle = dataGridViewCellStyle1;
             this.columnItemId.HeaderText = "Mã mặt hàng";
             this.columnItemId.Name = "columnItemId";
             this.columnItemId.ReadOnly = true;
@@ -249,8 +249,8 @@
             // 
             // columnQuantity
             // 
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnQuantity.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnQuantity.DefaultCellStyle = dataGridViewCellStyle2;
             this.columnQuantity.HeaderText = "Số lương";
             this.columnQuantity.Name = "columnQuantity";
             this.columnQuantity.ReadOnly = true;
@@ -258,16 +258,16 @@
             // 
             // columnMeasurement
             // 
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.columnMeasurement.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.columnMeasurement.DefaultCellStyle = dataGridViewCellStyle3;
             this.columnMeasurement.HeaderText = "Đơn vị ";
             this.columnMeasurement.Name = "columnMeasurement";
             this.columnMeasurement.ReadOnly = true;
             // 
             // columnPrice
             // 
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle4;
             this.columnPrice.HeaderText = "Đơn giá";
             this.columnPrice.Name = "columnPrice";
             this.columnPrice.ReadOnly = true;
@@ -275,8 +275,8 @@
             // columnTotalMoney
             // 
             this.columnTotalMoney.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnTotalMoney.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnTotalMoney.DefaultCellStyle = dataGridViewCellStyle5;
             this.columnTotalMoney.HeaderText = "Thành tiền";
             this.columnTotalMoney.Name = "columnTotalMoney";
             this.columnTotalMoney.ReadOnly = true;
@@ -367,6 +367,7 @@
             this.buttonPrint.Text = "In phiếu";
             this.buttonPrint.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonPrint.UseVisualStyleBackColor = true;
+            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
             // label3
             // 

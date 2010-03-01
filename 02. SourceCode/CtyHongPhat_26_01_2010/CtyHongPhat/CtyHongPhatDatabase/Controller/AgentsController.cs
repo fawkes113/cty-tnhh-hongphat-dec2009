@@ -208,6 +208,20 @@ namespace CtyHongPhatDatabase.Controller
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
+            param = new SqlParameter();
+            param.ParameterName = "@Telephone";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.Telephone;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Adress";
+            param.SqlDbType = SqlDbType.Text;
+            param.Value = objBO.Address;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
             return int.Parse(comm.ExecuteScalar().ToString());
         }
 
@@ -278,6 +292,20 @@ namespace CtyHongPhatDatabase.Controller
             param.ParameterName = "@Deleted";
             param.SqlDbType = SqlDbType.Int;
             param.Value = objBO.Deleted;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Telephone";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.Telephone;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Address";
+            param.SqlDbType = SqlDbType.Text;
+            param.Value = objBO.Address;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 

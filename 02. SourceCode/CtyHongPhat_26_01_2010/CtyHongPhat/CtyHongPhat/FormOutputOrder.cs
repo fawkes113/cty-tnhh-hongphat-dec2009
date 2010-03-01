@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CtyHongPhat.Utility;
 using CtyHongPhatDatabase.Table;
 using CtyHongPhatDatabase.View;
+using CtyHongPhat.Report;
 
 namespace CtyHongPhat
 {
@@ -20,6 +21,7 @@ namespace CtyHongPhat
         List<OrderDetailsInfo> listOrderDetails;
         private Database database = new Database();
         private string employeeName = "";
+        private int printOrderId = -1;
 
         public FormOutputOrder()
         {
@@ -302,6 +304,7 @@ namespace CtyHongPhat
             this.groupBoxInforAgent.Enabled = true;
             this.Init();
             this.BindData();
+            this.printOrderId = -1;
         }
 
         private void dataGridViewListItems_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
@@ -430,6 +433,7 @@ namespace CtyHongPhat
 
                         MessageBox.Infor(this, "Lưu hóa đơn thành công");
                         this.buttonRefresh_Click(sender, e);
+                        this.printOrderId = ordersId;
                     }
                 }
                 catch(Exception ex)
@@ -438,6 +442,83 @@ namespace CtyHongPhat
                 }
 
             }
+        }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.printOrderId = 21;
+                OrdersInfo orderInfo = database.OrdersGetById(this.printOrderId);
+                AgentsInfo agentInfo = database.AgentById(orderInfo.CustomerId);
+                ArrayList listOrderDetails = database.OrderDetailsGetAllByOrderId(this.printOrderId);
+
+                List<DetailOrderView> listDetailOrderView = new List<DetailOrderView>();
+                for (int i = 0; i < listOrderDetails.Count; i++)
+                {
+                    OrderDetailsInfo orderDetailInfo = (OrderDetailsInfo)listOrderDetails[i];
+                    ViewItemSellPriceInfo sellPriceInfo = database.ViewItemSellPriceGetById(orderDetailInfo.ItemId, agentInfo.AgentKindId);
+
+                    DetailOrderView detailOrderView = new DetailOrderView();
+                    detailOrderView.ItemName = sellPriceInfo.ItemName;
+                    detailOrderView.Quantity = orderDetailInfo.Quantity;
+                    detailOrderView.SellPrice = sellPriceInfo.SellPrice;
+                    listDetailOrderView.Add(detailOrderView);
+                }
+
+                FormReportViewer reportViewer = new FormReportViewer();
+
+                CrystalReportOutPutOrder reportOutPutOrder = new CrystalReportOutPutOrder();
+                reportOutPutOrder.DataDefinition.FormulaFields["CreatedDate"].Text = "'" + orderInfo.CreatedDate.ToString("dd/MM/yyyy") +"'";
+                reportOutPutOrder.DataDefinition.FormulaFields["AgentName"].Text = "'" + agentInfo.AgentName + "'";
+                reportOutPutOrder.DataDefinition.FormulaFields["AgentTelephone"].Text = "'" + agentInfo.Telephone + "'";
+                /*reportOutPutOrder.SetParameterValue("TotalMoney", NumberViewer.InsertComma(orderInfo.Total.ToString()));
+                reportOutPutOrder.SetParameterValue("PayValue", NumberViewer.InsertComma(orderInfo.Pay.ToString()));
+                reportOutPutOrder.SetParameterValue("DebtValue", NumberViewer.InsertComma((orderInfo.Total - orderInfo.Pay).ToString()));
+                reportOutPutOrder.SetDataSource(listOrderDetails);*/
+
+                
+                decimal debValue = orderInfo.Total - orderInfo.Pay;
+                reportOutPutOrder.SetParameterValue("TotalMoney", orderInfo.Total);
+                reportOutPutOrder.SetParameterValue("PayValue", orderInfo.Pay);
+                reportOutPutOrder.SetParameterValue("DebtValue", debValue);
+                reportOutPutOrder.SetDataSource(listOrderDetails);
+
+                reportViewer.Report.ReportSource = reportOutPutOrder;
+                reportViewer.ShowDialog(this);
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Error(this, ex.ToString());
+                return;
+            }
+        }
+
+        private class DetailOrderView
+        {
+            private string itemName;
+
+            public string ItemName
+            {
+                get { return itemName; }
+                set { itemName = value; }
+            }
+            private decimal quantity;
+
+            public decimal Quantity
+            {
+                get { return quantity; }
+                set { quantity = value; }
+            }
+            private decimal sellPrice;
+
+            public decimal SellPrice
+            {
+                get { return sellPrice; }
+                set { sellPrice = value; }
+            }
+
         }
     }
 }
