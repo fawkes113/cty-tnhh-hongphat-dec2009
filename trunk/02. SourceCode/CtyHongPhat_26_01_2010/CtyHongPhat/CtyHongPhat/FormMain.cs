@@ -77,7 +77,11 @@ namespace CtyHongPhat
 
         private void ToolStripMenuItemListOrders_Click(object sender, EventArgs e)
         {
-           
+            if(AddUniqueForm(typeof(FormManagerDebt)))
+            {
+                FormManagerDebt formManagerDebt = new FormManagerDebt(this.userName);
+                this.tabControlMain.TabPages.Add(formManagerDebt);
+            }
         }
 
         private void ToolStripMenuItemMagateEmployee_Click(object sender, EventArgs e)
