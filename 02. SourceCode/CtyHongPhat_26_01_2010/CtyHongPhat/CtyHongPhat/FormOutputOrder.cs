@@ -463,27 +463,21 @@ namespace CtyHongPhat
                     detailOrderView.ItemName = sellPriceInfo.ItemName;
                     detailOrderView.Quantity = orderDetailInfo.Quantity;
                     detailOrderView.SellPrice = sellPriceInfo.SellPrice;
+                    detailOrderView.Deleted = sellPriceInfo.Deleted;
                     listDetailOrderView.Add(detailOrderView);
                 }
 
                 FormReportViewer reportViewer = new FormReportViewer();
-
                 CrystalReportOutPutOrder reportOutPutOrder = new CrystalReportOutPutOrder();
+                decimal debValue = orderInfo.Total - orderInfo.Pay;
                 reportOutPutOrder.DataDefinition.FormulaFields["CreatedDate"].Text = "'" + orderInfo.CreatedDate.ToString("dd/MM/yyyy") +"'";
                 reportOutPutOrder.DataDefinition.FormulaFields["AgentName"].Text = "'" + agentInfo.AgentName + "'";
                 reportOutPutOrder.DataDefinition.FormulaFields["AgentTelephone"].Text = "'" + agentInfo.Telephone + "'";
-                /*reportOutPutOrder.SetParameterValue("TotalMoney", NumberViewer.InsertComma(orderInfo.Total.ToString()));
-                reportOutPutOrder.SetParameterValue("PayValue", NumberViewer.InsertComma(orderInfo.Pay.ToString()));
-                reportOutPutOrder.SetParameterValue("DebtValue", NumberViewer.InsertComma((orderInfo.Total - orderInfo.Pay).ToString()));
-                reportOutPutOrder.SetDataSource(listOrderDetails);*/
-
+                reportOutPutOrder.DataDefinition.FormulaFields["TotalMoney"].Text = "'" + orderInfo.Total + "'";
+                reportOutPutOrder.DataDefinition.FormulaFields["PayValue"].Text = "'" + orderInfo.Pay + "'";
+                reportOutPutOrder.DataDefinition.FormulaFields["DebtValue"].Text = "'" + debValue + "'";
+                reportOutPutOrder.SetDataSource(listDetailOrderView);
                 
-                decimal debValue = orderInfo.Total - orderInfo.Pay;
-                reportOutPutOrder.SetParameterValue("TotalMoney", orderInfo.Total);
-                reportOutPutOrder.SetParameterValue("PayValue", orderInfo.Pay);
-                reportOutPutOrder.SetParameterValue("DebtValue", debValue);
-                reportOutPutOrder.SetDataSource(listOrderDetails);
-
                 reportViewer.Report.ReportSource = reportOutPutOrder;
                 reportViewer.ShowDialog(this);
 
@@ -518,6 +512,15 @@ namespace CtyHongPhat
                 get { return sellPrice; }
                 set { sellPrice = value; }
             }
+
+            private int deleted;
+
+            public int Deleted
+            {
+                get { return deleted; }
+                set { deleted = value; }
+            }
+
 
         }
     }

@@ -30,7 +30,7 @@ namespace CtyHongPhat
         {
             InitializeComponent();
             this.employeeName = employeeName;
-            this.radioButtonBuyOrder.Checked = true;
+            this.radioButtonSellOrder.Checked = true;
         }
 
         private void Init()
@@ -76,10 +76,11 @@ namespace CtyHongPhat
 
             //this.comboBoxOrderStatus.SelectedIndex = -1;
 
-            if (this.radioButtonBuyOrder.Checked)
-                this.BindListPartners();
-            else if (this.radioButtonSellOrder.Checked)
+            if (this.radioButtonSellOrder.Checked)
                 this.BindListAgents();
+            else if (this.radioButtonBuyOrder.Checked)
+                this.BindListPartners();
+                
         }
         private void BindListAgents()
         {
@@ -114,15 +115,15 @@ namespace CtyHongPhat
         }
         private void radioButtonBuyOrder_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.radioButtonBuyOrder.Checked)
-                this.BindListPartners();
+            if (this.radioButtonSellOrder.Checked)
+                this.BindListAgents();
         }
         private void radioButtonSellOrder_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.radioButtonSellOrder.Checked)
+            if (this.radioButtonBuyOrder.Checked)
             {
-                if (this.radioButtonSellOrder.Checked)
-                    this.BindListAgents();
+                if (this.radioButtonBuyOrder.Checked)
+                    this.BindListPartners();
             }
         }
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -134,8 +135,8 @@ namespace CtyHongPhat
             DateTime toDate = this.dateTimePickerToDate.Value;
 
             int orderKind = -1;
-            if (this.radioButtonSellOrder.Checked) orderKind = 1;
-            else if (this.radioButtonBuyOrder.Checked) orderKind = 2;
+            if (this.radioButtonBuyOrder.Checked) orderKind = 2;
+            else if (this.radioButtonSellOrder.Checked) orderKind = 1;
 
             listOrders.Clear();
             if (this.comboBoxListCustomer.SelectedItem != null)
@@ -177,7 +178,7 @@ namespace CtyHongPhat
 
             if(this.numericUpDownPayAmount.Value > decimal.Parse(this.labelDebtAmount.Text))
             {
-                MessageBox.Error(this, "Số tiền trả nợ lớn hơn số tiền nợ");
+                MessageBox.Error(this, "Số tiền trả nợ lớn hơn số tiền nợ hóa đơn");
                 return;
             }
 
@@ -265,46 +266,54 @@ namespace CtyHongPhat
                 {
                     object customer = this.comboBoxListCustomer.SelectedItem;
                     int customerId = -1;
-                    if (radioButtonBuyOrder.Checked)
-                    {
-                        customerId = (customer as PartnersInfo).PartnerId;
-                    }
-                    else if (radioButtonSellOrder.Checked)
+                    if (radioButtonSellOrder.Checked)
                     {
                         customerId = (customer as AgentsInfo).AgentId;
                     }
-
-                    DebtInfo oldDebtInfo = database.DebtGetByCustomerId(customerId);
-                    oldDebtInfo.ModifiedBy = this.employeeName;
-                    oldDebtInfo.ModifiedDate = DateTime.Now;
-                    oldDebtInfo.Deleted = 1;
-                    database.DebtUpdate(oldDebtInfo);
-
-                    DebtInfo newDebtInfo = new DebtInfo();
-                    newDebtInfo.CreateDate = DateTime.Now;
-                    newDebtInfo.CreatedBy = this.employeeName;
-                    newDebtInfo.CurrentDebtValue = 0;
-                    newDebtInfo.NewDebtValue = 0;
-                    newDebtInfo.CustomerId = oldDebtInfo.CustomerId;
-                    newDebtInfo.DebtKind = oldDebtInfo.DebtKind;
-                    newDebtInfo.Deleted = 0;
-                    newDebtInfo.ModifiedBy = "";
-                    newDebtInfo.ModifiedDate = DateTime.MinValue;
-                    newDebtInfo.Note = "Trả nợ hóa đơn ngày " + oldDebtInfo.CreateDate.ToString("dd/MM/yyyy");
-                    newDebtInfo.OldDebtValue = oldDebtInfo.CurrentDebtValue;
-                    newDebtInfo.Payment = oldDebtInfo.CurrentDebtValue;
-
-                    database.DebtAdd(newDebtInfo);
-
-                    ArrayList listDebtOrders = database.OrdersGetDebtOrderByCustomerId(customerId);
-                    foreach (OrdersInfo ordersInfo in listDebtOrders)
+                    else if (radioButtonBuyOrder.Checked)
                     {
-                        ordersInfo.Status = 2;
-                        ordersInfo.ModifiedBy = this.employeeName;
-                        ordersInfo.ModifiedDate = DateTime.Now;
-                        ordersInfo.Pay = ordersInfo.Total;
+                        customerId = (customer as PartnersInfo).PartnerId;
+                    }
 
-                        database.OrdersUpdate(ordersInfo);
+                    if (customerId != -1)
+                    {
+                        DebtInfo oldDebtInfo = database.DebtGetByCustomerId(customerId);
+                        oldDebtInfo.ModifiedBy = this.employeeName;
+                        oldDebtInfo.ModifiedDate = DateTime.Now;
+                        oldDebtInfo.Deleted = 1;
+                        database.DebtUpdate(oldDebtInfo);
+
+                        DebtInfo newDebtInfo = new DebtInfo();
+                        newDebtInfo.CreateDate = DateTime.Now;
+                        newDebtInfo.CreatedBy = this.employeeName;
+                        newDebtInfo.CurrentDebtValue = 0;
+                        newDebtInfo.NewDebtValue = 0;
+                        newDebtInfo.CustomerId = oldDebtInfo.CustomerId;
+                        newDebtInfo.DebtKind = oldDebtInfo.DebtKind;
+                        newDebtInfo.Deleted = 0;
+                        newDebtInfo.ModifiedBy = "";
+                        newDebtInfo.ModifiedDate = DateTime.MinValue;
+                        newDebtInfo.Note = "Trả tất cả nợ hóa đơn, ngày trả :" + oldDebtInfo.CreateDate.ToString("dd/MM/yyyy");
+                        newDebtInfo.OldDebtValue = oldDebtInfo.CurrentDebtValue;
+                        newDebtInfo.Payment = oldDebtInfo.CurrentDebtValue;
+
+                        database.DebtAdd(newDebtInfo);
+
+                        ArrayList listDebtOrders = database.OrdersGetDebtOrderByCustomerId(customerId);
+                        foreach (OrdersInfo ordersInfo in listDebtOrders)
+                        {
+                            ordersInfo.Status = 2;
+                            ordersInfo.ModifiedBy = this.employeeName;
+                            ordersInfo.ModifiedDate = DateTime.Now;
+                            ordersInfo.Pay = ordersInfo.Total;
+
+                            database.OrdersUpdate(ordersInfo);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Error(this, "Chưa chọn khách hàng trả nợ");
+                        return;
                     }
                 }
                 else {
