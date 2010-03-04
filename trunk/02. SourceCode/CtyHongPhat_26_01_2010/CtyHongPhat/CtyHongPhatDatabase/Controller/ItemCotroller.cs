@@ -160,6 +160,16 @@ namespace CtyHongPhatDatabase.Controller
             comm.ExecuteNonQuery();
         }
 
+        public static ArrayList GetByPartner(SqlConnection conn, int partnerId)
+        {
+            string sql = @"Select * from Items where Deleted = 0 and ItemId in 
+                            (Select ItemId From BUY_PRICE where PartnerId = @PartnerId and Deleted = 0)";
+
+            conn.Open();
+            var cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.Add(new SqlParameter("@PartnerId", partnerId));
+            return CBO.FillCollection(cmd.ExecuteReader(), typeof(ItemInfo));
+        }
 
         public static int Insert(SqlConnection conn, ItemInfo objBO)
         {

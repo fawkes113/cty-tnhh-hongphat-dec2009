@@ -5,6 +5,7 @@ using System.Text;
 
 namespace CtyHongPhatDatabase.Table
 {
+    [System.Diagnostics.DebuggerDisplay("Id={BuyId}, Price={BuyPrice}, ItemId={ItemId}, PartnerId={PartnerId}")]
     public class BuyPriceInfo
     {
         private int buyId;
