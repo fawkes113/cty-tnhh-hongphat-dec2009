@@ -151,6 +151,17 @@ namespace CtyHongPhat.Utility
         #endregion
 
         #region BuyPrice
+        public ArrayList BuyPriceGetByPartner(int partnerId)
+        {
+            try {
+                using (SqlConnection conn = Database.NewConnection()) {
+                    return BuyPriceController.GetByColumn(conn, "PartnerId", partnerId);
+                }
+            } catch (Exception ex) {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
         #endregion
 
         #region Debt
@@ -319,6 +330,18 @@ namespace CtyHongPhat.Utility
                 return null;
             }
         }
+        
+        public ArrayList ItemGetByPartner(int partnerId)
+        {
+            try {
+                using (SqlConnection conn = Database.NewConnection()) {
+                    return ItemCotroller.GetByPartner(conn, partnerId);
+                }
+            } catch (Exception ex) {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
 
         public int ItemAdd(ItemInfo itemInfo)
         {
@@ -434,6 +457,8 @@ namespace CtyHongPhat.Utility
                 return null;
             }
         }
+
+                
         #endregion
 
         #region Orders
@@ -517,7 +542,7 @@ namespace CtyHongPhat.Utility
         #endregion
 
         #region Partners
-		 public ArrayList PartnersGetAll()
+        public ArrayList PartnersGetAll()
         {
             try
             {
