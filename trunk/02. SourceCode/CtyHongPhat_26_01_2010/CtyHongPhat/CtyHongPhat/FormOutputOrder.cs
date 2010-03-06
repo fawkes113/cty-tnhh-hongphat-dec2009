@@ -68,6 +68,7 @@ namespace CtyHongPhat
                 this.labelKindOfAngent.Text = "";
                 this.labelRemainItemMeasurement.Text = "";
                 this.textBoxTotalAmount.Text = "0";
+                this.textBoxTotalPayAmount.Text = "0";
                 this.numericUpDownQuantity.Value = 0;
                 this.numericUpDownPayAmount.Value = 0;
 
@@ -121,6 +122,7 @@ namespace CtyHongPhat
                         {
                             this.labelKindOfAngent.Text = viewAgentInfo.AgentKindName;
                             this.labelTotalDebt.Text = NumberViewer.InsertComma(viewAgentInfo.CurrentDebtValue.ToString());
+                            this.textBoxTotalPayAmount.Text = NumberViewer.InsertComma(viewAgentInfo.CurrentDebtValue.ToString());
                         }
                     }
                 }
@@ -231,6 +233,7 @@ namespace CtyHongPhat
                                                                     );
 
                                 this.textBoxTotalAmount.Text = NumberViewer.InsertComma(totalMoney.ToString());
+                                this.textBoxTotalPayAmount.Text = NumberViewer.InsertComma((decimal.Parse(labelTotalDebt.Text) + totalMoney).ToString());
                                 this.numericUpDownPayAmount.Maximum = totalMoney;
 
                                 OrderDetailsInfo orderDetailsInfo = new OrderDetailsInfo();
@@ -432,7 +435,7 @@ namespace CtyHongPhat
                         }
 
                         MessageBox.Infor(this, "Lưu hóa đơn thành công");
-                        this.buttonRefresh_Click(sender, e);
+                        //this.buttonRefresh_Click(sender, e);
                         this.printOrderId = ordersId;
                     }
                 }
@@ -449,6 +452,8 @@ namespace CtyHongPhat
             try
             {
                 this.printOrderId = 21;
+                if (this.printOrderId == -1) return;
+
                 OrdersInfo orderInfo = database.OrdersGetById(this.printOrderId);
                 AgentsInfo agentInfo = database.AgentById(orderInfo.CustomerId);
                 ArrayList listOrderDetails = database.OrderDetailsGetAllByOrderId(this.printOrderId);
@@ -469,18 +474,14 @@ namespace CtyHongPhat
 
                 FormReportViewer reportViewer = new FormReportViewer();
                 CrystalReportOutPutOrder reportOutPutOrder = new CrystalReportOutPutOrder();
-                decimal debValue = orderInfo.Total - orderInfo.Pay;
                 reportOutPutOrder.DataDefinition.FormulaFields["CreatedDate"].Text = "'" + orderInfo.CreatedDate.ToString("dd/MM/yyyy") +"'";
                 reportOutPutOrder.DataDefinition.FormulaFields["AgentName"].Text = "'" + agentInfo.AgentName + "'";
                 reportOutPutOrder.DataDefinition.FormulaFields["AgentTelephone"].Text = "'" + agentInfo.Telephone + "'";
-                reportOutPutOrder.DataDefinition.FormulaFields["TotalMoney"].Text = "'" + orderInfo.Total + "'";
-                reportOutPutOrder.DataDefinition.FormulaFields["PayValue"].Text = "'" + orderInfo.Pay + "'";
-                reportOutPutOrder.DataDefinition.FormulaFields["DebtValue"].Text = "'" + debValue + "'";
+                
                 reportOutPutOrder.SetDataSource(listDetailOrderView);
                 
                 reportViewer.Report.ReportSource = reportOutPutOrder;
                 reportViewer.ShowDialog(this);
-
             }
             catch(Exception ex)
             {

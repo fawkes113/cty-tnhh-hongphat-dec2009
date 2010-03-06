@@ -7,6 +7,10 @@ namespace CtyHongPhat.Utility
 {
     public class ListItem
     {
+        public ListItem()
+        {
+        }
+
         public ListItem(string text, object value)
         {
             this.Text = text;

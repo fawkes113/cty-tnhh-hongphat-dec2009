@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxInforAgent = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.labelTotalDebt = new System.Windows.Forms.Label();
@@ -73,6 +73,9 @@
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonRemoveChoicedItems = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBoxTotalPayAmount = new System.Windows.Forms.TextBox();
             this.groupBoxInforAgent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).BeginInit();
@@ -233,8 +236,8 @@
             // 
             // columnItemId
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnItemId.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnItemId.DefaultCellStyle = dataGridViewCellStyle6;
             this.columnItemId.HeaderText = "Mã mặt hàng";
             this.columnItemId.Name = "columnItemId";
             this.columnItemId.ReadOnly = true;
@@ -249,8 +252,8 @@
             // 
             // columnQuantity
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnQuantity.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnQuantity.DefaultCellStyle = dataGridViewCellStyle7;
             this.columnQuantity.HeaderText = "Số lương";
             this.columnQuantity.Name = "columnQuantity";
             this.columnQuantity.ReadOnly = true;
@@ -258,16 +261,16 @@
             // 
             // columnMeasurement
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.columnMeasurement.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.columnMeasurement.DefaultCellStyle = dataGridViewCellStyle8;
             this.columnMeasurement.HeaderText = "Đơn vị ";
             this.columnMeasurement.Name = "columnMeasurement";
             this.columnMeasurement.ReadOnly = true;
             // 
             // columnPrice
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle9;
             this.columnPrice.HeaderText = "Đơn giá";
             this.columnPrice.Name = "columnPrice";
             this.columnPrice.ReadOnly = true;
@@ -275,8 +278,8 @@
             // columnTotalMoney
             // 
             this.columnTotalMoney.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.columnTotalMoney.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.columnTotalMoney.DefaultCellStyle = dataGridViewCellStyle10;
             this.columnTotalMoney.HeaderText = "Thành tiền";
             this.columnTotalMoney.Name = "columnTotalMoney";
             this.columnTotalMoney.ReadOnly = true;
@@ -450,7 +453,7 @@
             // numericUpDownPayAmount
             // 
             this.numericUpDownPayAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.numericUpDownPayAmount.Location = new System.Drawing.Point(135, 641);
+            this.numericUpDownPayAmount.Location = new System.Drawing.Point(467, 604);
             this.numericUpDownPayAmount.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -467,15 +470,15 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(15, 606);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(114, 14);
+            this.label8.Size = new System.Drawing.Size(66, 14);
             this.label8.TabIndex = 12;
-            this.label8.Text = "Tổng tiền phải trả :";
+            this.label8.Text = "Tổng toa :";
             // 
             // label11
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(20, 643);
+            this.label11.Location = new System.Drawing.Point(352, 606);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(73, 14);
             this.label11.TabIndex = 13;
@@ -495,7 +498,7 @@
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(291, 643);
+            this.label13.Location = new System.Drawing.Point(623, 606);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(31, 14);
             this.label13.TabIndex = 15;
@@ -545,11 +548,45 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(291, 643);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(31, 14);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "VNĐ";
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(1, 643);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(128, 14);
+            this.label15.TabIndex = 18;
+            this.label15.Text = "Tổng nơ + phát sinh :";
+            // 
+            // textBoxTotalPayAmount
+            // 
+            this.textBoxTotalPayAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxTotalPayAmount.Location = new System.Drawing.Point(135, 640);
+            this.textBoxTotalPayAmount.Name = "textBoxTotalPayAmount";
+            this.textBoxTotalPayAmount.ReadOnly = true;
+            this.textBoxTotalPayAmount.Size = new System.Drawing.Size(150, 22);
+            this.textBoxTotalPayAmount.TabIndex = 17;
+            this.textBoxTotalPayAmount.Text = "0";
+            this.textBoxTotalPayAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // FormOutputOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 685);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.textBoxTotalPayAmount);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.buttonRemoveChoicedItems);
@@ -623,5 +660,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnMeasurement;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnTotalMoney;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBoxTotalPayAmount;
     }
 }
