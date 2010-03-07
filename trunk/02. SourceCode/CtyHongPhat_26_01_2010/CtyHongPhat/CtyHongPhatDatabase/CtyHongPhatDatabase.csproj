@@ -53,6 +53,9 @@
     <Compile Include="Controller\AgentKindController.cs" />
     <Compile Include="Controller\AgentsController.cs" />
     <Compile Include="Controller\BuyPriceController.cs" />
+    <Compile Include="Controller\BankInterestRateController.cs" />
+    <Compile Include="Controller\PackController.cs" />
+    <Compile Include="Controller\BankDebtController.cs" />
     <Compile Include="Controller\DebtController.cs" />
     <Compile Include="Controller\EmployeesController.cs" />
     <Compile Include="Controller\ItemCotroller.cs" />
@@ -69,6 +72,8 @@
     <Compile Include="Table\AgentsInfo.cs" />
     <Compile Include="Table\AgentKindInfo.cs" />
     <Compile Include="Table\BuyPriceInfo.cs" />
+    <Compile Include="Table\PackInfo.cs" />
+    <Compile Include="Table\BankInterestRateInfo.cs" />
     <Compile Include="Table\DebtInfo.cs" />
     <Compile Include="Table\EmployeesInfo.cs" />
     <Compile Include="Table\ItemInfo.cs" />
@@ -78,6 +83,7 @@
     <Compile Include="Table\ReturnedItemDetailsInfo.cs" />
     <Compile Include="Table\SellPriceInfo.cs" />
     <Compile Include="Table\UsersInfo.cs" />
+    <Compile Include="Table\BankDebtInfo.cs" />
     <Compile Include="View\ViewAgentsInfo.cs" />
     <Compile Include="View\ViewItemBuyPriceInfo.cs" />
     <Compile Include="View\ViewItemSellPriceInfo.cs" />
