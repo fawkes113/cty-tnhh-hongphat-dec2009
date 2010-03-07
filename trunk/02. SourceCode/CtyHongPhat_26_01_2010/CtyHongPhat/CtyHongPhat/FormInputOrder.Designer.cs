@@ -214,7 +214,6 @@
             this.columnTotalMoney});
             this.dataGridViewListItem.Location = new System.Drawing.Point(7, 20);
             this.dataGridViewListItem.Name = "dataGridViewListItem";
-            this.dataGridViewListItem.ReadOnly = true;
             this.dataGridViewListItem.RowHeadersVisible = false;
             this.dataGridViewListItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewListItem.Size = new System.Drawing.Size(876, 146);
@@ -230,6 +229,7 @@
             this.buttonSave.TabIndex = 2;
             this.buttonSave.Text = "Lưu hóa đơn";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // label3
             // 
@@ -397,6 +397,7 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "Loại các mặt hàng đã chọn";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // buttonPrint
             // 
@@ -518,7 +519,6 @@
             this.columnDelete.DataPropertyName = "Deleted";
             this.columnDelete.HeaderText = "Loại bỏ";
             this.columnDelete.Name = "columnDelete";
-            this.columnDelete.ReadOnly = true;
             // 
             // columnId
             // 

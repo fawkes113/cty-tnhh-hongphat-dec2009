@@ -56,6 +56,7 @@ namespace CtyHongPhat
         void orderDetailList_ListChanged(object sender, ListChangedEventArgs e)
         {
             textBoxTotalAmount.Text = NumberViewer.InsertComma(orderDetailList.Select(c => c.Total).Sum().ToString());
+            groupBoxInforAgent.Enabled = orderDetailList.Count == 0;
         }
 
         private void DataInit()
@@ -99,6 +100,9 @@ namespace CtyHongPhat
                         itemInfos.Cast<ItemInfo>()
                                  .Select(c => new ListItem { Text = c.ItemName, Value = c })
                     );
+
+                    var debtInfo = database.DebtGetByCustomerId(partner.PartnerId);
+                    labelTotalDebt.Text = NumberViewer.InsertComma(debtInfo.CurrentDebtValue.ToString());
                 } catch (Exception ex) {
                     //TODO: catch database exception
                 }
@@ -156,6 +160,20 @@ namespace CtyHongPhat
             }
         }
 
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            for (int i = orderDetailList.Count() - 1; i >= 0; i--) {
+                if (i < orderDetailList.Count && orderDetailList[i].Deleted) {
+                    orderDetailList.RemoveAt(i);
+                }
+            }
+        }
+
         private class InputDetail
         {
             public bool Deleted { get; set; }
@@ -189,5 +207,7 @@ namespace CtyHongPhat
                 }
             }
         }
+
+
     }
 }
