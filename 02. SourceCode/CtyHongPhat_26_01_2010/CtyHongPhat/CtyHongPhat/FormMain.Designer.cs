@@ -41,6 +41,7 @@
             this.ToolStripMenuItemMagateEmployee = new System.Windows.Forms.ToolStripMenuItem();
             this.báoCáoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemPrintPaySheet = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemManagePacks = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,7 +103,8 @@
             this.ToolStripMenuItemOutputOder,
             this.ToolStripMenuItemInputOrder,
             this.ToolStripMenuItemListItems,
-            this.ToolStripMenuItemListOrders});
+            this.ToolStripMenuItemListOrders,
+            this.ToolStripMenuItemManagePacks});
             this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
             this.ToolStripMenuItem1.Size = new System.Drawing.Size(103, 20);
             this.ToolStripMenuItem1.Text = "Xuất nhập hàng";
@@ -164,6 +166,13 @@
             this.ToolStripMenuItemPrintPaySheet.Text = "In bảng lương";
             this.ToolStripMenuItemPrintPaySheet.Click += new System.EventHandler(this.ToolStripMenuItemPrintPaySheet_Click);
             // 
+            // ToolStripMenuItemManagePacks
+            // 
+            this.ToolStripMenuItemManagePacks.Name = "ToolStripMenuItemManagePacks";
+            this.ToolStripMenuItemManagePacks.Size = new System.Drawing.Size(183, 22);
+            this.ToolStripMenuItemManagePacks.Text = "Quản lý bao bì";
+            this.ToolStripMenuItemManagePacks.Click += new System.EventHandler(this.ToolStripMenuItemManagePacks_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,5 +209,6 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemListOrders;
         private System.Windows.Forms.ToolStripMenuItem báoCáoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemPrintPaySheet;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemManagePacks;
     }
 }

@@ -107,5 +107,14 @@ namespace CtyHongPhat
                 this.tabControlMain.TabPages.Add(formListOrders);
             }
         }
+
+        private void ToolStripMenuItemManagePacks_Click(object sender, EventArgs e)
+        {
+            if (AddUniqueForm(typeof(FormManagePacks)))
+            {
+                FormManagePacks formManagePacks = new FormManagePacks(userName);
+                this.tabControlMain.TabPages.Add(formManagePacks);
+            }
+        }
     }
 }
