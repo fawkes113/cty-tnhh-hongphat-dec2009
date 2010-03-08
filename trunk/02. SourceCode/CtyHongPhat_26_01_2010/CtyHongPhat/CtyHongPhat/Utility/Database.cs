@@ -737,5 +737,74 @@ namespace CtyHongPhat.Utility
             }
         }
         #endregion
+
+        #region Packs
+        public int PackAdd(PackInfo packInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return PackController.Insert(conn, packInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return -1;
+            }
+        }
+
+        public bool PackDelete(int packId, string modifiedBy, DateTime modifiedDate)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    PackController.Delete(conn, packId, modifiedBy, modifiedDate);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return false;
+            }
+        }
+
+        public bool PackUpdate(PackInfo packInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    PackController.Update(conn, packInfo);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return false;
+            }
+        }
+
+        public ArrayList PackSelectFormDateToDate(DateTime fromDate, DateTime toDate)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return PackController.GetFromDateToDate(conn, fromDate, toDate);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
+        #endregion
     }
 }

@@ -9,7 +9,7 @@ namespace CtyHongPhatDatabase.Table
     {
         private int _packId;
         private string _packName;
-        private int _quantity;
+        private decimal _quantity;
         private System.DateTime _importDate;
         private decimal _totalAmount;
         private string _createdBy;
@@ -31,7 +31,7 @@ namespace CtyHongPhatDatabase.Table
             set { _packName = value; }
         }
 
-        public int Quantity
+        public decimal Quantity
         {
             get { return _quantity; }
             set { _quantity = value; }

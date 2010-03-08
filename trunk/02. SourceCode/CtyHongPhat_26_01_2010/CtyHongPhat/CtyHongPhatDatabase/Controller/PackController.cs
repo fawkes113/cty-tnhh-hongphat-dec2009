@@ -175,7 +175,7 @@ namespace CtyHongPhatDatabase.Controller
 
             param = new SqlParameter();
             param.ParameterName = "@Quantity";
-            param.SqlDbType = SqlDbType.Int;
+            param.SqlDbType = SqlDbType.Decimal;
             param.Value = objBO.Quantity;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
@@ -247,7 +247,7 @@ namespace CtyHongPhatDatabase.Controller
 
             param = new SqlParameter();
             param.ParameterName = "@Quantity";
-            param.SqlDbType = SqlDbType.Int;
+            param.SqlDbType = SqlDbType.Decimal;
             param.Value = objBO.Quantity;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
@@ -303,7 +303,7 @@ namespace CtyHongPhatDatabase.Controller
 
             comm.ExecuteNonQuery();
         }
-        public static void Delete(SqlConnection conn, int id)
+        public static void Delete(SqlConnection conn, int id, string modifiedBy, DateTime modifiedDate)
         {
             conn.Open();
             SqlCommand comm = new SqlCommand("PACKS_Delete", conn);
@@ -316,7 +316,43 @@ namespace CtyHongPhatDatabase.Controller
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = modifiedBy;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ ModifiedDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = modifiedDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
             comm.ExecuteNonQuery();
+        }
+
+        public static ArrayList GetFromDateToDate(SqlConnection conn, DateTime fromDate, DateTime toDate)
+        {
+            conn.Open();
+            SqlCommand comm = new SqlCommand("Packs_Select_FromDate_ToDate", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@FromDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = fromDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param.ParameterName = "@ToDate";
+            param.SqlDbType = SqlDbType.DateTime;
+            param.Value = toDate;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            return CBO.FillCollection(comm.ExecuteReader(), typeof(PackInfo));
         }
     }
 }
