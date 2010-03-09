@@ -16,14 +16,14 @@ namespace CtyHongPhatDatabase.Controller
             string sqlCmd = "SELECT * FROM BANK_DEBTS WHERE DELETED = 0";
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
-            return CBO.FillCollection(comm.ExecuteReader(), typeof(AgentKindInfo));
+            return CBO.FillCollection(comm.ExecuteReader(), typeof(BankDebtInfo));
         }
         public static ArrayList GetAllHaveOrderBy(SqlConnection conn, string OrderColumn, string OrderType)
         {
             string sqlCmd = "SELECT * FROM BANK_DEBTS WHERE DELETED = 0 ORDER BY " + OrderColumn + " " + OrderType;
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
-            return CBO.FillCollection(comm.ExecuteReader(), typeof(AgentKindInfo));
+            return CBO.FillCollection(comm.ExecuteReader(), typeof(BankDebtInfo));
         }
         public static ArrayList GetByColumn(SqlConnection conn, string columnName, object columnValue)
         {
@@ -40,7 +40,7 @@ namespace CtyHongPhatDatabase.Controller
 
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
-            return CBO.FillCollection(comm.ExecuteReader(), typeof(AgentKindInfo));
+            return CBO.FillCollection(comm.ExecuteReader(), typeof(BankDebtInfo));
         }
         public static ArrayList GetByColumnHaveOrderBy(SqlConnection conn, string columnName, object columnValue, string orderColumn, string orderType)
         {
@@ -57,9 +57,9 @@ namespace CtyHongPhatDatabase.Controller
 
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
-            return CBO.FillCollection(comm.ExecuteReader(), typeof(AgentKindInfo));
+            return CBO.FillCollection(comm.ExecuteReader(), typeof(BankDebtInfo));
         }
-        public static AgentKindInfo GetByColumnTop1(SqlConnection conn, string columnName, object columnValue)
+        public static BankDebtInfo GetByColumnTop1(SqlConnection conn, string columnName, object columnValue)
         {
             string sqlWhere = "";
             if (columnValue == null)
@@ -74,9 +74,9 @@ namespace CtyHongPhatDatabase.Controller
 
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
-            return (AgentKindInfo)CBO.FillObject(comm.ExecuteReader(), typeof(AgentKindInfo));
+            return (BankDebtInfo)CBO.FillObject(comm.ExecuteReader(), typeof(BankDebtInfo));
         }
-        public static AgentKindInfo GetByColumnsTop1(SqlConnection conn, params object[] columns)
+        public static BankDebtInfo GetByColumnsTop1(SqlConnection conn, params object[] columns)
         {
             if (columns == null || columns.Length <= 0)
                 return null;
@@ -102,12 +102,12 @@ namespace CtyHongPhatDatabase.Controller
 
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
-            return (AgentKindInfo)CBO.FillObject(comm.ExecuteReader(), typeof(AgentKindInfo));
+            return (BankDebtInfo)CBO.FillObject(comm.ExecuteReader(), typeof(BankDebtInfo));
         }
         public static ArrayList GetByColumns(SqlConnection conn, params object[] columns)
         {
             if (columns == null || columns.Length <= 0)
-                return AgentKindController.GetAll(conn);
+                return BankDebtController.GetAll(conn);
             if (columns.Length % 2 != 0)
                 return null;
             string sqlWhere = "";
@@ -130,7 +130,7 @@ namespace CtyHongPhatDatabase.Controller
 
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
-            return CBO.FillCollection(comm.ExecuteReader(), typeof(AgentKindInfo));
+            return CBO.FillCollection(comm.ExecuteReader(), typeof(BankDebtInfo));
         }
         public static void DeleteByColumns(SqlConnection conn, params object[] columns)
         {

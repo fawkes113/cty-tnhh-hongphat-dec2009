@@ -805,6 +805,22 @@ namespace CtyHongPhat.Utility
             }
         }
 
+        public PackInfo PackGetById(int packId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return PackController.GetByColumnTop1(conn, "PackId", packId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
         #endregion
     }
 }
