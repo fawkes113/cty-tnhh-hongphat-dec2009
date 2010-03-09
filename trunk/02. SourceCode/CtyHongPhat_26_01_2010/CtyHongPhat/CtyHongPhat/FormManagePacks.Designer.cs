@@ -28,12 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonInsert = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.dateTimePickerImportDate = new System.Windows.Forms.DateTimePicker();
@@ -41,19 +45,24 @@
             this.numericUpDownQuantity = new System.Windows.Forms.NumericUpDown();
             this.textBoxpackName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewListPacks = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonPrint = new System.Windows.Forms.Button();
             this.buttonSearch = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerToDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerFromDate = new System.Windows.Forms.DateTimePicker();
+            this.ColumnPackId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnImportDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTotalAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTotalAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPacks)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +74,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.buttonDelete);
+            this.groupBox1.Controls.Add(this.buttonRefresh);
             this.groupBox1.Controls.Add(this.buttonInsert);
             this.groupBox1.Controls.Add(this.buttonUpdate);
             this.groupBox1.Controls.Add(this.dateTimePickerImportDate);
@@ -120,18 +129,19 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Tên bao bì";
             // 
-            // buttonDelete
+            // buttonRefresh
             // 
-            this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDelete.Image = global::CtyHongPhat.Properties.Resources.delete;
-            this.buttonDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonDelete.Location = new System.Drawing.Point(949, 21);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(94, 56);
-            this.buttonDelete.TabIndex = 15;
-            this.buttonDelete.Text = "Xóa";
-            this.buttonDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRefresh.Image = global::CtyHongPhat.Properties.Resources.refresh;
+            this.buttonRefresh.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonRefresh.Location = new System.Drawing.Point(949, 21);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(94, 56);
+            this.buttonRefresh.TabIndex = 15;
+            this.buttonRefresh.Text = "Làm mới";
+            this.buttonRefresh.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // buttonInsert
             // 
@@ -159,6 +169,7 @@
             this.buttonUpdate.Text = "Cập nhật";
             this.buttonUpdate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // dateTimePickerImportDate
             // 
@@ -173,6 +184,11 @@
             // 
             this.numericUpDownTotalAmount.DecimalPlaces = 2;
             this.numericUpDownTotalAmount.Location = new System.Drawing.Point(415, 57);
+            this.numericUpDownTotalAmount.Maximum = new decimal(new int[] {
+            -1474836480,
+            4,
+            0,
+            0});
             this.numericUpDownTotalAmount.Name = "numericUpDownTotalAmount";
             this.numericUpDownTotalAmount.Size = new System.Drawing.Size(200, 22);
             this.numericUpDownTotalAmount.TabIndex = 2;
@@ -203,7 +219,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Controls.Add(this.dataGridViewListPacks);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 9.25F);
             this.groupBox2.Location = new System.Drawing.Point(13, 119);
             this.groupBox2.Name = "groupBox2";
@@ -212,16 +228,29 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách bao bì";
             // 
-            // dataGridView1
+            // dataGridViewListPacks
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.dataGridViewListPacks.AllowUserToAddRows = false;
+            this.dataGridViewListPacks.AllowUserToDeleteRows = false;
+            this.dataGridViewListPacks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1039, 313);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridViewListPacks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewListPacks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnPackId,
+            this.ColumnPackName,
+            this.ColumnImportDate,
+            this.ColumnQuantity,
+            this.ColumnTotalAmount});
+            this.dataGridViewListPacks.Location = new System.Drawing.Point(7, 19);
+            this.dataGridViewListPacks.MultiSelect = false;
+            this.dataGridViewListPacks.Name = "dataGridViewListPacks";
+            this.dataGridViewListPacks.ReadOnly = true;
+            this.dataGridViewListPacks.RowHeadersVisible = false;
+            this.dataGridViewListPacks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewListPacks.Size = new System.Drawing.Size(1039, 313);
+            this.dataGridViewListPacks.TabIndex = 0;
+            this.dataGridViewListPacks.SelectionChanged += new System.EventHandler(this.dataGridViewListPacks_SelectionChanged);
             // 
             // groupBox3
             // 
@@ -231,8 +260,8 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.buttonPrint);
             this.groupBox3.Controls.Add(this.buttonSearch);
-            this.groupBox3.Controls.Add(this.dateTimePicker2);
-            this.groupBox3.Controls.Add(this.dateTimePicker1);
+            this.groupBox3.Controls.Add(this.dateTimePickerToDate);
+            this.groupBox3.Controls.Add(this.dateTimePickerFromDate);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 9.25F);
             this.groupBox3.Location = new System.Drawing.Point(13, 463);
             this.groupBox3.Name = "groupBox3";
@@ -291,29 +320,73 @@
             this.buttonSearch.Text = "Tìm kiếm";
             this.buttonSearch.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
-            // dateTimePicker2
+            // dateTimePickerToDate
             // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.dateTimePickerToDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(446, 33);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker2.TabIndex = 1;
+            this.dateTimePickerToDate.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePickerToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerToDate.Location = new System.Drawing.Point(446, 33);
+            this.dateTimePickerToDate.Name = "dateTimePickerToDate";
+            this.dateTimePickerToDate.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePickerToDate.TabIndex = 1;
             // 
-            // dateTimePicker1
+            // dateTimePickerFromDate
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.dateTimePickerFromDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(75, 33);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 0;
+            this.dateTimePickerFromDate.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePickerFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerFromDate.Location = new System.Drawing.Point(75, 33);
+            this.dateTimePickerFromDate.Name = "dateTimePickerFromDate";
+            this.dateTimePickerFromDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateTimePickerFromDate.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePickerFromDate.TabIndex = 0;
+            // 
+            // ColumnPackId
+            // 
+            this.ColumnPackId.HeaderText = "Mã bao bì";
+            this.ColumnPackId.Name = "ColumnPackId";
+            this.ColumnPackId.ReadOnly = true;
+            this.ColumnPackId.Visible = false;
+            // 
+            // ColumnPackName
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
+            this.ColumnPackName.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ColumnPackName.HeaderText = "Tên bao bì";
+            this.ColumnPackName.Name = "ColumnPackName";
+            this.ColumnPackName.ReadOnly = true;
+            this.ColumnPackName.Width = 250;
+            // 
+            // ColumnImportDate
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnImportDate.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ColumnImportDate.HeaderText = "Ngày nhập";
+            this.ColumnImportDate.Name = "ColumnImportDate";
+            this.ColumnImportDate.ReadOnly = true;
+            this.ColumnImportDate.Width = 150;
+            // 
+            // ColumnQuantity
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnQuantity.DefaultCellStyle = dataGridViewCellStyle7;
+            this.ColumnQuantity.HeaderText = "Số lượng";
+            this.ColumnQuantity.Name = "ColumnQuantity";
+            this.ColumnQuantity.ReadOnly = true;
+            this.ColumnQuantity.Width = 150;
+            // 
+            // ColumnTotalAmount
+            // 
+            this.ColumnTotalAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnTotalAmount.DefaultCellStyle = dataGridViewCellStyle8;
+            this.ColumnTotalAmount.HeaderText = "Tổng tiền";
+            this.ColumnTotalAmount.Name = "ColumnTotalAmount";
+            this.ColumnTotalAmount.ReadOnly = true;
             // 
             // FormManagePacks
             // 
@@ -326,12 +399,13 @@
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "FormManagePacks";
             this.Text = "FormManagePacks";
+            this.Load += new System.EventHandler(this.FormManagePacks_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTotalAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPacks)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -345,14 +419,14 @@
         private System.Windows.Forms.TextBox textBoxpackName;
         private System.Windows.Forms.DateTimePicker dateTimePickerImportDate;
         private System.Windows.Forms.NumericUpDown numericUpDownTotalAmount;
-        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.Button buttonInsert;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DataGridView dataGridViewListPacks;
+        private System.Windows.Forms.DateTimePicker dateTimePickerToDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFromDate;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Label label1;
@@ -361,5 +435,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPackId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPackName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnImportDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTotalAmount;
     }
 }
