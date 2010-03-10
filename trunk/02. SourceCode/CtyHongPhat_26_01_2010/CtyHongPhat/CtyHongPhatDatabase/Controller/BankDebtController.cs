@@ -13,7 +13,7 @@ namespace CtyHongPhatDatabase.Controller
     {
         public static ArrayList GetAll(SqlConnection conn)
         {
-            string sqlCmd = "SELECT * FROM BANK_DEBTS WHERE DELETED = 0";
+            string sqlCmd = "SELECT * FROM BANK_DEBTS WHERE DELETED = 0 ORDER BY BORROWDATE";
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(BankDebtInfo));
@@ -236,7 +236,7 @@ namespace CtyHongPhatDatabase.Controller
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
-            return (int)comm.ExecuteScalar();
+            return int.Parse(comm.ExecuteScalar().ToString());
         }
         public static void Update(SqlConnection conn, BankDebtInfo objBO)
         {

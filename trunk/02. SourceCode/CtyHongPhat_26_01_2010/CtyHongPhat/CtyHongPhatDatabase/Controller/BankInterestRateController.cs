@@ -36,7 +36,7 @@ namespace CtyHongPhatDatabase.Controller
                 sqlWhere = "CONVERT(varchar(10), " + columnName + ",103)=" + MiscUtility.DateTimeToString((DateTime)columnValue);
             else
                 sqlWhere = columnName + " = " + columnValue;
-            string sqlCmd = "SELECT * FROM BANK_INTEREST_RATE WHERE " + sqlWhere + " AND DELETED = 0";
+            string sqlCmd = "SELECT * FROM BANK_INTEREST_RATE WHERE " + sqlWhere + " AND DELETED = 0 order by paydate desc";
 
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
@@ -215,6 +215,13 @@ namespace CtyHongPhatDatabase.Controller
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
+            param = new SqlParameter();
+            param.ParameterName = "@PayAmount";
+            param.SqlDbType = SqlDbType.Decimal;
+            param.Value = objBO.PayAmount;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
             return (int)comm.ExecuteScalar();
         }
         public static void Update(SqlConnection conn, BankInterestRateInfo objBO)
@@ -284,6 +291,13 @@ namespace CtyHongPhatDatabase.Controller
             param.ParameterName = "@Deleted";
             param.SqlDbType = SqlDbType.Int;
             param.Value = objBO.Deleted;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@PayAmount";
+            param.SqlDbType = SqlDbType.Decimal;
+            param.Value = objBO.PayAmount;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 

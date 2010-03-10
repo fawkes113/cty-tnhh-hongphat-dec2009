@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E5AB7983-E95D-421A-954F-D34916D0B6A8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -70,6 +70,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAddBankDebt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddBankDebt.Designer.cs">
+      <DependentUpon>FormAddBankDebt.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAuthenticate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,18 @@
     </Compile>
     <Compile Include="FormListItem.Designer.cs">
       <DependentUpon>FormListItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManageBankDebts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManageBankDebts.Designer.cs">
+      <DependentUpon>FormManageBankDebts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManagePacks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManagePacks.Designer.cs">
+      <DependentUpon>FormManagePacks.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManagerDebt.cs">
       <SubType>Form</SubType>
@@ -163,6 +181,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAddBankDebt.resx">
+      <DependentUpon>FormAddBankDebt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAuthenticate.resx">
       <DependentUpon>FormAuthenticate.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -174,6 +196,13 @@
     <EmbeddedResource Include="FormListItem.resx">
       <DependentUpon>FormListItem.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManageBankDebts.resx">
+      <DependentUpon>FormManageBankDebts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManagePacks.resx">
+      <DependentUpon>FormManagePacks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManagerDebt.resx">
       <DependentUpon>FormManagerDebt.cs</DependentUpon>
