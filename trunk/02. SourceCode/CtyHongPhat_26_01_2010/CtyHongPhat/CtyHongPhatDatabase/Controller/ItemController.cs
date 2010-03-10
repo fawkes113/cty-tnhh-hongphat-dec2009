@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
 using CtyHongPhatDatabase.Table;
 
 namespace CtyHongPhatDatabase.Controller
 {
-    public class ItemCotroller
+    public class ItemController
     {
         public static ArrayList GetAll(SqlConnection conn)
         {
@@ -21,7 +21,6 @@ namespace CtyHongPhatDatabase.Controller
         public static ArrayList GetAllHaveOrderBy(SqlConnection conn, string OrderColumn, string OrderType)
         {
             string sqlCmd = "SELECT * FROM ITEMS WHERE DELETED = 0 ORDER BY " + OrderColumn + " " + OrderType;
-
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(ItemInfo));
@@ -40,7 +39,7 @@ namespace CtyHongPhatDatabase.Controller
             string sqlCmd = "SELECT * FROM ITEMS WHERE " + sqlWhere + " AND DELETED = 0";
 
             conn.Open();
-            SqlCommand comm = new SqlCommand(sqlCmd,conn);
+            SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(ItemInfo));
         }
         public static ArrayList GetByColumnHaveOrderBy(SqlConnection conn, string columnName, object columnValue, string orderColumn, string orderType)
@@ -57,7 +56,7 @@ namespace CtyHongPhatDatabase.Controller
             string sqlCmd = "SELECT * FROM ITEMS WHERE " + sqlWhere + " AND DELETED = 0" + " ORDER BY " + orderColumn + " " + orderType;
 
             conn.Open();
-            SqlCommand comm = new SqlCommand(sqlCmd,conn);
+            SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(ItemInfo));
         }
         public static ItemInfo GetByColumnTop1(SqlConnection conn, string columnName, object columnValue)
@@ -74,7 +73,7 @@ namespace CtyHongPhatDatabase.Controller
             string sqlCmd = "SELECT top 1 * FROM ITEMS WHERE " + sqlWhere + " AND DELETED = 0";
 
             conn.Open();
-            SqlCommand comm = new SqlCommand(sqlCmd,conn);
+            SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return (ItemInfo)CBO.FillObject(comm.ExecuteReader(), typeof(ItemInfo));
         }
         public static ItemInfo GetByColumnsTop1(SqlConnection conn, params object[] columns)
@@ -102,13 +101,13 @@ namespace CtyHongPhatDatabase.Controller
             string sqlCmd = "SELECT top 1 * FROM ITEMS WHERE " + sqlWhere + " AND DELETED = 0";
 
             conn.Open();
-            SqlCommand comm = new SqlCommand(sqlCmd,conn);
+            SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return (ItemInfo)CBO.FillObject(comm.ExecuteReader(), typeof(ItemInfo));
         }
         public static ArrayList GetByColumns(SqlConnection conn, params object[] columns)
         {
             if (columns == null || columns.Length <= 0)
-                return AgentKindController.GetAll(conn);
+                return ItemController.GetAll(conn);
             if (columns.Length % 2 != 0)
                 return null;
             string sqlWhere = "";
@@ -130,7 +129,7 @@ namespace CtyHongPhatDatabase.Controller
             string sqlCmd = "SELECT * FROM ITEMS WHERE " + sqlWhere + " AND DELETED = 0";
 
             conn.Open();
-            SqlCommand comm = new SqlCommand(sqlCmd,conn);
+            SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(ItemInfo));
         }
         public static void DeleteByColumns(SqlConnection conn, params object[] columns)
@@ -156,7 +155,7 @@ namespace CtyHongPhatDatabase.Controller
             string sqlCmd = "DELETE ITEMS WHERE " + sqlWhere + " AND DELETED = 0";
 
             conn.Open();
-            SqlCommand comm = new SqlCommand(sqlCmd,conn);
+            SqlCommand comm = new SqlCommand(sqlCmd, conn);
             comm.ExecuteNonQuery();
         }
 
@@ -179,13 +178,6 @@ namespace CtyHongPhatDatabase.Controller
             SqlParameter param;
 
             param = new SqlParameter();
-            param.ParameterName = "@ItemId";
-            param.SqlDbType = SqlDbType.NVarChar;
-            param.Value = objBO.ItemId;
-            param.Direction = ParameterDirection.Input;
-            comm.Parameters.Add(param);
-
-            param = new SqlParameter();
             param.ParameterName = "@ItemName";
             param.SqlDbType = SqlDbType.NVarChar;
             param.Value = objBO.ItemName;
@@ -201,18 +193,11 @@ namespace CtyHongPhatDatabase.Controller
 
             param = new SqlParameter();
             param.ParameterName = "@CreatedDate";
-            param.SqlDbType = SqlDbType.NVarChar;
+            param.SqlDbType = SqlDbType.DateTime;
             param.Value = objBO.CreatedDate;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
-            param = new SqlParameter();
-            param.ParameterName = "@CreatedDate";
-            param.SqlDbType = SqlDbType.NVarChar;
-            param.Value = objBO.CreatedDate;
-            param.Direction = ParameterDirection.Input;
-
-            comm.Parameters.Add(param);
             param = new SqlParameter();
             param.ParameterName = "@ModifiedBy";
             param.SqlDbType = SqlDbType.NVarChar;
@@ -224,13 +209,6 @@ namespace CtyHongPhatDatabase.Controller
             param.ParameterName = "@ModifiedDate";
             param.SqlDbType = SqlDbType.DateTime;
             param.Value = objBO.ModifiedDate;
-            param.Direction = ParameterDirection.Input;
-            comm.Parameters.Add(param);
-
-            param = new SqlParameter();
-            param.ParameterName = "@Deleted";
-            param.SqlDbType = SqlDbType.Int;
-            param.Value = objBO.Deleted;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
@@ -248,9 +226,8 @@ namespace CtyHongPhatDatabase.Controller
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
-            return int.Parse(comm.ExecuteScalar().ToString());
+            return (int)comm.ExecuteScalar();
         }
-
         public static void Update(SqlConnection conn, ItemInfo objBO)
         {
             conn.Open();
@@ -281,7 +258,7 @@ namespace CtyHongPhatDatabase.Controller
 
             param = new SqlParameter();
             param.ParameterName = "@CreatedDate";
-            param.SqlDbType = SqlDbType.NVarChar;
+            param.SqlDbType = SqlDbType.DateTime;
             param.Value = objBO.CreatedDate;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
@@ -323,7 +300,6 @@ namespace CtyHongPhatDatabase.Controller
 
             comm.ExecuteNonQuery();
         }
-
         public static void Delete(SqlConnection conn, int id)
         {
             conn.Open();
@@ -341,3 +317,4 @@ namespace CtyHongPhatDatabase.Controller
         }
     }
 }
+
