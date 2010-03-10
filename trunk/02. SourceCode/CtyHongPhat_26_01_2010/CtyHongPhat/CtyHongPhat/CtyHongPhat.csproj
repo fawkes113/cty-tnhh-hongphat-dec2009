@@ -166,6 +166,12 @@
     <Compile Include="FormUpdateOrder.Designer.cs">
       <DependentUpon>FormUpdateOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUpdateSellPriceForAgents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpdateSellPriceForAgents.Designer.cs">
+      <DependentUpon>FormUpdateSellPriceForAgents.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUserPasswordChange.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpdateOrder.resx">
       <DependentUpon>FormUpdateOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpdateSellPriceForAgents.resx">
+      <DependentUpon>FormUpdateSellPriceForAgents.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUserPasswordChange.resx">

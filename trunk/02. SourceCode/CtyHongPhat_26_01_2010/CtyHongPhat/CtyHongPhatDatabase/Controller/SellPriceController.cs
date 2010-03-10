@@ -261,7 +261,7 @@ namespace CtyHongPhatDatabase.Controller
 
             param = new SqlParameter();
             param.ParameterName = "@CreatedDate";
-            param.SqlDbType = SqlDbType.NVarChar;
+            param.SqlDbType = SqlDbType.DateTime;
             param.Value = objBO.CreatedDate;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
@@ -282,7 +282,7 @@ namespace CtyHongPhatDatabase.Controller
 
             param = new SqlParameter();
             param.ParameterName = "@Deleted";
-            param.SqlDbType = SqlDbType.DateTime;
+            param.SqlDbType = SqlDbType.Int;
             param.Value = objBO.Deleted;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
@@ -290,16 +290,24 @@ namespace CtyHongPhatDatabase.Controller
             comm.ExecuteNonQuery();
         }
 
-        public static void Delete(SqlConnection conn, int id)
+        public static void Delete(SqlConnection conn, SellPriceInfo objBO)
         {
             conn.Open();
             SqlCommand comm = new SqlCommand("SELL_PRICE_Delete", conn);
             comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
 
-            SqlParameter param = new SqlParameter();
+            param = new SqlParameter();
             param.ParameterName = "@SellId";
             param.SqlDbType = SqlDbType.Int;
-            param.Value = id;
+            param.Value = objBO.SellId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.ModifiedBy;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 

@@ -58,7 +58,7 @@
     <Compile Include="Controller\BankDebtController.cs" />
     <Compile Include="Controller\DebtController.cs" />
     <Compile Include="Controller\EmployeesController.cs" />
-    <Compile Include="Controller\ItemCotroller.cs" />
+    <Compile Include="Controller\ItemController.cs" />
     <Compile Include="Controller\OrderDetailsController.cs" />
     <Compile Include="Controller\OrdersController.cs" />
     <Compile Include="Controller\PartnersController.cs" />
