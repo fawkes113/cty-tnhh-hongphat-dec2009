@@ -16,6 +16,7 @@ namespace CtyHongPhatDatabase.Table
         private string _modifiedBy;
         private System.DateTime _modifiedDate;
         private int _deleted;
+        private decimal _payAmount;
 
         #region Public Properties
         public int BankInterestRateId
@@ -72,6 +73,11 @@ namespace CtyHongPhatDatabase.Table
             set { _deleted = value; }
         }
 
+        public decimal PayAmount
+        {
+            get { return _payAmount; }
+            set { _payAmount = value; }
+        }
         #endregion
     }
 }

@@ -822,5 +822,106 @@ namespace CtyHongPhat.Utility
         }
 
         #endregion
+
+        #region BankDebt
+        public ArrayList BankDebtdGetAll()
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return BankDebtController.GetAll(conn);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public BankDebtInfo BankDebtGetById(int bankDebtId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return BankDebtController.GetByColumnTop1(conn, "BankDebtId", bankDebtId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public int BankDebtAdd(BankDebtInfo bankDebtInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return BankDebtController.Insert(conn, bankDebtInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return -1;
+            }
+        }
+
+        public bool BankDebtUpdate(BankDebtInfo bankDebtInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    BankDebtController.Update(conn, bankDebtInfo);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return false;
+            }
+        }
+        #endregion
+
+        #region BankInterestRate
+        public ArrayList BankInterestRateGetAllByBankDebtId(int bankDebtId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return BankInterestRateController.GetByColumn(conn, "BankDebtId", bankDebtId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public int BankInterestRateAdd(BankInterestRateInfo bankInterestRate)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return BankInterestRateController.Insert(conn, bankInterestRate);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return -1;
+            }
+        }
+        #endregion
     }
 }
