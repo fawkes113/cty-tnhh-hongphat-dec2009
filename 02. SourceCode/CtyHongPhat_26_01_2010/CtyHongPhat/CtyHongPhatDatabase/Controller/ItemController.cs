@@ -226,7 +226,7 @@ namespace CtyHongPhatDatabase.Controller
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
-            return (int)comm.ExecuteScalar();
+            return int.Parse(comm.ExecuteScalar().ToString());            
         }
         public static void Update(SqlConnection conn, ItemInfo objBO)
         {
@@ -300,16 +300,24 @@ namespace CtyHongPhatDatabase.Controller
 
             comm.ExecuteNonQuery();
         }
-        public static void Delete(SqlConnection conn, int id)
+        public static void Delete(SqlConnection conn, ItemInfo objBO)
         {
             conn.Open();
             SqlCommand comm = new SqlCommand("ITEMS_Delete", conn);
             comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
 
-            SqlParameter param = new SqlParameter();
+            param = new SqlParameter();
             param.ParameterName = "@ItemId";
             param.SqlDbType = SqlDbType.Int;
-            param.Value = id;
+            param.Value = objBO.ItemId;
+            param.Direction = ParameterDirection.Input;
+            comm.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@ModifiedBy";
+            param.SqlDbType = SqlDbType.NVarChar;
+            param.Value = objBO.ModifiedBy;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 

@@ -33,6 +33,13 @@ namespace CtyHongPhat
             this.employeeName = employeeName;
         }
 
+        private void FormListItem_Load(object sender, EventArgs e)
+        {
+            Init();
+            BindData();
+            this.textBoxItemName.Focus();
+        }
+
         #region Phương thức hỗ trợ
         private void BindData()
         {
@@ -152,20 +159,20 @@ namespace CtyHongPhat
                     info.Measurement);
             }
         }
-        #endregion
 
-        private void FormListItem_Load(object sender, EventArgs e)
+        private int searchAgentKindInList(List<AgentKindInfo> list, int agentKindId)
         {
-            Init();
-            BindData();
-            this.textBoxItemName.Focus();
-        }
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].AgentKindId == agentKindId)
+                    return i;
+            }
 
-        private void buttonSearch_Click(object sender, EventArgs e)
-        {
-            PerformSearch();
+            return 0;
         }
+        #endregion        
 
+        #region Xử lý các combobox
         private void comboBoxAgentName_SelectedIndexChanged(object sender, EventArgs e)
         {
             // TODO: nếu chọn đại lý theo tên --> loại đại lý được thay đổi theo đại lý
@@ -219,7 +226,9 @@ namespace CtyHongPhat
                 default: break;
             }
         }
+        #endregion
 
+        #region Xử lý control khác
         private void textBoxMeasurement_Enter(object sender, EventArgs e)
         {
             if (this.textBoxMeasurement.Text == MEASUREMENT)
@@ -232,6 +241,33 @@ namespace CtyHongPhat
                 this.textBoxMeasurement.Text = MEASUREMENT;
         }
 
+        private void dataGridViewItemList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            // click vào header
+            if (e.RowIndex < 0)
+                return;
+
+            // lấy thông tin của row
+            DataGridViewRow row = dataGridViewItemList.Rows[e.RowIndex];
+
+            string itemId = row.Cells["columnId"].Value.ToString();
+            string itemName = row.Cells["columnItemName"].Value.ToString();
+            string measurement = row.Cells["columnMeasurement"].Value.ToString();
+            string totalQuantity = row.Cells["columnQuantity"].Value.ToString();
+            string agentKindId = row.Cells["columnAgentKindId"].Value.ToString();
+            string price = row.Cells["columnPrice"].Value.ToString();
+
+            // show thông tin lên các control tương ứng
+            labelItemId.Text = itemId;
+            textBoxItemName.Text = itemName;
+            textBoxMeasurement.Text = measurement;
+            labelQuantity.Text = totalQuantity;
+            comboBoxInfoKindOfAgent.SelectedIndex = searchAgentKindInList(listAgentKinds, int.Parse(agentKindId));
+            numericUpDownPrice.Value = int.Parse(NumberViewer.ClearComma(price));
+        }
+        #endregion
+
+        #region Xử lý các nút bấm
         private void buttonInsert_Click(object sender, EventArgs e)
         {
             // lấy thông tin 1 Item
@@ -278,25 +314,57 @@ namespace CtyHongPhat
             // insert vào csdl
             foreach (AgentKindInfo agentKind in listAgentKinds)
             {
+                if (agentKind.AgentKindId == -1) // <Chọn loại đại lý>
+                    continue;
+
                 sellPrice.AgentKindId = agentKind.AgentKindId;
                 if (database.SellPriceAdd(sellPrice) == Database.COMMAND_FAILED)
                 {
                     MessageBox.Error(this, String.Format("Có lỗi khi tạo giá bán cho loại đại lý {0}.", agentKind.AgentKindName));
                 }
             }
+
+            // thông báo sau khi đã tạo mặt hàng mới, 
+            // lưu ý người dùng cập nhật giá từng loại đại lý
+            DialogResult dlgResult = MessageBox.Quest(this, String.Format("Tạo thành công mặt hàng {0}. Bạn có muốn cập nhật giá riêng cho từng đại lý?", item.ItemName), 2);
+            if (dlgResult == DialogResult.Yes)
+            {
+                // mở form cập nhật giá cho từng loại đại lý
+                FormUpdateSellPriceForAgents frm = new FormUpdateSellPriceForAgents(item, this.employeeName);
+                frm.ShowDialog();
+            };
+
+            // thêm các row ứng với item vừa thêm vào gridview
+            foreach (AgentKindInfo agentKind in listAgentKinds)
+            {
+                if (agentKind.AgentKindId == -1) // <Chọn loại đại lý>
+                    continue;
+
+                dataGridViewItemList.Rows.Add(
+                    item.ItemId,
+                    item.ItemName,
+                    agentKind.AgentKindId,
+                    agentKind.AgentKindName,
+                    NumberViewer.InsertComma(database.SellPriceGetBy(
+                                    item.ItemId, agentKind.AgentKindId).SellPrice.ToString()),
+                    item.TotalQuantity,
+                    item.Measurement);
+            }
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
+            /// trường hợp không chọn dòng nào
+            if (dataGridViewItemList.SelectedRows.Count <= 0)
+                return;
+
             // lấy thông tin 1 Item
             ItemInfo item = new ItemInfo();
             int itemId = -1;
             int.TryParse(labelItemId.Text, out itemId);
-            if (itemId == -1)
-            {
-                return;
-            }
+            if (itemId == -1) return;
             item = database.ItemGetBy(itemId);
+            if (item == null) return;
             item.ItemName = textBoxItemName.Text;
             item.ModifiedBy = employeeName;
             item.ModifiedDate = DateTime.Today.Date;
@@ -317,58 +385,38 @@ namespace CtyHongPhat
             }
 
             // lấy thông tin 1 sellPrice
-            SellPriceInfo sellPrice = database.SellPriceGetBy(
-                item.ItemId,
-                ((AgentKindInfo)comboBoxInfoKindOfAgent.SelectedValue).AgentKindId);
+            AgentKindInfo agentKind = (AgentKindInfo)comboBoxInfoKindOfAgent.SelectedValue;
+            SellPriceInfo sellPrice = database.SellPriceGetBy(item.ItemId, agentKind.AgentKindId);
             sellPrice.SellPrice = numericUpDownPrice.Value;
             sellPrice.ModifiedBy = employeeName;
             sellPrice.ModifiedDate = DateTime.Today.Date;
+            // giả sử tạo item mà không có ngày --> ngày tạo = null --> xử lý
+            if (sellPrice.CreatedDate == DateTime.MinValue)
+            {
+                sellPrice.CreatedDate = sellPrice.ModifiedDate;
+                sellPrice.ModifiedBy = sellPrice.ModifiedBy;
+            }
 
             // kiểm tra ràng buộc cần thiết --> không cần
 
             // update sellPrice trong csdl
             if (database.SellPriceUpdate(sellPrice) == Database.COMMAND_FAILED)
             {
-                MessageBox.Error(this, String.Format("Có lỗi khi cập nhật thông tin giá bán cho đại lý {0}.", 
+                MessageBox.Error(this, String.Format("Có lỗi khi cập nhật thông tin giá bán cho đại lý {0}.",
                     ((AgentKindInfo)comboBoxInfoKindOfAgent.SelectedValue).AgentKindName));
                 return;
             }
-        }
 
-        private void dataGridViewItemList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            // click vào header
-            if (e.RowIndex < 0)
-                return;
-
-            // lấy thông tin của row
-            DataGridViewRow row = dataGridViewItemList.Rows[e.RowIndex];
-
-            string itemId = row.Cells["columnId"].Value.ToString();
-            string itemName = row.Cells["columnItemName"].Value.ToString();
-            string measurement = row.Cells["columnMeasurement"].Value.ToString();
-            string totalQuantity = row.Cells["columnQuantity"].Value.ToString();
-            string agentKindId = row.Cells["columnAgentKindId"].Value.ToString();
-            string price = row.Cells["columnPrice"].Value.ToString();
-
-            // show thông tin lên các control tương ứng
-            labelItemId.Text = itemId;
-            textBoxItemName.Text = itemName;
-            textBoxMeasurement.Text = measurement;
-            labelQuantity.Text = totalQuantity;
-            comboBoxInfoKindOfAgent.SelectedIndex = searchAgentKindInList(listAgentKinds, int.Parse(agentKindId));
-            numericUpDownPrice.Value = int.Parse(NumberViewer.ClearComma(price));
-        }
-
-        private int searchAgentKindInList(List<AgentKindInfo> list, int agentKindId)
-        {
-            for (int i = 0; i < list.Count; i++)
-			{
-                if (list[i].AgentKindId == agentKindId)
-                    return i;
-			}
-
-            return 0;
+            // refresh lại gridview (chỉ cập nhật row vừa update)
+            foreach (DataGridViewRow row in dataGridViewItemList.Rows)
+            {
+                if (row.Cells["columnId"].Value.ToString() == item.ItemId.ToString())
+                {
+                    row.Cells["columnItemName"].Value = item.ItemName;
+                    row.Cells["columnMeasurement"].Value = item.Measurement;
+                }
+            }
+            dataGridViewItemList.SelectedRows[0].Cells["columnPrice"].Value = NumberViewer.InsertComma(sellPrice.SellPrice.ToString());
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -377,19 +425,39 @@ namespace CtyHongPhat
             if (dataGridViewItemList.SelectedRows.Count <= 0)
                 return;
 
-            MessageBox.Infor(this, "Bạn thật sự muốn xóa những thông tin này?");
-            foreach (DataGridViewRow row in dataGridViewItemList.SelectedRows)
+            MessageBox.Infor(this, "Bạn thật sự muốn xóa mặt hàng này?");
+            DataGridViewRow selectedRow = dataGridViewItemList.SelectedRows[0];
+
+            string itemId = selectedRow.Cells["columnId"].Value.ToString();
+            string itemName = selectedRow.Cells["columnItemName"].Value.ToString();
+            string agentKindName = selectedRow.Cells["columnKindOfAgent"].Value.ToString();
+
+            // xóa thông tin item
+            database.ItemDelete(int.Parse(itemId));
+
+            // xóa thông tin giá bán
+            database.SellPriceDeleteBy(int.Parse(itemId));
+
+            // refresh gridview (chỉ xóa những row chứa item vừa xóa)
+            /*foreach (DataGridViewRow row in dataGridViewItemList.Rows)
             {
-                string itemId = row.Cells["columnId"].Value.ToString();
-                string itemName = row.Cells["columnItemName"].Value.ToString();
-                string agentKindName = row.Cells["columnKindOfAgent"].Value.ToString();
-
-                // xóa thông tin giá bán
-                database.ItemDelete(int.Parse(itemId));
-
-                // xóa thông tin item
-                database.SellPriceDeleteBy(int.Parse(itemId));
+                if (row.Cells["columnId"].Value.ToString() == itemId)
+                    dataGridViewItemList.Rows.Remove(row);
+            }*/
+            for (int i = 0; i < dataGridViewItemList.Rows.Count; i++)
+            {
+                if (dataGridViewItemList.Rows[i].Cells["columnId"].Value.ToString() == itemId)
+                {
+                    dataGridViewItemList.Rows.RemoveAt(i);
+                    i--;
+                }
             }
         }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+        }
+        #endregion
     }
 }

@@ -20,8 +20,8 @@ namespace CtyHongPhat.Utility
         {
             try
             {
-                //string connStr = "Data Source=" + Config.DataSource + ";Initial Catalog=" + Config.InitialCatalog + ";User ID=" + Config.UserName + ";Password=" + Config.Password;
-                string connStr = "Data Source=.\\sqlexpress;Initial Catalog=CtyHongPhat_19_01_2010;Integrated Security=True";
+                //string connStr = "Data Source=" + Config.DataSource + ";Initial Catalog=" + Config.InitialCatalog + ";User ID=" + Config.UserName + ";Password=" + Config.Password;                
+                string connStr = "Data Source=.;Initial Catalog=HongPhat;Integrated Security=True";
                 return new SqlConnection(connStr);
             }
             catch (System.Exception e)
@@ -321,7 +321,7 @@ namespace CtyHongPhat.Utility
             {
                 using (SqlConnection conn = Database.NewConnection())
                 {   
-                    return ItemCotroller.GetAll(conn);
+                    return ItemController.GetAll(conn);
                 }
             }
             catch (Exception ex)
@@ -335,7 +335,7 @@ namespace CtyHongPhat.Utility
         {
             try {
                 using (SqlConnection conn = Database.NewConnection()) {
-                    return ItemCotroller.GetByPartner(conn, partnerId);
+                    return ItemController.GetByPartner(conn, partnerId);
                 }
             } catch (Exception ex) {
                 System.Diagnostics.Trace.WriteLine(ex);
@@ -349,7 +349,7 @@ namespace CtyHongPhat.Utility
             {
                 using (SqlConnection conn = Database.NewConnection())
                 {
-                    return ItemCotroller.Insert(conn, itemInfo);
+                    return ItemController.Insert(conn, itemInfo);
                 }
             }
             catch (Exception ex)
@@ -365,7 +365,7 @@ namespace CtyHongPhat.Utility
             {
                 using (SqlConnection conn = Database.NewConnection())
                 {
-                    ItemCotroller.Update(conn, itemInfo);
+                    ItemController.Update(conn, itemInfo);
                     return COMMAND_SUCCESS;
                 }
             }
@@ -382,7 +382,7 @@ namespace CtyHongPhat.Utility
             {
                 using (SqlConnection conn = Database.NewConnection())
                 {
-                    return ItemCotroller.GetByColumnTop1(conn, "ItemId", itemId);
+                    return ItemController.GetByColumnTop1(conn, "ItemId", itemId);
                 }
             }
             catch(Exception ex)
@@ -398,7 +398,7 @@ namespace CtyHongPhat.Utility
             {
                 using (SqlConnection conn = Database.NewConnection())
                 {
-                    return ItemCotroller.GetByColumnTop1(conn, "ItemId", itemId);
+                    return ItemController.GetByColumnTop1(conn, "ItemId", itemId);
                 }
             }
             catch (Exception ex)
@@ -414,7 +414,10 @@ namespace CtyHongPhat.Utility
             {
                 using (SqlConnection conn = Database.NewConnection())
                 {
-                    ItemCotroller.Delete(conn, itemId);
+                    ItemInfo info = ItemController.GetByColumnTop1(conn, "ItemId", itemId);
+                    conn.Close();
+
+                    ItemController.Delete(conn, info);
                 }
             }
             catch (Exception ex)
@@ -649,7 +652,17 @@ namespace CtyHongPhat.Utility
             {
                 using (SqlConnection conn = Database.NewConnection())
                 {
-                    SellPriceController.DeleteByColumns(conn, "ItemId", itemId);
+                    // select by column
+                    ArrayList infos = SellPriceController.GetByColumns(conn, "ItemId", itemId);
+                    conn.Close();
+
+                    // for each --> call sp delete
+                    foreach (object info in infos)
+                    {
+                        SellPriceController.Delete(conn, ((SellPriceInfo)info));
+                        conn.Close();
+                    }
+                    //SellPriceController.DeleteByColumns(conn, "ItemId", itemId);
                 }
             }
             catch (Exception ex)
@@ -713,12 +726,13 @@ namespace CtyHongPhat.Utility
                 using (SqlConnection conn = Database.NewConnection())
                 {
                     ArrayList queryResult;
-                    if (itemId == -1 && agentId == -1 && agentKindId == -1)
+                    if ((itemId == -1 && agentId == -1 && agentKindId == -1) ||
+                         (itemId == -1 && agentKindId == -1))
                         queryResult = ViewItemSellPriceController.GetAll(conn);
                     else
                         queryResult = ViewItemSellPriceController.GetByColumns(conn, new object[] { 
                             itemId == -1 ? null : "ItemId", itemId, 
-                            agentId == -1 ? null : "AgentId", agentId, 
+                            //agentId == -1 ? null : "AgentId", agentId, // TODO : tìm cách search theo AgentId
                             agentKindId == -1 ? null : "AgentKindId", agentKindId });
 
                     List<ViewItemSellPriceInfo> result = new List<ViewItemSellPriceInfo>();

@@ -35,14 +35,12 @@
             this.labelQuantity = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonInsert = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.numericUpDownPrice = new System.Windows.Forms.NumericUpDown();
-            this.comboBoxInfoKindOfAgent = new System.Windows.Forms.ComboBox();
             this.textBoxItemName = new System.Windows.Forms.TextBox();
             this.groupBoxListItems = new System.Windows.Forms.GroupBox();
             this.dataGridViewItemList = new System.Windows.Forms.DataGridView();
@@ -61,6 +59,8 @@
             this.comboBoxSearchKindOfAgent = new System.Windows.Forms.ComboBox();
             this.comboBoxAgentName = new System.Windows.Forms.ComboBox();
             this.comboBoxItemName = new System.Windows.Forms.ComboBox();
+            this.comboBoxInfoKindOfAgent = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrice)).BeginInit();
             this.groupBoxListItems.SuspendLayout();
@@ -141,15 +141,6 @@
             this.label4.Size = new System.Drawing.Size(60, 16);
             this.label4.TabIndex = 10;
             this.label4.Text = "Giá tiền :";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(441, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 16);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Loại đại lý :";
             // 
             // label2
             // 
@@ -233,14 +224,6 @@
             0,
             0});
             // 
-            // comboBoxInfoKindOfAgent
-            // 
-            this.comboBoxInfoKindOfAgent.FormattingEnabled = true;
-            this.comboBoxInfoKindOfAgent.Location = new System.Drawing.Point(517, 23);
-            this.comboBoxInfoKindOfAgent.Name = "comboBoxInfoKindOfAgent";
-            this.comboBoxInfoKindOfAgent.Size = new System.Drawing.Size(220, 24);
-            this.comboBoxInfoKindOfAgent.TabIndex = 2;
-            // 
             // textBoxItemName
             // 
             this.textBoxItemName.Location = new System.Drawing.Point(82, 23);
@@ -283,6 +266,7 @@
             this.columnQuantity,
             this.columnMeasurement});
             this.dataGridViewItemList.Location = new System.Drawing.Point(6, 23);
+            this.dataGridViewItemList.MultiSelect = false;
             this.dataGridViewItemList.Name = "dataGridViewItemList";
             this.dataGridViewItemList.ReadOnly = true;
             this.dataGridViewItemList.RowHeadersVisible = false;
@@ -442,6 +426,24 @@
             this.comboBoxItemName.TabIndex = 20;
             this.comboBoxItemName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxItemName_KeyDown);
             // 
+            // comboBoxInfoKindOfAgent
+            // 
+            this.comboBoxInfoKindOfAgent.Enabled = false;
+            this.comboBoxInfoKindOfAgent.FormattingEnabled = true;
+            this.comboBoxInfoKindOfAgent.Location = new System.Drawing.Point(517, 23);
+            this.comboBoxInfoKindOfAgent.Name = "comboBoxInfoKindOfAgent";
+            this.comboBoxInfoKindOfAgent.Size = new System.Drawing.Size(220, 24);
+            this.comboBoxInfoKindOfAgent.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(437, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 16);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Loại đại lý :";
+            // 
             // FormListItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -472,7 +474,6 @@
         private System.Windows.Forms.GroupBox groupBoxListItems;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBoxItemName;
-        private System.Windows.Forms.ComboBox comboBoxInfoKindOfAgent;
         private System.Windows.Forms.NumericUpDown numericUpDownPrice;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonDelete;
@@ -484,7 +485,6 @@
         private System.Windows.Forms.DataGridView dataGridViewItemList;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
@@ -500,6 +500,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnMeasurement;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBoxInfoKindOfAgent;
 
     }
 }
