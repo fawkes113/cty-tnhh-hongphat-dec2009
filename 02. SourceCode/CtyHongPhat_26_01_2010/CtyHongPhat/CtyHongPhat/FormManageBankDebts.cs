@@ -90,8 +90,11 @@ namespace CtyHongPhat
                     this.textBoxMaturityDate.Text = bankDebtInfo.MaturityDate.ToString("dd/MM/yyyy");
                     this.textBoxPaidAmount.Text = NumberViewer.InsertComma(bankDebtInfo.PaidAmount.ToString());
                     this.textBoxRateAmount.Text = NumberViewer.InsertComma(rateAmount.ToString());
+                    this.labelBankDebtId.Text = bankDebtId.ToString();
 
                     ArrayList listBankInterestRate = database.BankInterestRateGetAllByBankDebtId(bankDebtId);
+                    this.dataGridViewListInterestRate.DataSource = null;
+                    this.dataGridViewListInterestRate.Rows.Clear();
                     if (listBankInterestRate != null && listBankInterestRate.Count > 0)
                     {
                         for (int i = 0; i < listBankInterestRate.Count; i++)
@@ -116,12 +119,9 @@ namespace CtyHongPhat
 
         private void buttonPayDebt_Click(object sender, EventArgs e)
         {
-            if (this.dataGridViewListInterestRate.SelectedRows != null && this.dataGridViewListInterestRate.SelectedRows.Count > 0)
-            {
-                DataGridViewRow selectedRow = this.dataGridViewListBankDebts.SelectedRows[0];
                 try
                 {
-                    int bankDebtId = int.Parse(selectedRow.Cells[ColumnBankDebtId.Index].Value.ToString());
+                    int bankDebtId = int.Parse(labelBankDebtId.Text);
                     BankDebtInfo bankDebtInfo = database.BankDebtGetById(bankDebtId);
 
                     decimal rateAmount = Math.Round(((bankDebtInfo.DebtAmount - bankDebtInfo.PaidAmount) * (bankDebtInfo.InterestRate / 100)), 2);
@@ -170,6 +170,10 @@ namespace CtyHongPhat
                     MessageBox.Error(this, ex.ToString());
                 }
             }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

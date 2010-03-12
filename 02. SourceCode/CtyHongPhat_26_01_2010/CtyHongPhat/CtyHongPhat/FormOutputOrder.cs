@@ -472,8 +472,21 @@ namespace CtyHongPhat
                     listDetailOrderView.Add(detailOrderView);
                 }
 
+                CrystalDecisions.Shared.TableLogOnInfo tableLogOnInfo = new CrystalDecisions.Shared.TableLogOnInfo();
+                tableLogOnInfo.ConnectionInfo.ServerName = ".\\sqlexpress";
+                tableLogOnInfo.ConnectionInfo.DatabaseName = "CtyHongPhat_19_01_2010";
+                tableLogOnInfo.ConnectionInfo.IntegratedSecurity = true;
+                tableLogOnInfo.ConnectionInfo.UserID = "";
+                tableLogOnInfo.ConnectionInfo.Password = "";
+
                 FormReportViewer reportViewer = new FormReportViewer();
                 CrystalReportOutPutOrder reportOutPutOrder = new CrystalReportOutPutOrder();
+                for(int i = 0; i < reportOutPutOrder.Database.Tables.Count; i++)
+                {
+                    CrystalDecisions.CrystalReports.Engine.Table table = reportOutPutOrder.Database.Tables[i];
+                    table.ApplyLogOnInfo(tableLogOnInfo);
+                }
+
                 reportOutPutOrder.DataDefinition.FormulaFields["CreatedDate"].Text = "'" + orderInfo.CreatedDate.ToString("dd/MM/yyyy") +"'";
                 reportOutPutOrder.DataDefinition.FormulaFields["AgentName"].Text = "'" + agentInfo.AgentName + "'";
                 reportOutPutOrder.DataDefinition.FormulaFields["AgentTelephone"].Text = "'" + agentInfo.Telephone + "'";
