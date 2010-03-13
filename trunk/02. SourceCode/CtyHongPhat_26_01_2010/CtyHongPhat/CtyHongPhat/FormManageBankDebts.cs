@@ -222,5 +222,10 @@ namespace CtyHongPhat
                 this.BindListBankDebtNotCondition();
             else this.BindListBankDebt();
         }
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            BindListBankDebt();
+        }
     }
 }
