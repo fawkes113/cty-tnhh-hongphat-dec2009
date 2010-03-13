@@ -853,6 +853,21 @@ namespace CtyHongPhat.Utility
                 return null;
             }
         }
+        public ArrayList BankDebtGetAllNotCondition()
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return BankDebtController.GetAllNotCondition(conn);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
 
         public BankDebtInfo BankDebtGetById(int bankDebtId)
         {

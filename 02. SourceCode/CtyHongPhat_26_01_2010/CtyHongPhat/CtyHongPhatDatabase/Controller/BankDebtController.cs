@@ -13,11 +13,20 @@ namespace CtyHongPhatDatabase.Controller
     {
         public static ArrayList GetAll(SqlConnection conn)
         {
-            string sqlCmd = "SELECT * FROM BANK_DEBTS WHERE DELETED = 0 ORDER BY BORROWDATE";
+            string sqlCmd = "SELECT * FROM BANK_DEBTS WHERE DELETED = 0 ORDER BY BORROWDATE asc";
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
             return CBO.FillCollection(comm.ExecuteReader(), typeof(BankDebtInfo));
         }
+
+        public static ArrayList GetAllNotCondition(SqlConnection conn)
+        {
+            string sqlCmd = "SELECT * FROM BANK_DEBTS order by deleted asc";
+            conn.Open();
+            SqlCommand comm = new SqlCommand(sqlCmd, conn);
+            return CBO.FillCollection(comm.ExecuteReader(), typeof(BankDebtInfo));
+        }
+
         public static ArrayList GetAllHaveOrderBy(SqlConnection conn, string OrderColumn, string OrderType)
         {
             string sqlCmd = "SELECT * FROM BANK_DEBTS WHERE DELETED = 0 ORDER BY " + OrderColumn + " " + OrderType;
@@ -70,7 +79,7 @@ namespace CtyHongPhatDatabase.Controller
                 sqlWhere = "CONVERT(varchar(10), " + columnName + ",103)=" + MiscUtility.DateTimeToString((DateTime)columnValue);
             else
                 sqlWhere = columnName + " = " + columnValue;
-            string sqlCmd = "SELECT top 1 * FROM BANK_DEBTS WHERE " + sqlWhere + " AND DELETED = 0";
+            string sqlCmd = "SELECT top 1 * FROM BANK_DEBTS WHERE " + sqlWhere;
 
             conn.Open();
             SqlCommand comm = new SqlCommand(sqlCmd, conn);
