@@ -65,6 +65,42 @@ namespace CtyHongPhat
             }
         }
 
+        private void BindListBankDebtNotCondition()
+        {
+            this.dataGridViewListBankDebts.DataSource = null;
+            this.dataGridViewListBankDebts.Rows.Clear();
+
+            try
+            {
+                ArrayList listBanksDebt = database.BankDebtGetAllNotCondition();
+                if (listBanksDebt != null && listBanksDebt.Count > 0)
+                {
+                    string Note = "";
+                    for (int i = 0; i < listBanksDebt.Count; i++)
+                    {
+                        BankDebtInfo bankDebtInfo = (BankDebtInfo)listBanksDebt[i];
+                        if (bankDebtInfo.Deleted == 1) Note = "Đã trả rồi";
+                        else Note = "";
+
+                        this.dataGridViewListBankDebts.Rows.Add(false,
+                            bankDebtInfo.BankDebtId,
+                            bankDebtInfo.BankName,
+                            bankDebtInfo.BorrowDate.ToString("dd/MM/yyyy"),
+                            bankDebtInfo.MaturityDate.ToString("dd/MM/yyyy"),
+                            bankDebtInfo.InterestRate,
+                            NumberViewer.InsertComma(bankDebtInfo.DebtAmount.ToString()),
+                            NumberViewer.InsertComma(bankDebtInfo.PaidAmount.ToString()),
+                            Note
+                            );
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Error(this, ex.ToString());
+            }
+        }
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             FormAddBankDebt formAddBankDebt = new FormAddBankDebt(this.employeeName);
@@ -83,13 +119,16 @@ namespace CtyHongPhat
                     int bankDebtId = int.Parse(selectedRow.Cells[ColumnBankDebtId.Index].Value.ToString());
                     BankDebtInfo bankDebtInfo = database.BankDebtGetById(bankDebtId);
 
+                    if (bankDebtInfo.Deleted == 1) this.groupBoxInfoBankDebt.Enabled = false;
+                    else this.groupBoxInfoBankDebt.Enabled = true;
+
                     decimal rateAmount = Math.Round(((bankDebtInfo.DebtAmount - bankDebtInfo.PaidAmount) * (bankDebtInfo.InterestRate / 100)),2);
                     this.textBoxBankName.Text = bankDebtInfo.BankName;
                     this.textBoxBorrowDate.Text = bankDebtInfo.BorrowDate.ToString("dd/MM/yyyy");
                     this.textBoxDebtAmount.Text = NumberViewer.InsertComma(bankDebtInfo.DebtAmount.ToString());
                     this.textBoxMaturityDate.Text = bankDebtInfo.MaturityDate.ToString("dd/MM/yyyy");
                     this.textBoxPaidAmount.Text = NumberViewer.InsertComma(bankDebtInfo.PaidAmount.ToString());
-                    this.textBoxRateAmount.Text = NumberViewer.InsertComma(rateAmount.ToString());
+                    this.numericUpDownRateAmount.Value = rateAmount;
                     this.labelBankDebtId.Text = bankDebtId.ToString();
 
                     ArrayList listBankInterestRate = database.BankInterestRateGetAllByBankDebtId(bankDebtId);
@@ -119,6 +158,11 @@ namespace CtyHongPhat
 
         private void buttonPayDebt_Click(object sender, EventArgs e)
         {
+            if ((decimal.Parse(textBoxDebtAmount.Text) - decimal.Parse(textBoxPaidAmount.Text)) < this.numericUpDownPayAmount.Value)
+            {
+                MessageBox.Error(this, "Số tiền trả lớn hơn số tiền nợ");
+                return;
+            }
                 try
                 {
                     int bankDebtId = int.Parse(labelBankDebtId.Text);
@@ -146,6 +190,7 @@ namespace CtyHongPhat
                         bankDebtInfo.PaidAmount += this.numericUpDownPayAmount.Value;
                         bankDebtInfo.ModifiedBy = this.employeeName;
                         bankDebtInfo.ModifiedDate = DateTime.Now;
+                    if (bankDebtInfo.DebtAmount == bankDebtInfo.PaidAmount) bankDebtInfo.Deleted = 1;
                         database.BankDebtUpdate(bankDebtInfo);
 
                         ArrayList listBankInterestRate = database.BankInterestRateGetAllByBankDebtId(bankDebtId);
@@ -173,7 +218,9 @@ namespace CtyHongPhat
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (((CheckBox)sender).Checked)
+                this.BindListBankDebtNotCondition();
+            else this.BindListBankDebt();
         }
     }
 }

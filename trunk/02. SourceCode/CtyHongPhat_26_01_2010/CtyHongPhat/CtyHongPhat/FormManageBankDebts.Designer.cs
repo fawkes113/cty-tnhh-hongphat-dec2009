@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.groupBoxListBankDebts = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dataGridViewListBankDebts = new System.Windows.Forms.DataGridView();
             this.ColumnCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -47,7 +47,9 @@
             this.ColumnDebtAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPaidAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.b = new System.Windows.Forms.GroupBox();
+            this.groupBoxInfoBankDebt = new System.Windows.Forms.GroupBox();
+            this.numericUpDownRateAmount = new System.Windows.Forms.NumericUpDown();
+            this.labelBankDebtId = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.buttonPayDebt = new System.Windows.Forms.Button();
@@ -61,7 +63,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDownPayAmount = new System.Windows.Forms.NumericUpDown();
-            this.textBoxRateAmount = new System.Windows.Forms.TextBox();
             this.textBoxBorrowDate = new System.Windows.Forms.TextBox();
             this.textBoxMaturityDate = new System.Windows.Forms.TextBox();
             this.textBoxPaidAmount = new System.Windows.Forms.TextBox();
@@ -75,27 +76,27 @@
             this.ColumnRateAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPayAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnIRNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelBankDebtId = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxListBankDebts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListBankDebts)).BeginInit();
-            this.b.SuspendLayout();
+            this.groupBoxInfoBankDebt.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRateAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPayAmount)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListInterestRate)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupBoxListBankDebts
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBoxListBankDebts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.dataGridViewListBankDebts);
-            this.groupBox1.Location = new System.Drawing.Point(15, 14);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(965, 286);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Danh sách nợ ngân hàng";
+            this.groupBoxListBankDebts.Controls.Add(this.checkBox1);
+            this.groupBoxListBankDebts.Controls.Add(this.dataGridViewListBankDebts);
+            this.groupBoxListBankDebts.Location = new System.Drawing.Point(15, 14);
+            this.groupBoxListBankDebts.Name = "groupBoxListBankDebts";
+            this.groupBoxListBankDebts.Size = new System.Drawing.Size(965, 286);
+            this.groupBoxListBankDebts.TabIndex = 0;
+            this.groupBoxListBankDebts.TabStop = false;
+            this.groupBoxListBankDebts.Text = "Danh sách nợ ngân hàng";
             // 
             // checkBox1
             // 
@@ -157,16 +158,16 @@
             // 
             // ColumnBorrowDate
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnBorrowDate.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnBorrowDate.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnBorrowDate.HeaderText = "Ngày vay";
             this.ColumnBorrowDate.Name = "ColumnBorrowDate";
             this.ColumnBorrowDate.ReadOnly = true;
             // 
             // MaturityDate
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaturityDate.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaturityDate.DefaultCellStyle = dataGridViewCellStyle2;
             this.MaturityDate.HeaderText = "Ngày đáo hạn";
             this.MaturityDate.Name = "MaturityDate";
             this.MaturityDate.ReadOnly = true;
@@ -174,16 +175,16 @@
             // 
             // ColumnInterestRate
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnInterestRate.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnInterestRate.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColumnInterestRate.HeaderText = "Lãi suất";
             this.ColumnInterestRate.Name = "ColumnInterestRate";
             this.ColumnInterestRate.ReadOnly = true;
             // 
             // ColumnDebtAmount
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnDebtAmount.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnDebtAmount.DefaultCellStyle = dataGridViewCellStyle4;
             this.ColumnDebtAmount.HeaderText = "Tiền vay";
             this.ColumnDebtAmount.Name = "ColumnDebtAmount";
             this.ColumnDebtAmount.ReadOnly = true;
@@ -191,8 +192,8 @@
             // 
             // ColumnPaidAmount
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnPaidAmount.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnPaidAmount.DefaultCellStyle = dataGridViewCellStyle5;
             this.ColumnPaidAmount.HeaderText = "Đã trả";
             this.ColumnPaidAmount.Name = "ColumnPaidAmount";
             this.ColumnPaidAmount.ReadOnly = true;
@@ -205,36 +206,59 @@
             this.ColumnNote.Name = "ColumnNote";
             this.ColumnNote.ReadOnly = true;
             // 
-            // b
+            // groupBoxInfoBankDebt
             // 
-            this.b.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBoxInfoBankDebt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.b.Controls.Add(this.labelBankDebtId);
-            this.b.Controls.Add(this.label11);
-            this.b.Controls.Add(this.label10);
-            this.b.Controls.Add(this.buttonPayDebt);
-            this.b.Controls.Add(this.label9);
-            this.b.Controls.Add(this.label8);
-            this.b.Controls.Add(this.label6);
-            this.b.Controls.Add(this.label5);
-            this.b.Controls.Add(this.label3);
-            this.b.Controls.Add(this.label7);
-            this.b.Controls.Add(this.label4);
-            this.b.Controls.Add(this.label2);
-            this.b.Controls.Add(this.label1);
-            this.b.Controls.Add(this.numericUpDownPayAmount);
-            this.b.Controls.Add(this.textBoxRateAmount);
-            this.b.Controls.Add(this.textBoxBorrowDate);
-            this.b.Controls.Add(this.textBoxMaturityDate);
-            this.b.Controls.Add(this.textBoxPaidAmount);
-            this.b.Controls.Add(this.textBoxDebtAmount);
-            this.b.Controls.Add(this.textBoxBankName);
-            this.b.Location = new System.Drawing.Point(15, 306);
-            this.b.Name = "b";
-            this.b.Size = new System.Drawing.Size(966, 146);
-            this.b.TabIndex = 1;
-            this.b.TabStop = false;
-            this.b.Text = "Thông tin nợ";
+            this.groupBoxInfoBankDebt.Controls.Add(this.numericUpDownRateAmount);
+            this.groupBoxInfoBankDebt.Controls.Add(this.labelBankDebtId);
+            this.groupBoxInfoBankDebt.Controls.Add(this.label11);
+            this.groupBoxInfoBankDebt.Controls.Add(this.label10);
+            this.groupBoxInfoBankDebt.Controls.Add(this.buttonPayDebt);
+            this.groupBoxInfoBankDebt.Controls.Add(this.label9);
+            this.groupBoxInfoBankDebt.Controls.Add(this.label8);
+            this.groupBoxInfoBankDebt.Controls.Add(this.label6);
+            this.groupBoxInfoBankDebt.Controls.Add(this.label5);
+            this.groupBoxInfoBankDebt.Controls.Add(this.label3);
+            this.groupBoxInfoBankDebt.Controls.Add(this.label7);
+            this.groupBoxInfoBankDebt.Controls.Add(this.label4);
+            this.groupBoxInfoBankDebt.Controls.Add(this.label2);
+            this.groupBoxInfoBankDebt.Controls.Add(this.label1);
+            this.groupBoxInfoBankDebt.Controls.Add(this.numericUpDownPayAmount);
+            this.groupBoxInfoBankDebt.Controls.Add(this.textBoxBorrowDate);
+            this.groupBoxInfoBankDebt.Controls.Add(this.textBoxMaturityDate);
+            this.groupBoxInfoBankDebt.Controls.Add(this.textBoxPaidAmount);
+            this.groupBoxInfoBankDebt.Controls.Add(this.textBoxDebtAmount);
+            this.groupBoxInfoBankDebt.Controls.Add(this.textBoxBankName);
+            this.groupBoxInfoBankDebt.Location = new System.Drawing.Point(15, 306);
+            this.groupBoxInfoBankDebt.Name = "groupBoxInfoBankDebt";
+            this.groupBoxInfoBankDebt.Size = new System.Drawing.Size(966, 146);
+            this.groupBoxInfoBankDebt.TabIndex = 1;
+            this.groupBoxInfoBankDebt.TabStop = false;
+            this.groupBoxInfoBankDebt.Text = "Thông tin nợ";
+            // 
+            // numericUpDownRateAmount
+            // 
+            this.numericUpDownRateAmount.DecimalPlaces = 2;
+            this.numericUpDownRateAmount.Location = new System.Drawing.Point(535, 63);
+            this.numericUpDownRateAmount.Maximum = new decimal(new int[] {
+            -727379968,
+            232,
+            0,
+            0});
+            this.numericUpDownRateAmount.Name = "numericUpDownRateAmount";
+            this.numericUpDownRateAmount.Size = new System.Drawing.Size(140, 22);
+            this.numericUpDownRateAmount.TabIndex = 5;
+            this.numericUpDownRateAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // labelBankDebtId
+            // 
+            this.labelBankDebtId.AutoSize = true;
+            this.labelBankDebtId.Location = new System.Drawing.Point(332, 25);
+            this.labelBankDebtId.Name = "labelBankDebtId";
+            this.labelBankDebtId.Size = new System.Drawing.Size(0, 16);
+            this.labelBankDebtId.TabIndex = 25;
+            this.labelBankDebtId.Visible = false;
             // 
             // label11
             // 
@@ -364,15 +388,6 @@
             this.numericUpDownPayAmount.TabIndex = 6;
             this.numericUpDownPayAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBoxRateAmount
-            // 
-            this.textBoxRateAmount.Location = new System.Drawing.Point(535, 62);
-            this.textBoxRateAmount.Name = "textBoxRateAmount";
-            this.textBoxRateAmount.ReadOnly = true;
-            this.textBoxRateAmount.Size = new System.Drawing.Size(140, 22);
-            this.textBoxRateAmount.TabIndex = 5;
-            this.textBoxRateAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // textBoxBorrowDate
             // 
             this.textBoxBorrowDate.Location = new System.Drawing.Point(535, 25);
@@ -483,8 +498,8 @@
             // 
             // ColumnRateAmount
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnRateAmount.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnRateAmount.DefaultCellStyle = dataGridViewCellStyle6;
             this.ColumnRateAmount.HeaderText = "Tiền lãi";
             this.ColumnRateAmount.Name = "ColumnRateAmount";
             this.ColumnRateAmount.ReadOnly = true;
@@ -492,8 +507,8 @@
             // 
             // ColumnPayAmount
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnPayAmount.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnPayAmount.DefaultCellStyle = dataGridViewCellStyle7;
             this.ColumnPayAmount.HeaderText = "Trả nợ";
             this.ColumnPayAmount.Name = "ColumnPayAmount";
             this.ColumnPayAmount.ReadOnly = true;
@@ -506,15 +521,6 @@
             this.ColumnIRNote.Name = "ColumnIRNote";
             this.ColumnIRNote.ReadOnly = true;
             // 
-            // labelBankDebtId
-            // 
-            this.labelBankDebtId.AutoSize = true;
-            this.labelBankDebtId.Location = new System.Drawing.Point(332, 25);
-            this.labelBankDebtId.Name = "labelBankDebtId";
-            this.labelBankDebtId.Size = new System.Drawing.Size(0, 16);
-            this.labelBankDebtId.TabIndex = 25;
-            this.labelBankDebtId.Visible = false;
-            // 
             // FormManageBankDebts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -522,17 +528,18 @@
             this.ClientSize = new System.Drawing.Size(1102, 712);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.b);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxInfoBankDebt);
+            this.Controls.Add(this.groupBoxListBankDebts);
             this.Font = new System.Drawing.Font("Tahoma", 9.25F);
             this.Name = "FormManageBankDebts";
             this.Text = "FormManageBankDebts";
             this.Load += new System.EventHandler(this.FormManageBankDebts_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxListBankDebts.ResumeLayout(false);
+            this.groupBoxListBankDebts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListBankDebts)).EndInit();
-            this.b.ResumeLayout(false);
-            this.b.PerformLayout();
+            this.groupBoxInfoBankDebt.ResumeLayout(false);
+            this.groupBoxInfoBankDebt.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRateAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPayAmount)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListInterestRate)).EndInit();
@@ -542,8 +549,8 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox b;
+        private System.Windows.Forms.GroupBox groupBoxListBankDebts;
+        private System.Windows.Forms.GroupBox groupBoxInfoBankDebt;
         private System.Windows.Forms.DataGridView dataGridViewListBankDebts;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -558,7 +565,6 @@
         private System.Windows.Forms.TextBox textBoxDebtAmount;
         private System.Windows.Forms.TextBox textBoxBankName;
         private System.Windows.Forms.TextBox textBoxBorrowDate;
-        private System.Windows.Forms.TextBox textBoxRateAmount;
         private System.Windows.Forms.NumericUpDown numericUpDownPayAmount;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -583,5 +589,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPaidAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNote;
         private System.Windows.Forms.Label labelBankDebtId;
+        private System.Windows.Forms.NumericUpDown numericUpDownRateAmount;
     }
 }
