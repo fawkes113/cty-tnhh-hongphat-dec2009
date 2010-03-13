@@ -76,6 +76,7 @@
             this.ColumnRateAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPayAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnIRNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.groupBoxListBankDebts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListBankDebts)).BeginInit();
             this.groupBoxInfoBankDebt.SuspendLayout();
@@ -521,11 +522,26 @@
             this.ColumnIRNote.Name = "ColumnIRNote";
             this.ColumnIRNote.ReadOnly = true;
             // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRefresh.Image = global::CtyHongPhat.Properties.Resources.refresh;
+            this.buttonRefresh.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonRefresh.Location = new System.Drawing.Point(1000, 122);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(90, 56);
+            this.buttonRefresh.TabIndex = 17;
+            this.buttonRefresh.Text = "Làm mới";
+            this.buttonRefresh.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            // 
             // FormManageBankDebts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1102, 712);
+            this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.groupBoxInfoBankDebt);
@@ -590,5 +606,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNote;
         private System.Windows.Forms.Label labelBankDebtId;
         private System.Windows.Forms.NumericUpDown numericUpDownRateAmount;
+        private System.Windows.Forms.Button buttonRefresh;
     }
 }
