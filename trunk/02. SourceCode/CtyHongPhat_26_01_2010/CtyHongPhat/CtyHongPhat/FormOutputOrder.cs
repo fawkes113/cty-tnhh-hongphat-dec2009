@@ -473,11 +473,11 @@ namespace CtyHongPhat
                 }
 
                 CrystalDecisions.Shared.TableLogOnInfo tableLogOnInfo = new CrystalDecisions.Shared.TableLogOnInfo();
-                tableLogOnInfo.ConnectionInfo.ServerName = ".\\sqlexpress";
-                tableLogOnInfo.ConnectionInfo.DatabaseName = "CtyHongPhat_19_01_2010";
+                tableLogOnInfo.ConnectionInfo.ServerName = Config.DataSource;
+                tableLogOnInfo.ConnectionInfo.DatabaseName = Config.InitialCatalog;
                 tableLogOnInfo.ConnectionInfo.IntegratedSecurity = true;
-                tableLogOnInfo.ConnectionInfo.UserID = "";
-                tableLogOnInfo.ConnectionInfo.Password = "";
+                tableLogOnInfo.ConnectionInfo.UserID = Config.UserName;
+                tableLogOnInfo.ConnectionInfo.Password = Config.Password;
 
                 FormReportViewer reportViewer = new FormReportViewer();
                 CrystalReportOutPutOrder reportOutPutOrder = new CrystalReportOutPutOrder();

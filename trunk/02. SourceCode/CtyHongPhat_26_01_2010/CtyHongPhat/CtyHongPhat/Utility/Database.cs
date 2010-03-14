@@ -21,7 +21,8 @@ namespace CtyHongPhat.Utility
             try
             {
                 //string connStr = "Data Source=" + Config.DataSource + ";Initial Catalog=" + Config.InitialCatalog + ";User ID=" + Config.UserName + ";Password=" + Config.Password;                
-                string connStr = "Data Source=.;Initial Catalog=HongPhat;Integrated Security=True";
+                //string connStr = "Data Source=.\\sqlexpress;Initial Catalog=CtyHongPhat_19_01_2010;Integrated Security=True";
+                string connStr = "Data Source=" + Config.DataSource + ";Initial Catalog=" + Config.InitialCatalog + ";User ID=" + Config.UserName + ";Password=" + Config.Password;                
                 return new SqlConnection(connStr);
             }
             catch (System.Exception e)
@@ -428,6 +429,40 @@ namespace CtyHongPhat.Utility
         }
         #endregion
 
+        #region OrderBuyDetails
+        public int OrderBuyDetailsAdd(OrderBuyDetailsInfo orderBuyDetailsInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return OrderBuyDetailsController.Insert(conn, orderBuyDetailsInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return -1;
+            }
+        }
+
+        public ArrayList OrderBuyDetailsGetAllByOrderId(int orderId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return OrderBuyDetailsController.GetByColumns(conn, "OrderId", orderId);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+        #endregion
+
         #region OrderDetails
         public int OrderDetailsAdd(OrderDetailsInfo orderDetailsInfo)
         {
@@ -574,7 +609,54 @@ namespace CtyHongPhat.Utility
                 return null;
             }
         }
+        public int PartnerAdd(PartnersInfo partnersInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return PartnersController.Insert(conn, partnersInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return -1;
+            }
+        }
+        public bool PartnerUpdate(PartnersInfo partnersInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    PartnersController.Update(conn, partnersInfo);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return false;
+            }
+        }
 
+        public bool PartnerDelete(int partnerId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    PartnersController.Delete(conn, partnerId);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return false;
+            }
+        }
         #endregion
 
         #region ReturnedItemDetails
@@ -680,6 +762,38 @@ namespace CtyHongPhat.Utility
         #endregion
 
         #region User
+        public bool CheckUserPassword(string userName, string password)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return UserController.CheckUserPassword(conn, userName, password);
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return false;
+            }
+        }
+
+        public bool ChangePassword(string userName, string oldPassWord, string newPassWord)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return UserController.ChangePassword(conn, userName, oldPassWord, newPassWord);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return false;
+            }
+        }
+
         #endregion
 
         #region Common

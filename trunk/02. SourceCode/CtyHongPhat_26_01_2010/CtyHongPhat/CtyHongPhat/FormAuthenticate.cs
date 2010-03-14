@@ -28,11 +28,18 @@ namespace CtyHongPhat
         private bool TestConnection()
         {
             string connString = string.Format("Data Source={0}; Initial Catalog={1}; User ID={2}; Password={3}",
-                tbxDatabase.Text.Trim(),
+                tbxServer.Text.Trim(),
                 tbxDatabase.Text.Trim(),
                 tbxUsername.Text.Trim(),
                 tbxPassword.Text.Trim()
                 );
+            /*string connString = string.Format("Data Source={0}; Initial Catalog={1}; Integrated Security=True; User ID={2}; Password={3}; ",
+                tbxServer.Text.Trim(),
+                tbxDatabase.Text.Trim(),
+                tbxUsername.Text.Trim(),
+                tbxPassword.Text.Trim()
+                );*/
+
             SqlConnection sqlConn = new SqlConnection(connString);
 
             try

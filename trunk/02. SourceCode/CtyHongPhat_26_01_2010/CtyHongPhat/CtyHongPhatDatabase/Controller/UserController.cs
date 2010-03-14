@@ -159,7 +159,7 @@ namespace CtyHongPhatDatabase.Controller
             comm.ExecuteNonQuery();
         }
 
-        public static bool CheckUserPassword(string user, string password)
+        public static bool CheckUserPassword(SqlConnection conn, string user, string password)
         {
             password = password.Trim().ToUpper();
             if (password.Length < 10)
@@ -169,18 +169,17 @@ namespace CtyHongPhatDatabase.Controller
             user = user.ToUpper();
 
             //get userinfo and check password
-            /*UsersInfo ui = GetByColumnsTop1(conn,
-               ColumnsName.NAME, user,
-               ColumnsName.PASSWORD, password);
+            UsersInfo ui = GetByColumnsTop1(conn,
+               "UserName", user,
+               "UserPassword", password);
 
-            if (ui != null && ui.NAME == user && ui.PASSWORD == password && ui.DELETED == 0)
-                return true;*/
-
-            //return false;
+            if(ui != null && ui.UserName == user && ui.UserPassword == password && ui.Deleted == 0)
             return true;
+
+            return false;
         }
 
-        public static bool ChangePassword(string user, string passwordOld, string passwordNew)
+        public static bool ChangePassword(SqlConnection conn, string user, string passwordOld, string passwordNew)
         {
             passwordOld = passwordOld.ToUpper();
             if (passwordOld.Length < 10)
@@ -195,20 +194,19 @@ namespace CtyHongPhatDatabase.Controller
             user = user.ToUpper();
 
             //get userinfo, check password and update password 
-            /*
+            
             UsersInfo ui = GetByColumnsTop1(conn,
-               ColumnsName.NAME, user,
-               ColumnsName.PASSWORD, passwordOld);
+               "UserName", user,
+               "UserPassword", passwordOld);
 
-            if (ui != null && ui.NAME == user && ui.PASSWORD == passwordOld && ui.DELETED == 0)
+            if (ui != null && ui.UserName == user && ui.UserPassword == passwordOld && ui.Deleted == 0)
             {
-                string sqlCmd = string.Format("UPDATE USERS SET PASSWORD = '{0}' WHERE USER_ID = {1}", passwordNew, ui.USER_ID);
-                SQLHelper.ExecCmdNonQuery(sqlCmd, conn);
-
+                //string sqlCmd = string.Format("UPDATE USERS SET PASSWORD = '{0}' WHERE USER_ID = {1}", passwordNew, ui.UserId);
+                //SQLHelper.ExecCmdNonQuery(sqlCmd, conn);
+                ui.UserPassword = passwordNew;
+                Update(conn, ui);
                 return true;
             }
-            */
-
             return false;
         }
 
@@ -222,14 +220,16 @@ namespace CtyHongPhatDatabase.Controller
             param = new SqlParameter();
             param.ParameterName = "@UserName";
             param.SqlDbType = SqlDbType.NVarChar;
-            param.Value = objBO.UserName;
+            param.Value = objBO.UserName.ToUpper().Trim();
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
+            string UserPassword = objBO.UserPassword.ToUpper().Trim();
+            UserPassword = new EncodeHVT.EncryptHVClass().MD8PWD(ref UserPassword);
             param = new SqlParameter();
             param.ParameterName = "@UserPassword";
             param.SqlDbType = SqlDbType.NVarChar;
-            param.Value = objBO.UserPassword;
+            param.Value =UserPassword;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
@@ -266,14 +266,16 @@ namespace CtyHongPhatDatabase.Controller
             param = new SqlParameter();
             param.ParameterName = "@UserName";
             param.SqlDbType = SqlDbType.NVarChar;
-            param.Value = objBO.UserName;
+            param.Value = objBO.UserName.ToUpper().Trim();
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
+            string UserPassword = objBO.UserPassword.ToUpper().Trim();
+            UserPassword = new EncodeHVT.EncryptHVClass().MD8PWD(ref UserPassword);
             param = new SqlParameter();
             param.ParameterName = "@UserPassword";
             param.SqlDbType = SqlDbType.NVarChar;
-            param.Value = objBO.UserPassword;
+            param.Value = UserPassword;
             param.Direction = ParameterDirection.Input;
             comm.Parameters.Add(param);
 
