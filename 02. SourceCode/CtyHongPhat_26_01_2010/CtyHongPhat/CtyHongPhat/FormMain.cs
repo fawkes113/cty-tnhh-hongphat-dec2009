@@ -59,11 +59,11 @@ namespace CtyHongPhat
 
         private void ToolStripMenuItemInputOrder_Click(object sender, EventArgs e)
         {
-            if (AddUniqueForm(typeof(FormInputOrder)))
+            /*if (AddUniqueForm(typeof(FormInputOrder)))
             {
                 FormInputOrder formInputOrder = new FormInputOrder(this.userName);
                 this.tabControlMain.TabPages.Add(formInputOrder);
-            }
+            }*/
         }
 
         private void ToolStripMenuItemListItems_Click(object sender, EventArgs e)

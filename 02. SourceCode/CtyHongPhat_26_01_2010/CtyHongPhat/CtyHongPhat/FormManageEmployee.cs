@@ -194,8 +194,19 @@ namespace CtyHongPhat
                     }
 
                     FormReportViewer reportViewer = new FormReportViewer();
+                    CrystalDecisions.Shared.TableLogOnInfo tableLogOnInfo = new CrystalDecisions.Shared.TableLogOnInfo();
+                    tableLogOnInfo.ConnectionInfo.ServerName = Config.DataSource;
+                    tableLogOnInfo.ConnectionInfo.DatabaseName = Config.InitialCatalog;
+                    tableLogOnInfo.ConnectionInfo.IntegratedSecurity = true;
+                    tableLogOnInfo.ConnectionInfo.UserID = Config.UserName;
+                    tableLogOnInfo.ConnectionInfo.Password = Config.Password;
 
                     CrystalReportListEmployees crystalReportListEmployees = new CrystalReportListEmployees();
+                    for (int i = 0; i < crystalReportListEmployees.Database.Tables.Count; i++)
+                    {
+                        CrystalDecisions.CrystalReports.Engine.Table table = crystalReportListEmployees.Database.Tables[i];
+                        table.ApplyLogOnInfo(tableLogOnInfo);
+                    }
                     crystalReportListEmployees.SetDataSource(listEmployeesViews);
                     crystalReportListEmployees.DataDefinition.FormulaFields["f_printdate"].Text = "'" + DateTime.Now.ToString("dd/MM/yyyy") + "'";
 

@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonInsert = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
@@ -53,7 +54,6 @@
             this.ColumnPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonPrint = new System.Windows.Forms.Button();
-            this.buttonRefresh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSalary)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -80,17 +80,31 @@
             this.groupBox1.Controls.Add(this.textBoxName);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1105, 156);
+            this.groupBox1.Size = new System.Drawing.Size(1072, 156);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhân viên";
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRefresh.Image = global::CtyHongPhat.Properties.Resources.refresh;
+            this.buttonRefresh.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonRefresh.Location = new System.Drawing.Point(902, 94);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(90, 56);
+            this.buttonRefresh.TabIndex = 17;
+            this.buttonRefresh.Text = "Làm mới";
+            this.buttonRefresh.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // buttonDelete
             // 
             this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelete.Image = global::CtyHongPhat.Properties.Resources.delete;
             this.buttonDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonDelete.Location = new System.Drawing.Point(779, 94);
+            this.buttonDelete.Location = new System.Drawing.Point(746, 94);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(94, 56);
             this.buttonDelete.TabIndex = 12;
@@ -104,7 +118,7 @@
             this.buttonInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonInsert.Image = global::CtyHongPhat.Properties.Resources.select;
             this.buttonInsert.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonInsert.Location = new System.Drawing.Point(779, 20);
+            this.buttonInsert.Location = new System.Drawing.Point(746, 20);
             this.buttonInsert.Name = "buttonInsert";
             this.buttonInsert.Size = new System.Drawing.Size(97, 56);
             this.buttonInsert.TabIndex = 11;
@@ -118,7 +132,7 @@
             this.buttonUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonUpdate.Image = global::CtyHongPhat.Properties.Resources.modify;
             this.buttonUpdate.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonUpdate.Location = new System.Drawing.Point(935, 20);
+            this.buttonUpdate.Location = new System.Drawing.Point(902, 20);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(90, 56);
             this.buttonUpdate.TabIndex = 10;
@@ -226,7 +240,7 @@
             this.groupBox2.Controls.Add(this.dataGridViewListEmployees);
             this.groupBox2.Location = new System.Drawing.Point(13, 175);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1105, 369);
+            this.groupBox2.Size = new System.Drawing.Size(1072, 369);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách nhân viên";
@@ -251,7 +265,7 @@
             this.dataGridViewListEmployees.Name = "dataGridViewListEmployees";
             this.dataGridViewListEmployees.RowHeadersVisible = false;
             this.dataGridViewListEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewListEmployees.Size = new System.Drawing.Size(1092, 342);
+            this.dataGridViewListEmployees.Size = new System.Drawing.Size(1059, 342);
             this.dataGridViewListEmployees.TabIndex = 0;
             this.dataGridViewListEmployees.SelectionChanged += new System.EventHandler(this.dataGridViewListEmployees_SelectionChanged);
             // 
@@ -303,7 +317,7 @@
             this.buttonPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonPrint.Image = global::CtyHongPhat.Properties.Resources.Printer;
             this.buttonPrint.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonPrint.Location = new System.Drawing.Point(1022, 561);
+            this.buttonPrint.Location = new System.Drawing.Point(995, 561);
             this.buttonPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(90, 56);
@@ -313,25 +327,11 @@
             this.buttonPrint.UseVisualStyleBackColor = true;
             this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
-            // buttonRefresh
-            // 
-            this.buttonRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRefresh.Image = global::CtyHongPhat.Properties.Resources.refresh;
-            this.buttonRefresh.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonRefresh.Location = new System.Drawing.Point(935, 94);
-            this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(90, 56);
-            this.buttonRefresh.TabIndex = 17;
-            this.buttonRefresh.Text = "Làm mới";
-            this.buttonRefresh.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonRefresh.UseVisualStyleBackColor = true;
-            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
-            // 
             // FormManageEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1130, 642);
+            this.ClientSize = new System.Drawing.Size(1097, 642);
             this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
