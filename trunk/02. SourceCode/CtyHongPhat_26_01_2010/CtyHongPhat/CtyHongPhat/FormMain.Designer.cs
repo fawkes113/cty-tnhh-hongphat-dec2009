@@ -38,11 +38,12 @@
             this.ToolStripMenuItemListItems = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemListOrders = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemManagePacks = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemManageBankDebt = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemDebt = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemMagateEmployee = new System.Windows.Forms.ToolStripMenuItem();
             this.báoCáoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemPrintPaySheet = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemManageBankDebt = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemManagePartner = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,7 +107,8 @@
             this.ToolStripMenuItemListItems,
             this.ToolStripMenuItemListOrders,
             this.ToolStripMenuItemManagePacks,
-            this.ToolStripMenuItemManageBankDebt});
+            this.ToolStripMenuItemManageBankDebt,
+            this.ToolStripMenuItemManagePartner});
             this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
             this.ToolStripMenuItem1.Size = new System.Drawing.Size(103, 20);
             this.ToolStripMenuItem1.Text = "Xuất nhập hàng";
@@ -146,6 +148,13 @@
             this.ToolStripMenuItemManagePacks.Text = "Quản lý bao bì";
             this.ToolStripMenuItemManagePacks.Click += new System.EventHandler(this.ToolStripMenuItemManagePacks_Click);
             // 
+            // ToolStripMenuItemManageBankDebt
+            // 
+            this.ToolStripMenuItemManageBankDebt.Name = "ToolStripMenuItemManageBankDebt";
+            this.ToolStripMenuItemManageBankDebt.Size = new System.Drawing.Size(192, 22);
+            this.ToolStripMenuItemManageBankDebt.Text = "Quản lý nợ ngân hàng";
+            this.ToolStripMenuItemManageBankDebt.Click += new System.EventHandler(this.ToolStripMenuItemManageBankDebt_Click);
+            // 
             // ToolStripMenuItemDebt
             // 
             this.ToolStripMenuItemDebt.Name = "ToolStripMenuItemDebt";
@@ -175,12 +184,12 @@
             this.ToolStripMenuItemPrintPaySheet.Text = "In bảng lương";
             this.ToolStripMenuItemPrintPaySheet.Click += new System.EventHandler(this.ToolStripMenuItemPrintPaySheet_Click);
             // 
-            // ToolStripMenuItemManageBankDebt
+            // ToolStripMenuItemManagePartner
             // 
-            this.ToolStripMenuItemManageBankDebt.Name = "ToolStripMenuItemManageBankDebt";
-            this.ToolStripMenuItemManageBankDebt.Size = new System.Drawing.Size(192, 22);
-            this.ToolStripMenuItemManageBankDebt.Text = "Quản lý nợ ngân hàng";
-            this.ToolStripMenuItemManageBankDebt.Click += new System.EventHandler(this.ToolStripMenuItemManageBankDebt_Click);
+            this.ToolStripMenuItemManagePartner.Name = "ToolStripMenuItemManagePartner";
+            this.ToolStripMenuItemManagePartner.Size = new System.Drawing.Size(192, 22);
+            this.ToolStripMenuItemManagePartner.Text = "Quản lý nhà cung cấp";
+            this.ToolStripMenuItemManagePartner.Click += new System.EventHandler(this.ToolStripMenuItemManagePartner_Click);
             // 
             // FormMain
             // 
@@ -220,5 +229,6 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemPrintPaySheet;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemManagePacks;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemManageBankDebt;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemManagePartner;
     }
 }

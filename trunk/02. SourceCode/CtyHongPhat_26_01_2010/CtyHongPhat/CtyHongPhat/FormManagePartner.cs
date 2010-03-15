@@ -24,8 +24,19 @@ namespace CtyHongPhat
         {
             InitializeComponent();
             this.employeeName = employeeName;
+            
         }
 
+        private void Init()
+        {
+            this.BindData();
+
+            this.textBoxAddress.Text = "";
+            this.textBoxName.Text = "";
+            this.textBoxPhone.Text = "";
+            this.numericUpDownDebtAmount.Enabled = true;
+            this.numericUpDownDebtAmount.Value = 0;
+        }
         private void BindData()
         {
             this.dataGridViewListPartners.DataSource = null;
@@ -56,6 +67,11 @@ namespace CtyHongPhat
             }
         }
 
+        private void FormManagePartner_Load(object sender, EventArgs e)
+        {
+            this.Init();
+            this.textBoxName.Focus();
+        }
         private void buttonInsert_Click(object sender, EventArgs e)
         {
             try
@@ -70,7 +86,7 @@ namespace CtyHongPhat
 
                 if (partnerId < 0)
                 {
-                    MessageBox.Error(this, "Có lỗi trong quá trình thêm nhân viên");
+                    MessageBox.Error(this, "Có lỗi trong quá trình thêm nhà cung cấp");
                     return;
                 }
                 else
@@ -78,7 +94,7 @@ namespace CtyHongPhat
                     DebtInfo debtInfo = new DebtInfo();
                     debtInfo.CreateDate = DateTime.Now;
                     debtInfo.CreatedBy = this.employeeName;
-                    debtInfo.CurrentDebtValue = 0;
+                    debtInfo.CurrentDebtValue = numericUpDownDebtAmount.Value;
                     debtInfo.CustomerId = partnerId;
                     debtInfo.DebtKind = 2;
                     debtInfo.Deleted = 0;
@@ -91,14 +107,13 @@ namespace CtyHongPhat
 
                     database.DebtAdd(debtInfo);
                 }
-                this.BindData();
+                this.Init();
             }
             catch (Exception ex)
             {
                 MessageBox.Error(this, ex.ToString());
             }
         }
-
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             if (this.dataGridViewListPartners.SelectedRows != null && this.dataGridViewListPartners.SelectedRows.Count > 0)
@@ -107,7 +122,19 @@ namespace CtyHongPhat
 
                 try
                 {
-                    
+                    int partnerId = int.Parse(row.Cells[ColumnPartnerId.Index].Value.ToString());
+                    PartnersInfo partnersInfo = database.PartnersGetById(partnerId);
+
+                    partnersInfo.PhoneNumber = this.textBoxPhone.Text;
+                    partnersInfo.PartnerName = this.textBoxName.Text.Trim();
+                    partnersInfo.Address = this.textBoxAddress.Text.Trim();
+
+                    if (database.PartnerUpdate(partnersInfo))
+                    {
+                        MessageBox.Infor(this, "Cập nhật thành công");
+                        this.Init();
+                    }
+                    else MessageBox.Error(this, "Có lỗi trong quá trình cập nhật");
                 }
                 catch (Exception ex)
                 {
@@ -115,7 +142,6 @@ namespace CtyHongPhat
                 }
             }
         }
-
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < this.dataGridViewListPartners.Rows.Count; i++)
@@ -135,6 +161,29 @@ namespace CtyHongPhat
                     }
                 }
             }
+            this.Init();
         }
+        private void dataGridViewListPartners_SelectionChanged(object sender, EventArgs e)
+        {
+            if (this.dataGridViewListPartners.SelectedRows != null && this.dataGridViewListPartners.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = this.dataGridViewListPartners.SelectedRows[0];
+                int partnerId = int.Parse(row.Cells[ColumnPartnerId.Index].Value.ToString());
+
+                PartnersInfo partnerInfo = database.PartnersGetById(partnerId);
+                DebtInfo debtInfo = database.DebtGetByCustomerId(partnerId);
+                this.textBoxAddress.Text = partnerInfo.Address;
+                this.textBoxName.Text = partnerInfo.PartnerName;
+                this.textBoxPhone.Text = partnerInfo.PhoneNumber;
+                this.numericUpDownDebtAmount.Value = debtInfo.CurrentDebtValue;
+                this.numericUpDownDebtAmount.Enabled = false;
+            }
+        }
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            this.Init();
+        }
+
+       
     }
 }
