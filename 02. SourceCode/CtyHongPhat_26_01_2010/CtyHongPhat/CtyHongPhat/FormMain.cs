@@ -125,5 +125,14 @@ namespace CtyHongPhat
                 this.tabControlMain.TabPages.Add(formManageBankDebt);
             }
         }
+
+        private void ToolStripMenuItemManagePartner_Click(object sender, EventArgs e)
+        {
+            if (AddUniqueForm(typeof(FormManagePartner)))
+            {
+                FormManagePartner formManagePartner = new FormManagePartner();
+                this.tabControlMain.TabPages.Add(formManagePartner);
+            }
+        }
     }
 }

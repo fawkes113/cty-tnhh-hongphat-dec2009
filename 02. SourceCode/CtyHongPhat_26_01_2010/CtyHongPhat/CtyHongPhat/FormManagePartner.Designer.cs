@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridViewListPartners = new System.Windows.Forms.DataGridView();
             this.textBoxName = new System.Windows.Forms.TextBox();
@@ -42,6 +42,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.numericUpDownDebtAmount = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.ColumnCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnPartnerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPartnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +54,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPartners)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDebtAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -86,7 +90,8 @@
             this.dataGridViewListPartners.RowHeadersVisible = false;
             this.dataGridViewListPartners.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewListPartners.Size = new System.Drawing.Size(1059, 303);
-            this.dataGridViewListPartners.TabIndex = 0;
+            this.dataGridViewListPartners.TabIndex = 9;
+            this.dataGridViewListPartners.SelectionChanged += new System.EventHandler(this.dataGridViewListPartners_SelectionChanged);
             // 
             // textBoxName
             // 
@@ -109,7 +114,7 @@
             this.label1.Location = new System.Drawing.Point(6, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 14);
-            this.label1.TabIndex = 5;
+            this.label1.TabIndex = 20;
             this.label1.Text = "Nhà cung cấp :";
             // 
             // label5
@@ -129,7 +134,7 @@
             this.buttonUpdate.Location = new System.Drawing.Point(956, 21);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(90, 56);
-            this.buttonUpdate.TabIndex = 10;
+            this.buttonUpdate.TabIndex = 6;
             this.buttonUpdate.Text = "Cập nhật";
             this.buttonUpdate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonUpdate.UseVisualStyleBackColor = true;
@@ -143,7 +148,7 @@
             this.buttonInsert.Location = new System.Drawing.Point(800, 21);
             this.buttonInsert.Name = "buttonInsert";
             this.buttonInsert.Size = new System.Drawing.Size(97, 56);
-            this.buttonInsert.TabIndex = 11;
+            this.buttonInsert.TabIndex = 5;
             this.buttonInsert.Text = "Thêm mới";
             this.buttonInsert.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonInsert.UseVisualStyleBackColor = true;
@@ -157,7 +162,7 @@
             this.buttonDelete.Location = new System.Drawing.Point(800, 95);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(94, 56);
-            this.buttonDelete.TabIndex = 12;
+            this.buttonDelete.TabIndex = 7;
             this.buttonDelete.Text = "Xóa";
             this.buttonDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonDelete.UseVisualStyleBackColor = true;
@@ -171,15 +176,19 @@
             this.buttonRefresh.Location = new System.Drawing.Point(956, 95);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(90, 56);
-            this.buttonRefresh.TabIndex = 17;
+            this.buttonRefresh.TabIndex = 8;
             this.buttonRefresh.Text = "Làm mới";
             this.buttonRefresh.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.numericUpDownDebtAmount);
             this.groupBox1.Controls.Add(this.textBoxPhone);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.buttonRefresh);
@@ -202,7 +211,7 @@
             this.textBoxPhone.Location = new System.Drawing.Point(94, 71);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(244, 22);
-            this.textBoxPhone.TabIndex = 19;
+            this.textBoxPhone.TabIndex = 2;
             // 
             // label2
             // 
@@ -212,6 +221,38 @@
             this.label2.Size = new System.Drawing.Size(70, 14);
             this.label2.TabIndex = 18;
             this.label2.Text = "Điện thoại :";
+            // 
+            // numericUpDownDebtAmount
+            // 
+            this.numericUpDownDebtAmount.DecimalPlaces = 2;
+            this.numericUpDownDebtAmount.Location = new System.Drawing.Point(94, 112);
+            this.numericUpDownDebtAmount.Maximum = new decimal(new int[] {
+            1316134912,
+            2328,
+            0,
+            0});
+            this.numericUpDownDebtAmount.Name = "numericUpDownDebtAmount";
+            this.numericUpDownDebtAmount.Size = new System.Drawing.Size(207, 22);
+            this.numericUpDownDebtAmount.TabIndex = 3;
+            this.numericUpDownDebtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 114);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 14);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Nợ ban đầu :";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(307, 114);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 14);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "VNĐ";
             // 
             // ColumnCheck
             // 
@@ -229,26 +270,30 @@
             // 
             this.ColumnPartnerName.HeaderText = "Nhà cung cấp";
             this.ColumnPartnerName.Name = "ColumnPartnerName";
+            this.ColumnPartnerName.ReadOnly = true;
             this.ColumnPartnerName.Width = 150;
             // 
             // ColumnDebtAmount
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnDebtAmount.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnDebtAmount.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnDebtAmount.HeaderText = "Còn nợ";
             this.ColumnDebtAmount.Name = "ColumnDebtAmount";
+            this.ColumnDebtAmount.ReadOnly = true;
             this.ColumnDebtAmount.Width = 150;
             // 
             // ColumnPartnerPhone
             // 
             this.ColumnPartnerPhone.HeaderText = "Điện thoại";
             this.ColumnPartnerPhone.Name = "ColumnPartnerPhone";
+            this.ColumnPartnerPhone.ReadOnly = true;
             // 
             // ColumnPartnerAddress
             // 
             this.ColumnPartnerAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ColumnPartnerAddress.HeaderText = "Địa chỉ";
             this.ColumnPartnerAddress.Name = "ColumnPartnerAddress";
+            this.ColumnPartnerAddress.ReadOnly = true;
             // 
             // FormManagePartner
             // 
@@ -260,10 +305,12 @@
             this.Font = new System.Drawing.Font("Tahoma", 8.75F);
             this.Name = "FormManagePartner";
             this.Text = "FormManagePartner";
+            this.Load += new System.EventHandler(this.FormManagePartner_Load);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListPartners)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDebtAmount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -283,6 +330,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown numericUpDownDebtAmount;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnCheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPartnerId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPartnerName;

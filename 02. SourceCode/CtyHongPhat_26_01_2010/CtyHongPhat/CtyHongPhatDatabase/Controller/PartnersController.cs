@@ -246,7 +246,7 @@ namespace CtyHongPhatDatabase.Controller
         public static void Delete(SqlConnection conn, int id)
         {
             conn.Open();
-            SqlCommand comm = new SqlCommand("PARTNERS_Delete", conn);
+            SqlCommand comm = new SqlCommand("PARTNER_Delete", conn);
             comm.CommandType = CommandType.StoredProcedure;
 
             SqlParameter param = new SqlParameter();
