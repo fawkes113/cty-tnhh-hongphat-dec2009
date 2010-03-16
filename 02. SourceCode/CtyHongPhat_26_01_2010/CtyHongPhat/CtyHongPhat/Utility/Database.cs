@@ -115,6 +115,22 @@ namespace CtyHongPhat.Utility
             } 
         }
 
+        public int AgentKindAdd(AgentKindInfo agentKindInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return AgentKindController.Insert(conn, agentKindInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return -1;
+            }
+        }
+
         #endregion
 
         #region Agents
@@ -147,6 +163,56 @@ namespace CtyHongPhat.Utility
             {
                 System.Diagnostics.Trace.WriteLine(ex.ToString());
                 return null;
+            }
+        }
+
+        public int AgentAdd(AgentsInfo agentInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return AgentsController.Insert(conn, agentInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return -1;
+            }
+        }
+
+        public bool AgentUpdate(AgentsInfo agentInfo)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    AgentsController.Update(conn, agentInfo);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return false;
+            }
+        }
+
+        public bool AgentDelete(int agentId)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    AgentsController.Delete(conn, agentId);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return false;
             }
         }
         #endregion

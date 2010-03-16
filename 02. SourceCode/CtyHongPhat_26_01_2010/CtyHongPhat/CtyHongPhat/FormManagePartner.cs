@@ -36,6 +36,7 @@ namespace CtyHongPhat
             this.textBoxPhone.Text = "";
             this.numericUpDownDebtAmount.Enabled = true;
             this.numericUpDownDebtAmount.Value = 0;
+            this.buttonInsert.Enabled = true;
         }
         private void BindData()
         {
@@ -177,6 +178,8 @@ namespace CtyHongPhat
                 this.textBoxPhone.Text = partnerInfo.PhoneNumber;
                 this.numericUpDownDebtAmount.Value = debtInfo.CurrentDebtValue;
                 this.numericUpDownDebtAmount.Enabled = false;
+
+                this.buttonInsert.Enabled = false;
             }
         }
         private void buttonRefresh_Click(object sender, EventArgs e)
