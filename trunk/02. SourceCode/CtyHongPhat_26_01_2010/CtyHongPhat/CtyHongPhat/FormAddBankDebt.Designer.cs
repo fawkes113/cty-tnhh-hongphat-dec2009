@@ -246,6 +246,7 @@
             this.Controls.Add(this.dateTimePickerBorrowDate);
             this.Controls.Add(this.textBoxBankName);
             this.Font = new System.Drawing.Font("Tahoma", 9.25F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAddBankDebt";

@@ -216,7 +216,7 @@ namespace CtyHongPhatDatabase.Controller
             comm.Parameters.Add(param);
 
             param = new SqlParameter();
-            param.ParameterName = "@Adress";
+            param.ParameterName = "@Address";
             param.SqlDbType = SqlDbType.Text;
             param.Value = objBO.Address;
             param.Direction = ParameterDirection.Input;

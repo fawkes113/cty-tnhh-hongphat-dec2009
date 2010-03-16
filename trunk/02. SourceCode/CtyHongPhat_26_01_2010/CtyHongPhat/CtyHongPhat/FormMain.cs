@@ -130,8 +130,17 @@ namespace CtyHongPhat
         {
             if (AddUniqueForm(typeof(FormManagePartner)))
             {
-                FormManagePartner formManagePartner = new FormManagePartner();
+                FormManagePartner formManagePartner = new FormManagePartner(userName);
                 this.tabControlMain.TabPages.Add(formManagePartner);
+            }
+        }
+
+        private void ToolStripMenuItemManageAgent_Click(object sender, EventArgs e)
+        {
+            if (AddUniqueForm(typeof(FormManageAgent)))
+            {
+                FormManageAgent formManageAgent = new FormManageAgent(userName);
+                this.tabControlMain.TabPages.Add(formManageAgent);
             }
         }
     }
