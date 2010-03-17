@@ -404,7 +404,7 @@ namespace CtyHongPhat
 
                         if (payAmount < totalAmount)
                         {
-                            DebtInfo oldDebtInfo = database.DebtGetByCustomerId(agentsInfo.AgentId);
+                            DebtInfo oldDebtInfo = database.DebtGetByCustomer(agentsInfo.AgentId, 1);
                             DebtInfo newDebtInfo = new DebtInfo();
 
                             newDebtInfo.NewDebtValue = totalAmount - payAmount;

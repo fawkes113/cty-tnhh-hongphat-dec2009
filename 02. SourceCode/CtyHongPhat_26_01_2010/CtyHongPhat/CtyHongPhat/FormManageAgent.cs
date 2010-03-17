@@ -37,6 +37,7 @@ namespace CtyHongPhat
             this.textBoxName.Text = "";
             this.textBoxPhone.Text = "";
             this.textBoxAddress.Text = "";
+            this.buttonInsert.Enabled = true;
             this.numericUpDownDebtAmount.Value = 0;
 
             AgentKindInfo overAgentKindInfo = new AgentKindInfo();
@@ -73,8 +74,7 @@ namespace CtyHongPhat
                     {
                         AgentsInfo agentInfo = (AgentsInfo)listAgents[i];
                         AgentKindInfo agentKindInfo = database.AgentKindGetBy(agentInfo.AgentKindId);
-                        DebtInfo debtInfo = database.DebtGetByCustomerId(agentInfo.AgentId);
-                        //Xem lai toan bo debt lay bang customerId phai co them debtKind
+                        DebtInfo debtInfo = database.DebtGetByCustomer(agentInfo.AgentId, 1);
 
                         this.dataGridViewListAgents.Rows.Add(false,
                             agentInfo.AgentId,
@@ -167,6 +167,85 @@ namespace CtyHongPhat
             }
         }
 
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            this.BindListAgent();
+            this.init();
+            this.BindData();
+        }
 
+        private void dataGridViewListAgents_SelectionChanged(object sender, EventArgs e)
+        {
+            if (this.dataGridViewListAgents.SelectedRows != null && this.dataGridViewListAgents.SelectedRows.Count > 0)
+            {
+                this.buttonInsert.Enabled = false;
+                DataGridViewRow selectedRow = this.dataGridViewListAgents.SelectedRows[0];
+                int agentId = int.Parse(selectedRow.Cells[ColumnAgentId.Index].Value.ToString());
+
+                try
+                {
+                    AgentsInfo agentInfo = database.AgentById(agentId);
+                    DebtInfo debtInfo = database.DebtGetByCustomer(agentInfo.AgentId, 1);
+                    if (agentInfo == null) return;
+
+                    this.textBoxAddress.Text = agentInfo.Address;
+                    this.textBoxName.Text = agentInfo.AgentName;
+                    this.textBoxPhone.Text = agentInfo.Telephone;
+                    this.numericUpDownDebtAmount.Value = debtInfo.CurrentDebtValue;
+
+                    for (int i = 0; i < this.comboBoxAgentKind.Items.Count; i++)
+                    {
+                        AgentKindInfo agentKindInfo = this.comboBoxAgentKind.Items[i] as AgentKindInfo;
+                        if (agentKindInfo.AgentKindId == agentInfo.AgentKindId)
+                        {
+                            this.comboBoxAgentKind.SelectedIndex = i;
+                            i = this.comboBoxAgentKind.Items.Count;
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Error(this, ex.ToString());
+                }
+            }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < this.dataGridViewListAgents.Rows.Count; i++)
+            {
+                if ((bool)this.dataGridViewListAgents.Rows[i].Cells[ColumnCheck.Index].Value == true)
+                {
+                    DataGridViewRow row = this.dataGridViewListAgents.Rows[i];
+                    int agentId = int.Parse(row.Cells[ColumnAgentId.Index].Value.ToString());
+                    try
+                    {
+                        DebtInfo debtInfo = database.DebtGetByCustomer(agentId, 1);
+                        if (debtInfo.CurrentDebtValue > 0)
+                        {
+                            string message = "Đại lý : " + row.Cells[ColumnAgentName.Index].Value.ToString() + " vẫn còn nợ không được xóa";
+                            MessageBox.Error(this, message);
+                        }
+
+                        database.AgentDelete(agentId);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Error(this, ex.ToString());
+                    }
+
+                }
+            }
+
+            this.BindListAgent();
+            this.init();
+            this.BindData();
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

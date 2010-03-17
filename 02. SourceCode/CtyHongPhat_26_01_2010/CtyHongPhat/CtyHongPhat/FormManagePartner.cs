@@ -154,6 +154,13 @@ namespace CtyHongPhat
 
                     try
                     {
+                        DebtInfo debtInfo = database.DebtGetByCustomer(partnerId, 2);
+                        if (debtInfo.CurrentDebtValue > 0)
+                        {
+                            string message = "Vẫn còn nợ nhà cung cấp " + row.Cells[ColumnPartnerName.Index].Value.ToString();
+                            MessageBox.Error(this, message);
+                        }
+                        else 
                         database.PartnerDelete(partnerId);
                     }
                     catch (Exception ex)
@@ -172,7 +179,7 @@ namespace CtyHongPhat
                 int partnerId = int.Parse(row.Cells[ColumnPartnerId.Index].Value.ToString());
 
                 PartnersInfo partnerInfo = database.PartnersGetById(partnerId);
-                DebtInfo debtInfo = database.DebtGetByCustomerId(partnerId);
+                DebtInfo debtInfo = database.DebtGetByCustomer(partnerId, 2);
                 this.textBoxAddress.Text = partnerInfo.Address;
                 this.textBoxName.Text = partnerInfo.PartnerName;
                 this.textBoxPhone.Text = partnerInfo.PhoneNumber;
@@ -186,7 +193,5 @@ namespace CtyHongPhat
         {
             this.Init();
         }
-
-       
     }
 }

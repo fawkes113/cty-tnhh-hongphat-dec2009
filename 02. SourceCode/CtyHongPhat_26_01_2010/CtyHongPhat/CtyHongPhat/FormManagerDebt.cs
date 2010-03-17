@@ -192,7 +192,7 @@ namespace CtyHongPhat
 
                     if (orderInfo != null)
                     {
-                        DebtInfo oldDebtInfo = database.DebtGetByCustomerId(orderInfo.CustomerId);
+                        DebtInfo oldDebtInfo = database.DebtGetByCustomer(orderInfo.CustomerId, orderInfo.OrderKind);
                         oldDebtInfo.ModifiedBy = this.employeeName;
                         oldDebtInfo.ModifiedDate = DateTime.Now;
                         oldDebtInfo.Deleted = 1;
