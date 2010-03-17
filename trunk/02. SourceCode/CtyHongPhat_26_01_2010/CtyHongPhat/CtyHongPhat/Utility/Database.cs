@@ -296,6 +296,22 @@ namespace CtyHongPhat.Utility
             }
         }
 
+        public DebtInfo DebtGetByCustomer(int customerId, int debtKind)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.NewConnection())
+                {
+                    return DebtController.GetByColumnsTop1(conn, "CustomerId", customerId, "DebtKind", debtKind);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+                return null;
+            }
+        }
+
         #endregion
 
 		#region Employee

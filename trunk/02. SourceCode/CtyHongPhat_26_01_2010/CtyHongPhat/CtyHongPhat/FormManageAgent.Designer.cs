@@ -28,10 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridViewListAgents = new System.Windows.Forms.DataGridView();
+            this.ColumnCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColumnAgentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAgentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAgentKind = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDebtAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAgentPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAgentAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxAgentKind = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDownDebtAmount = new System.Windows.Forms.NumericUpDown();
@@ -45,15 +54,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.comboBoxAgentKind = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.ColumnCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColumnAgentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAgentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAgentKind = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDebtAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAgentPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAgentAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListAgents)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -95,6 +95,54 @@
             this.dataGridViewListAgents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewListAgents.Size = new System.Drawing.Size(1059, 303);
             this.dataGridViewListAgents.TabIndex = 9;
+            this.dataGridViewListAgents.SelectionChanged += new System.EventHandler(this.dataGridViewListAgents_SelectionChanged);
+            // 
+            // ColumnCheck
+            // 
+            this.ColumnCheck.HeaderText = "";
+            this.ColumnCheck.Name = "ColumnCheck";
+            this.ColumnCheck.Width = 25;
+            // 
+            // ColumnAgentId
+            // 
+            this.ColumnAgentId.HeaderText = "Mã nhà cung cấp";
+            this.ColumnAgentId.Name = "ColumnAgentId";
+            this.ColumnAgentId.Visible = false;
+            // 
+            // ColumnAgentName
+            // 
+            this.ColumnAgentName.HeaderText = "Nhà cung cấp";
+            this.ColumnAgentName.Name = "ColumnAgentName";
+            this.ColumnAgentName.ReadOnly = true;
+            this.ColumnAgentName.Width = 150;
+            // 
+            // ColumnAgentKind
+            // 
+            this.ColumnAgentKind.HeaderText = "Loại đại lý";
+            this.ColumnAgentKind.Name = "ColumnAgentKind";
+            this.ColumnAgentKind.Width = 150;
+            // 
+            // ColumnDebtAmount
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnDebtAmount.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ColumnDebtAmount.HeaderText = "Còn nợ";
+            this.ColumnDebtAmount.Name = "ColumnDebtAmount";
+            this.ColumnDebtAmount.ReadOnly = true;
+            this.ColumnDebtAmount.Width = 150;
+            // 
+            // ColumnAgentPhone
+            // 
+            this.ColumnAgentPhone.HeaderText = "Điện thoại";
+            this.ColumnAgentPhone.Name = "ColumnAgentPhone";
+            this.ColumnAgentPhone.ReadOnly = true;
+            // 
+            // ColumnAgentAddress
+            // 
+            this.ColumnAgentAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnAgentAddress.HeaderText = "Địa chỉ";
+            this.ColumnAgentAddress.Name = "ColumnAgentAddress";
+            this.ColumnAgentAddress.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -121,6 +169,23 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhà cung cấp";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 74);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 14);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Loại đại lý :";
+            // 
+            // comboBoxAgentKind
+            // 
+            this.comboBoxAgentKind.FormattingEnabled = true;
+            this.comboBoxAgentKind.Location = new System.Drawing.Point(94, 68);
+            this.comboBoxAgentKind.Name = "comboBoxAgentKind";
+            this.comboBoxAgentKind.Size = new System.Drawing.Size(244, 22);
+            this.comboBoxAgentKind.TabIndex = 23;
             // 
             // label4
             // 
@@ -182,6 +247,7 @@
             this.buttonRefresh.Text = "Làm mới";
             this.buttonRefresh.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // buttonDelete
             // 
@@ -195,6 +261,7 @@
             this.buttonDelete.Text = "Xóa";
             this.buttonDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonInsert
             // 
@@ -222,6 +289,7 @@
             this.buttonUpdate.Text = "Cập nhật";
             this.buttonUpdate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // label5
             // 
@@ -255,70 +323,6 @@
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(244, 22);
             this.textBoxName.TabIndex = 0;
-            // 
-            // comboBoxAgentKind
-            // 
-            this.comboBoxAgentKind.FormattingEnabled = true;
-            this.comboBoxAgentKind.Location = new System.Drawing.Point(94, 68);
-            this.comboBoxAgentKind.Name = "comboBoxAgentKind";
-            this.comboBoxAgentKind.Size = new System.Drawing.Size(244, 22);
-            this.comboBoxAgentKind.TabIndex = 23;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 74);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 14);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Loại đại lý :";
-            // 
-            // ColumnCheck
-            // 
-            this.ColumnCheck.HeaderText = "";
-            this.ColumnCheck.Name = "ColumnCheck";
-            this.ColumnCheck.Width = 25;
-            // 
-            // ColumnAgentId
-            // 
-            this.ColumnAgentId.HeaderText = "Mã nhà cung cấp";
-            this.ColumnAgentId.Name = "ColumnAgentId";
-            this.ColumnAgentId.Visible = false;
-            // 
-            // ColumnAgentName
-            // 
-            this.ColumnAgentName.HeaderText = "Nhà cung cấp";
-            this.ColumnAgentName.Name = "ColumnAgentName";
-            this.ColumnAgentName.ReadOnly = true;
-            this.ColumnAgentName.Width = 150;
-            // 
-            // ColumnAgentKind
-            // 
-            this.ColumnAgentKind.HeaderText = "Loại đại lý";
-            this.ColumnAgentKind.Name = "ColumnAgentKind";
-            this.ColumnAgentKind.Width = 150;
-            // 
-            // ColumnDebtAmount
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnDebtAmount.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnDebtAmount.HeaderText = "Còn nợ";
-            this.ColumnDebtAmount.Name = "ColumnDebtAmount";
-            this.ColumnDebtAmount.ReadOnly = true;
-            this.ColumnDebtAmount.Width = 150;
-            // 
-            // ColumnAgentPhone
-            // 
-            this.ColumnAgentPhone.HeaderText = "Điện thoại";
-            this.ColumnAgentPhone.Name = "ColumnAgentPhone";
-            this.ColumnAgentPhone.ReadOnly = true;
-            // 
-            // ColumnAgentAddress
-            // 
-            this.ColumnAgentAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnAgentAddress.HeaderText = "Địa chỉ";
-            this.ColumnAgentAddress.Name = "ColumnAgentAddress";
-            this.ColumnAgentAddress.ReadOnly = true;
             // 
             // FormManageAgent
             // 
