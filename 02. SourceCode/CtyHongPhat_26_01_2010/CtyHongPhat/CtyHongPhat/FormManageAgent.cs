@@ -39,6 +39,7 @@ namespace CtyHongPhat
             this.textBoxAddress.Text = "";
             this.buttonInsert.Enabled = true;
             this.numericUpDownDebtAmount.Value = 0;
+            this.numericUpDownDebtAmount.Enabled = true;
 
             AgentKindInfo overAgentKindInfo = new AgentKindInfo();
             overAgentKindInfo.AgentKindId = -1;
@@ -179,6 +180,7 @@ namespace CtyHongPhat
             if (this.dataGridViewListAgents.SelectedRows != null && this.dataGridViewListAgents.SelectedRows.Count > 0)
             {
                 this.buttonInsert.Enabled = false;
+                this.numericUpDownDebtAmount.Enabled = false;
                 DataGridViewRow selectedRow = this.dataGridViewListAgents.SelectedRows[0];
                 int agentId = int.Parse(selectedRow.Cells[ColumnAgentId.Index].Value.ToString());
 
@@ -228,7 +230,7 @@ namespace CtyHongPhat
                             MessageBox.Error(this, message);
                         }
 
-                        database.AgentDelete(agentId);
+                        database.AgentDelete(agentId, this.employeeName, DateTime.Now);
                     }
                     catch (Exception ex)
                     {
@@ -245,7 +247,52 @@ namespace CtyHongPhat
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
+            if (this.textBoxName.Text.Length <= 0)
+            {
+                MessageBox.Error(this, "Chưa nhập tên đại lý");
+                return;
+            }
 
+            if (((AgentKindInfo)this.comboBoxAgentKind.SelectedItem).AgentKindId <= 0)
+            {
+                MessageBox.Error(this, "Chưa chọn loại đại lý");
+                return;
+            }
+
+
+            if (this.dataGridViewListAgents.SelectedRows != null && this.dataGridViewListAgents.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = this.dataGridViewListAgents.SelectedRows[0];
+                int agentId = int.Parse(selectedRow.Cells[ColumnAgentId.Index].Value.ToString());
+
+                try
+                {
+                    AgentsInfo agentInfo = database.AgentById(agentId);
+                    agentInfo.AgentName = this.textBoxName.Text;
+                    agentInfo.Address = this.textBoxAddress.Text;
+                    agentInfo.Telephone = this.textBoxPhone.Text;
+                    agentInfo.AgentKindId = ((AgentKindInfo)this.comboBoxAgentKind.SelectedItem).AgentKindId;
+                    agentInfo.ModifiedBy = this.employeeName;
+                    agentInfo.ModifiedDate = DateTime.Now;
+
+                    if (database.AgentUpdate(agentInfo))
+                    {
+                        MessageBox.Infor(this, "Cập nhật thành công");
+                        this.BindListAgent();
+                        this.init();
+                        this.BindData();
+                    }
+                    else
+                    {
+                        MessageBox.Infor(this, "Có lỗi trong quá trình cập nhật");
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Error(this, ex.ToString());
+                }
+            }
         }
     }
 }

@@ -199,13 +199,13 @@ namespace CtyHongPhat.Utility
             }
         }
 
-        public bool AgentDelete(int agentId)
+        public bool AgentDelete(int agentId, string modifiedBy, DateTime modifiedDate)
         {
             try
             {
                 using (SqlConnection conn = Database.NewConnection())
                 {
-                    AgentsController.Delete(conn, agentId);
+                    AgentsController.Delete(conn, agentId, modifiedBy, modifiedDate);
                     return true;
                 }
             }
