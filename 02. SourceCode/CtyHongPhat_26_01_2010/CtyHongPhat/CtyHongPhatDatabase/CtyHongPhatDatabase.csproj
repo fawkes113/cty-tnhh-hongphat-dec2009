@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{29BA4405-D16D-49CC-912F-BEFF6AEC2826}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -54,6 +54,7 @@
     <Compile Include="Controller\AgentsController.cs" />
     <Compile Include="Controller\BuyPriceController.cs" />
     <Compile Include="Controller\BankInterestRateController.cs" />
+    <Compile Include="Controller\ExpenseController.cs" />
     <Compile Include="Controller\PackController.cs" />
     <Compile Include="Controller\BankDebtController.cs" />
     <Compile Include="Controller\DebtController.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Table\AgentsInfo.cs" />
     <Compile Include="Table\AgentKindInfo.cs" />
     <Compile Include="Table\BuyPriceInfo.cs" />
+    <Compile Include="Table\ExpenseInfo.cs" />
     <Compile Include="Table\PackInfo.cs" />
     <Compile Include="Table\BankInterestRateInfo.cs" />
     <Compile Include="Table\DebtInfo.cs" />
@@ -80,6 +82,9 @@
     <Compile Include="Table\OrderDetailsInfo.cs" />
     <Compile Include="Table\OrdersInfo.cs" />
     <Compile Include="Table\PartnersInfo.cs" />
+    <Compile Include="Table\PaySheetInfo.cs" />
+    <Compile Include="Table\ProfitCostInfo.cs" />
+    <Compile Include="Table\ProfitInfo.cs" />
     <Compile Include="Table\ReturnedItemDetailsInfo.cs" />
     <Compile Include="Table\SellPriceInfo.cs" />
     <Compile Include="Table\UsersInfo.cs" />

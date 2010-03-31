@@ -1,0 +1,59 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="private" priority="31" />
+      <Item value="decimal" priority="6" />
+      <Item value="string" priority="5" />
+      <Item value="DateTime" priority="3" />
+      <Item value="int" priority="9" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="E5AB7983-E95D-421A-954F-D34916D0B6A8/d:Utility/f:Database.cs" caret="26366" fromTop="335" />
+      <File id="d:&amp;/f:ExpenseInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ExpenseInfo.cs" caret="574" fromTop="22" />
+      <File id="d:&amp;/f:ProfitInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ProfitInfo.cs" caret="449" fromTop="16" />
+      <File id="d:&amp;/f:ProfitCostInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ProfitCostInfo.cs" caret="484" fromTop="0" />
+      <File id="d:&amp;/f:PaySheetInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?PaySheetInfo.cs" caret="1875" fromTop="39" />
+      <File id="29BA4405-D16D-49CC-912F-BEFF6AEC2826/d:Controller/f:AgentKindController.cs" caret="0" fromTop="0" />
+      <File id="d:&amp;/f:ExpenseController.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Controller?ExpenseController.cs" caret="10316" fromTop="224" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="d:&amp;/f:ExpenseInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ExpenseInfo.cs" caret="354" fromTop="16" />
+      <File id="d:&amp;/f:ExpenseInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ExpenseInfo.cs" caret="441" fromTop="16" />
+      <File id="d:&amp;/f:ExpenseInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ExpenseInfo.cs" caret="437" fromTop="16" />
+      <File id="E5AB7983-E95D-421A-954F-D34916D0B6A8/d:Utility/f:Database.cs" caret="26375" fromTop="335" />
+      <File id="d:&amp;/f:ProfitInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ProfitInfo.cs" caret="377" fromTop="16" />
+      <File id="d:&amp;/f:ProfitInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ProfitInfo.cs" caret="448" fromTop="16" />
+      <File id="d:&amp;/f:ProfitInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ProfitInfo.cs" caret="458" fromTop="16" />
+      <File id="d:&amp;/f:ProfitCostInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ProfitCostInfo.cs" caret="402" fromTop="17" />
+      <File id="d:&amp;/f:ProfitCostInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ProfitCostInfo.cs" caret="438" fromTop="16" />
+      <File id="d:&amp;/f:ProfitCostInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ProfitCostInfo.cs" caret="431" fromTop="13" />
+      <File id="d:&amp;/f:ProfitCostInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?ProfitCostInfo.cs" caret="493" fromTop="0" />
+      <File id="d:&amp;/f:PaySheetInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?PaySheetInfo.cs" caret="418" fromTop="19" />
+      <File id="d:&amp;/f:PaySheetInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?PaySheetInfo.cs" caret="539" fromTop="19" />
+      <File id="d:&amp;/f:PaySheetInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?PaySheetInfo.cs" caret="536" fromTop="13" />
+      <File id="d:&amp;/f:PaySheetInfo.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Table?PaySheetInfo.cs" caret="1884" fromTop="39" />
+      <File id="29BA4405-D16D-49CC-912F-BEFF6AEC2826/d:Controller/f:AgentKindController.cs" caret="12592" fromTop="25" />
+      <File id="d:&amp;/f:ExpenseController.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Controller?ExpenseController.cs" caret="12486" fromTop="28" />
+      <File id="29BA4405-D16D-49CC-912F-BEFF6AEC2826/d:Controller/f:AgentKindController.cs" caret="0" fromTop="0" />
+      <File id="29BA4405-D16D-49CC-912F-BEFF6AEC2826/d:Controller/f:AgentKindController.cs" caret="199" fromTop="7" />
+      <File id="d:&amp;/f:ExpenseController.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Controller?ExpenseController.cs" caret="0" fromTop="0" />
+      <File id="d:&amp;/f:ExpenseController.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Controller?ExpenseController.cs" caret="201" fromTop="8" />
+      <File id="d:&amp;/f:ExpenseController.cs/l:E!?Duong?Cty Hong Phat?02. SourceCode?CtyHongPhat_26_01_2010?CtyHongPhat?CtyHongPhatDatabase?Controller?ExpenseController.cs" caret="417" fromTop="13" />
+    </RecentEdits>
+  </RecentFiles>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+</Configuration>
